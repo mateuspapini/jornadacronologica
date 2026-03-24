@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada Cronológica – Canal do Rogrão</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:       #0b0a14;
+            --bg2:      #131221;
+            --bg3:      #1c1b30;
+            --card:     #16152a;
+            --border:   rgba(200, 155, 60, 0.18);
+            --border2:  rgba(200, 180, 255, 0.07);
+            --text:     #e8e2d8;
+            --text2:    #9490a8;
+            --text3:    #52506a;
+            --gold:     #c89b3c;
+            --gold2:    #e8c060;
+            --green:    #5aa87a;
+            --amber:    #d07828;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Scanlines */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.035) 3px, rgba(0,0,0,0.035) 4px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Vignette */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%);
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: sticky; top: 0; z-index: 500;
+            background: rgba(11, 10, 20, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border2);
+            padding: 0 2.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 58px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-logo-icon {
+            width: 34px; height: 34px;
+            background: var(--gold);
+            color: var(--bg);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900; font-size: 17px;
+        }
+        .nav-logo-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px; letter-spacing: 0.08em;
+            color: var(--text2);
+        }
+        .nav-logo-text strong { color: var(--text); font-weight: 700; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--text3);
+            text-decoration: none;
+            font-size: 12px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.06em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 70px 2rem 50px;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .hero-glow {
+            position: absolute; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse at 25% 60%, rgba(200,155,60,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 40%, rgba(64,168,160,0.05) 0%, transparent 55%);
+        }
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 18px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5.5vw, 4.4rem);
+            font-weight: 900; line-height: 1.1;
+            margin-bottom: 22px;
+            background: linear-gradient(150deg, #f0e8d8 0%, var(--gold2) 45%, #d4c8a8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1rem; color: var(--text2);
+            max-width: 480px; margin: 0 auto 28px;
+            font-weight: 300; font-style: italic; line-height: 1.8;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 8px 22px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px; color: var(--gold);
+            letter-spacing: 0.06em;
+        }
+        .hero-badge::before {
+            content: ''; width: 7px; height: 7px;
+            background: var(--green); border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+        }
+
+        /* ─── STATS ─── */
+        .stats-bar {
+            display: flex; justify-content: center;
+            max-width: 760px; margin: 36px auto 0;
+            background: var(--bg2);
+            border: 1px solid var(--border); border-radius: 12px;
+            overflow: hidden;
+        }
+        .stat-item {
+            flex: 1; padding: 18px 20px; text-align: center;
+            border-right: 1px solid var(--border2);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-value {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.7rem; color: var(--gold);
+        }
+        .stat-label {
+            font-size: 10px; color: var(--text3);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            margin-top: 4px;
+        }
+
+        /* ─── LAYOUT ─── */
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 48px 0; }
+
+        /* ─── SECTION HEADER ─── */
+        .section-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 28px; padding-bottom: 14px;
+            border-bottom: 1px solid var(--border2);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem; font-weight: 700;
+        }
+        .section-pill {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; color: var(--text3);
+            background: var(--bg2); padding: 4px 11px;
+            border-radius: 100px; letter-spacing: 0.05em;
+        }
+
+        /* ─── FILTERS ─── */
+        .filters { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 36px; }
+        .filter-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; letter-spacing: 0.06em;
+            padding: 6px 14px; border-radius: 100px;
+            border: 1px solid var(--border2);
+            background: var(--bg2); color: var(--text3);
+            cursor: pointer; transition: all 0.18s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(200,155,60,0.08);
+        }
+
+        /* ─── YEAR DIVIDER ─── */
+        .year-section { margin-bottom: 52px; }
+        .year-header {
+            display: flex; align-items: center; gap: 18px;
+            margin-bottom: 20px;
+        }
+        .year-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.6rem; font-weight: 700; line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--bg3);
+            letter-spacing: -0.02em; user-select: none;
+        }
+        .year-line { flex: 1; height: 1px; background: var(--border2); }
+        .year-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; color: var(--text3);
+            white-space: nowrap;
+        }
+
+        /* ─── COMING SOON YEAR ─── */
+        .coming-soon-year .year-number {
+            -webkit-text-stroke: 1px rgba(200,155,60,0.22);
+        }
+        .coming-soon-block {
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; gap: 10px;
+            padding: 36px 28px;
+            background: var(--card);
+            border: 1px dashed rgba(200,155,60,0.22);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .coming-soon-yr {
+            font-family: 'Space Mono', monospace;
+            font-size: 3.2rem; font-weight: 700;
+            color: rgba(200,155,60,0.18);
+            letter-spacing: -0.03em;
+        }
+        .coming-soon-msg {
+            color: var(--text3); font-size: 13px; font-style: italic;
+        }
+        .coming-soon-link {
+            display: inline-block; margin-top: 8px;
+            font-family: 'Space Mono', monospace; font-size: 10px;
+            color: var(--gold); text-decoration: none; letter-spacing: 0.08em;
+            padding: 6px 16px; border: 1px solid rgba(200,155,60,0.25);
+            border-radius: 100px; transition: all 0.18s;
+        }
+        .coming-soon-link:hover { border-color: var(--gold); background: rgba(200,155,60,0.07); }
+
+        /* ─── GAME GRID ─── */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 14px;
+        }
+
+        /* ─── GAME CARD ─── */
+        .game-card {
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 8px; overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(200,155,60,0.3);
+            box-shadow: 0 10px 36px rgba(200,155,60,0.1);
+        }
+        .game-card.pending { opacity: 0.42; }
+        .game-card.pending:hover { opacity: 0.62; }
+        .game-card.em-breve { opacity: 0.72; }
+        .game-card.em-breve:hover { opacity: 0.9; }
+
+        .game-cover {
+            width: 100%; aspect-ratio: 3/4;
+            display: flex; align-items: flex-end; justify-content: center;
+            position: relative; overflow: hidden;
+            padding-bottom: 12px;
+        }
+        .cover-img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: opacity 0.3s;
+        }
+        .cover-platform-label {
+            position: absolute; top: 10px; left: 10px;
+            font-family: 'Space Mono', monospace;
+            font-size: 8px; font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 3px 7px; border-radius: 3px;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(4px);
+            z-index: 3;
+        }
+        .cover-title {
+            position: relative; z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.82rem; font-weight: 700;
+            text-align: center; padding: 0 12px;
+            color: rgba(255,255,255,0.92);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+            line-height: 1.3;
+        }
+        .game-cover::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.72) 100%);
+            z-index: 1;
+        }
+        .game-info { padding: 11px 12px; }
+        .game-title-card {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.88rem; font-weight: 700;
+            line-height: 1.25; margin-bottom: 3px;
+        }
+        .game-genre {
+            font-size: 10px; color: var(--text3);
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-bottom: 9px;
+        }
+        .game-footer { display: flex; align-items: center; justify-content: space-between; }
+        .status-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; letter-spacing: 0.08em;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .s-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .zerado     { color: var(--green); }
+        .zerado     .s-dot { background: var(--green); }
+        .nao-zerado { color: var(--amber); }
+        .nao-zerado .s-dot { background: var(--amber); }
+        .em-breve-tag { color: var(--gold); opacity: 0.75; }
+        .em-breve-tag .s-dot { background: var(--gold); }
+        .pendente   { color: var(--text3); }
+        .pendente   .s-dot { background: var(--text3); }
+
+        .game-score-sm {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--gold);
+        }
+        .game-score-sm small { font-size: 0.6rem; color: var(--text3); }
+
+        /* ─── PLATFORM BADGE ─── */
+        .plat-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 3px 7px; border-radius: 3px;
+        }
+
+        /* ─── RANKING ─── */
+        .rank-list { display: flex; flex-direction: column; gap: 10px; }
+        .rank-row {
+            display: flex; align-items: center; gap: 24px;
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 12px; padding: 18px 28px 18px 22px;
+            cursor: pointer;
+            transition: background 0.18s, border-color 0.18s, transform 0.15s, box-shadow 0.18s;
+        }
+        .rank-row:hover { background: var(--bg3); border-color: var(--border); transform: translateX(4px); box-shadow: 0 4px 20px rgba(0,0,0,0.28); }
+        .rank-row:nth-child(1) { border-left: 4px solid #d4a820; }
+        .rank-row:nth-child(2) { border-left: 4px solid #a8b0b8; }
+        .rank-row:nth-child(3) { border-left: 4px solid #b07848; }
+        .rank-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8rem; font-weight: 700;
+            color: var(--text3); min-width: 56px; text-align: center; flex-shrink: 0;
+        }
+        .rank-row:nth-child(1) .rank-num { color: #d4a820; }
+        .rank-row:nth-child(2) .rank-num { color: #a8b0b8; }
+        .rank-row:nth-child(3) .rank-num { color: #b07848; }
+        .rank-thumb {
+            width: 138px; height: 180px; border-radius: 8px;
+            flex-shrink: 0; overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        }
+        .rank-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .rank-thumb-placeholder {
+            width: 138px; height: 180px; border-radius: 8px;
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 11px; font-weight: 700;
+            text-align: center; padding: 10px;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.3;
+        }
+        .rank-info { flex: 1; }
+        .rank-title-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.42rem; font-weight: 700; line-height: 1.3;
+        }
+        .rank-meta-text { font-size: 13px; color: var(--text3); margin-top: 8px; }
+        .rank-score-col { text-align: right; flex-shrink: 0; }
+        .rank-score-big {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.8rem; font-weight: 700; color: var(--gold);
+            line-height: 1;
+        }
+        .rank-score-big small { font-size: 0.55rem; color: var(--text3); }
+        .score-bar { height: 5px; background: var(--bg2); border-radius: 3px; margin-top: 8px; overflow: hidden; width: 150px; }
+        .score-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+
+        /* ─── PLATFORM STATS ─── */
+        .plat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .plat-card {
+            display: flex;
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .plat-card:hover { border-color: var(--pc, #556677); transform: translateY(-2px); }
+        .plat-panel {
+            width: 90px; flex-shrink: 0;
+            background: linear-gradient(155deg, var(--pc, #556677)ee, var(--pc, #556677)55);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .plat-panel::after {
+            content: attr(data-abbr);
+            position: absolute;
+            font-family: 'Space Mono', monospace;
+            font-size: 3.6rem; font-weight: 700;
+            color: rgba(255,255,255,0.07);
+            bottom: -10px; right: -6px;
+            pointer-events: none; line-height: 1;
+        }
+        .plat-panel-img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+            opacity: 0.62;
+            filter: grayscale(10%) contrast(1.1) saturate(0.9);
+            mix-blend-mode: luminosity;
+        }
+        .plat-abbr {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.15rem; font-weight: 700;
+            color: rgba(255,255,255,0.93);
+            text-align: center; position: relative;
+            text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+            letter-spacing: 0.04em;
+        }
+        .plat-body {
+            flex: 1; padding: 14px 16px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .plat-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--pc, #556677);
+        }
+        .plat-full { font-size: 11px; color: var(--text3); margin-top: 1px; margin-bottom: 10px; }
+        .plat-count { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text2); }
+        .plat-stats-row { display: flex; }
+        .plat-stat-item { flex: 1; text-align: center; }
+        .plat-stat-item + .plat-stat-item { border-left: 1px solid var(--border2); }
+        .plat-stat-val {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.15rem; color: var(--gold);
+        }
+        .plat-stat-lbl { font-size: 8px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; }
+        .plat-prog { height: 3px; background: var(--bg2); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+        .plat-prog-fill {
+            height: 100%; border-radius: 2px;
+            background: linear-gradient(90deg, var(--green), #7acc96);
+            transition: width 0.5s ease;
+        }
+        .plat-pct { font-size: 9px; color: var(--text3); margin-top: 4px; text-align: right; }
+
+        /* ─── DESTAQUE DA PLATAFORMA ─── */
+        .plat-destaque { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 8px; }
+        .plat-destaque-badge { font-size: 7px; font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
+        .plat-destaque-title { font-size: 10px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; }
+        .plat-destaque-score { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--gold); white-space: nowrap; }
+
+        /* ─── POR GÊNERO ─── */
+        .genre-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .genre-card { background: var(--card); border: 1px solid var(--border2); border-left: 3px solid var(--gc, #556677); border-radius: 10px; padding: 14px 15px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s, transform 0.2s; }
+        .genre-card:hover { border-color: var(--gc, #556677); transform: translateY(-2px); }
+        .genre-header { display: flex; justify-content: space-between; align-items: center; }
+        .genre-name { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gc, #556677); }
+        .genre-count { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text2); }
+        .genre-stats-row { display: flex; gap: 4px; }
+        .genre-stat-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .genre-stat-val { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; }
+        .genre-stat-lbl { font-size: 7px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; }
+        .genre-prog { height: 2px; background: var(--bg2); border-radius: 2px; overflow: hidden; }
+        .genre-prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--gc, #556677), #7acc96); transition: width 0.5s ease; }
+        .genre-pct { font-size: 8px; color: var(--text3); margin-top: 3px; text-align: right; }
+        .genre-best { display: flex; align-items: center; gap: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .genre-best-label { font-size: 7px; font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gc, #556677); white-space: nowrap; flex-shrink: 0; }
+        .genre-best-title { font-size: 10px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .genre-best-score { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; color: var(--gc, #556677); white-space: nowrap; }
+        @media (max-width: 700px) { .genre-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .genre-grid { grid-template-columns: 1fr; } }
+
+        /* ─── YOUTUBE BUTTON ─── */
+        .yt-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(255,50,50,0.1);
+            border: 1px solid rgba(255,80,80,0.28);
+            border-radius: 4px; padding: 3px 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 8px; font-weight: 700; letter-spacing: 0.06em;
+            color: #ff7070; text-decoration: none;
+            cursor: pointer; transition: background 0.15s;
+            vertical-align: middle;
+        }
+        .yt-btn:hover { background: rgba(255,50,50,0.2); }
+        .yt-btn-modal {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,50,50,0.1);
+            border: 1px solid rgba(255,80,80,0.28);
+            border-radius: 6px; padding: 7px 14px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+            color: #ff7070; text-decoration: none;
+            cursor: pointer; transition: background 0.15s;
+            margin-top: 12px;
+        }
+        .yt-btn-modal:hover { background: rgba(255,50,50,0.2); }
+
+        @media (max-width: 640px) {
+            .plat-grid { grid-template-columns: 1fr; }
+            .plat-panel { width: 72px; }
+            .plat-abbr { font-size: 0.95rem; }
+        }
+
+        /* ─── MODAL ─── */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 2000;
+            display: none; align-items: center; justify-content: center;
+            padding: 2rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            max-width: 660px; width: 100%;
+            max-height: 88vh; overflow-y: auto;
+            position: relative;
+        }
+        .modal-head {
+            display: flex; gap: 22px;
+            padding: 26px 26px 20px;
+            border-bottom: 1px solid var(--border2);
+        }
+        .modal-art {
+            width: 96px; height: 124px;
+            border-radius: 7px; flex-shrink: 0;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.78rem; font-weight: 700;
+            text-align: center; padding: 8px;
+            color: rgba(255,255,255,0.88); line-height: 1.3;
+        }
+        .modal-art img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-title { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 900; margin-bottom: 10px; line-height: 1.15; }
+        .modal-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
+        .modal-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; padding: 3px 8px;
+            border-radius: 3px; background: var(--bg);
+            color: var(--text3); letter-spacing: 0.06em;
+        }
+        .modal-score-display {
+            font-family: 'Space Mono', monospace;
+            font-size: 3.2rem; font-weight: 700;
+            color: var(--gold); line-height: 1;
+        }
+        .modal-score-display small { font-size: 1rem; color: var(--text3); }
+        .modal-body { padding: 22px 26px; }
+        .modal-review {
+            font-style: italic; color: var(--text2);
+            font-size: 0.93rem; line-height: 1.75;
+            padding: 14px 16px;
+            border-left: 2px solid var(--gold);
+            background: rgba(200,155,60,0.04);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 20px;
+        }
+        .criteria-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; color: var(--text3);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+        .criteria-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 9px; margin-bottom: 20px; }
+        .crit-item { background: var(--bg); padding: 11px 12px; border-radius: 6px; }
+        .crit-name { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+        .crit-val { font-family: 'Space Mono', monospace; font-size: 1.1rem; color: var(--gold); }
+        .crit-bar { height: 3px; background: var(--bg2); border-radius: 2px; margin-top: 5px; overflow: hidden; }
+        .crit-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+        .modal-close {
+            position: absolute; top: 14px; right: 14px;
+            width: 30px; height: 30px;
+            border: 1px solid var(--border2); background: var(--bg);
+            border-radius: 50%; cursor: pointer;
+            color: var(--text3); font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.18s;
+        }
+        .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+        .modal-embreve {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 12px; padding: 24px 16px; text-align: center;
+        }
+        .modal-embreve-icon { font-size: 2rem; opacity: 0.4; }
+        .modal-embreve-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px; letter-spacing: 0.15em;
+            color: var(--gold); text-transform: uppercase;
+        }
+        .modal-embreve-msg {
+            font-size: 13px; color: var(--text3);
+            font-style: italic; line-height: 1.7;
+            max-width: 340px;
+        }
+        .modal-embreve-link {
+            font-family: 'Space Mono', monospace; font-size: 10px;
+            color: var(--gold); text-decoration: none; letter-spacing: 0.08em;
+            padding: 7px 18px; border: 1px solid rgba(200,155,60,0.3);
+            border-radius: 100px; transition: all 0.18s;
+            margin-top: 4px;
+        }
+        .modal-embreve-link:hover { background: rgba(200,155,60,0.08); border-color: var(--gold); }
+        .modal-canal-link {
+            display: inline-block; margin-top: 8px;
+            font-family: 'Space Mono', monospace; font-size: 10px;
+            color: var(--gold); text-decoration: none; letter-spacing: 0.08em;
+            padding: 7px 18px; border: 1px solid rgba(200,155,60,0.3);
+            border-radius: 100px; transition: all 0.18s;
+        }
+        .modal-canal-link:hover { background: rgba(200,155,60,0.08); border-color: var(--gold); }
+
+        /* ─── NOTICE BANNER ─── */
+        .notice-banner {
+            background: rgba(200,155,60,0.07);
+            border: 1px solid rgba(200,155,60,0.2);
+            border-radius: 8px; padding: 12px 18px;
+            font-size: 12px; color: var(--text2);
+            margin-bottom: 36px; text-align: center;
+        }
+        .notice-banner strong { color: var(--gold); }
+
+        /* Legend */
+        .legend {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            margin-bottom: 24px; align-items: center;
+        }
+        .legend-item {
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; color: var(--text3); letter-spacing: 0.06em;
+        }
+        .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+        /* ─── MEMBROS ─── */
+        .membros-section { margin: 60px 0 0; }
+        .membros-intro {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .membros-intro .section-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; letter-spacing: 0.14em;
+            color: var(--gold); text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .membros-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem; font-weight: 900;
+            color: var(--text); margin-bottom: 10px;
+        }
+        .membros-intro p {
+            font-size: 14px; color: var(--text2);
+            max-width: 500px; margin: 0 auto;
+            line-height: 1.6;
+        }
+        .membros-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .membro-card {
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 14px;
+            padding: 28px 24px;
+            display: flex; flex-direction: column;
+            transition: border-color 0.2s, transform 0.2s;
+            position: relative; overflow: hidden;
+        }
+        .membro-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--mc);
+        }
+        .membro-card:hover { border-color: var(--mc); transform: translateY(-3px); }
+        .membro-card.destaque {
+            border-color: rgba(200,155,60,0.35);
+        }
+        .membro-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; letter-spacing: 0.1em;
+            color: var(--mc);
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--mc);
+            border-radius: 100px;
+            padding: 3px 10px;
+            margin-bottom: 14px;
+            align-self: flex-start;
+        }
+        .membro-nome {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--text); margin-bottom: 4px;
+        }
+        .membro-preco {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem; font-weight: 700;
+            color: var(--mc); line-height: 1;
+        }
+        .membro-preco small {
+            font-size: 0.65rem; color: var(--text3); font-weight: 400;
+        }
+        .membro-divider {
+            border: none; border-top: 1px solid var(--border2);
+            margin: 18px 0;
+        }
+        .membro-beneficios { list-style: none; flex: 1; }
+        .membro-beneficios li {
+            display: flex; align-items: flex-start; gap: 9px;
+            font-size: 13px; color: var(--text2);
+            padding: 5px 0;
+            line-height: 1.4;
+        }
+        .membro-beneficios li .chk {
+            flex-shrink: 0;
+            width: 16px; height: 16px; margin-top: 1px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--mc);
+            border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; color: var(--mc);
+        }
+        .membro-beneficios li.herdado { opacity: 0.5; }
+        .membro-btn {
+            display: block; text-align: center; margin-top: 20px;
+            background: var(--mc);
+            color: var(--bg);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 11px 0; border-radius: 100px;
+            transition: opacity 0.18s, transform 0.15s;
+        }
+        .membro-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        @media (max-width: 720px) {
+            .membros-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ─── DISCORD CTA ─── */
+        .discord-section {
+            margin: 60px 0 0;
+            padding: 48px 2rem;
+            background: linear-gradient(135deg, rgba(88,101,242,0.08) 0%, rgba(88,101,242,0.03) 100%);
+            border: 1px solid rgba(88,101,242,0.2);
+            border-radius: 16px;
+            text-align: center;
+        }
+        .discord-icon {
+            width: 56px; height: 56px;
+            margin: 0 auto 20px;
+            background: rgba(88,101,242,0.15);
+            border: 1px solid rgba(88,101,242,0.3);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .discord-icon svg { width: 30px; height: 30px; fill: #5865F2; }
+        .discord-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem; font-weight: 900;
+            margin-bottom: 10px; color: var(--text);
+        }
+        .discord-sub {
+            font-size: 14px; color: var(--text2);
+            max-width: 440px; margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+        .discord-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #5865F2;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px; font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 13px 30px;
+            border-radius: 100px;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .discord-btn:hover { background: #4752c4; transform: translateY(-1px); }
+        .discord-btn svg { width: 16px; height: 16px; fill: #fff; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            margin-top: 60px; padding: 36px 2rem;
+            border-top: 1px solid var(--border2);
+            text-align: center;
+        }
+        footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; color: var(--text3);
+            letter-spacing: 0.1em;
+        }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+        @media (max-width: 640px) {
+            .games-grid { grid-template-columns: repeat(2,1fr); }
+            .stats-bar { flex-wrap: wrap; }
+            .stat-item { min-width: 50%; border-bottom: 1px solid var(--border2); }
+            .nav-links { display: none; }
+            .legend { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+    <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">R</div>
+        <div class="nav-logo-text">Canal do <strong>Rogrão</strong></div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#jornada">Jornada</a></li>
+        <li><a href="#plat-stats">Plataformas</a></li>
+        <li><a href="#generos">Gêneros</a></li>
+        <li><a href="#ranking">Hall of Fame</a></li>
+        <li><a href="#membros">Membros</a></li>
+        <li><a href="https://www.youtube.com/@canaldorograo" target="_blank">YouTube ↗</a></li>
+        <li><a href="https://discord.gg/rDRmZN34fr" target="_blank">Discord ↗</a></li>
+    </ul>
+</nav>
+
+<!-- ─── COVER NOTICE (hidden until probe fails) ─── -->
+<div id="cover-notice" style="display:none;max-width:760px;margin:16px auto 0;padding:13px 18px;background:#1e1208;border:1px solid #d07828;border-radius:10px;display:none;align-items:center;gap:12px;font-size:13px;line-height:1.5;color:#e8c060">
+    <span style="font-size:1.3rem">⚠️</span>
+    <div>
+        <strong style="display:block;margin-bottom:2px">Capas não aparecem aqui dentro.</strong>
+        Para ver as capas dos jogos abra o arquivo diretamente no seu navegador:<br>
+        <span style="font-family:'Space Mono',monospace;font-size:11px;color:#c89b3c">Chrome / Firefox / Edge → Arquivo → Abrir</span>
+        &nbsp;·&nbsp;ou arraste o <code style="background:#2a1a08;padding:2px 5px;border-radius:4px">.html</code> para a janela do navegador.
+    </div>
+    <button onclick="document.getElementById('cover-notice').style.display='none'" style="margin-left:auto;background:none;border:none;color:#9490a8;font-size:1.2rem;cursor:pointer;flex-shrink:0">✕</button>
+</div>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+    <div class="hero-glow"></div>
+    <p class="hero-eyebrow">Canal do Rogrão · Projeto</p>
+    <h1>Jornada Cronológica<br>Através da História dos Games</h1>
+    <p class="hero-sub">Do 8-bit ao 4K — uma exploração honesta e apaixonada<br>de cada era da história dos videogames.</p>
+    <div class="hero-badge">Atualmente em: 1989</div>
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-value" id="st-total">–</span>
+            <div class="stat-label">Jogos Analisados</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="st-done">–</span>
+            <div class="stat-label">Zerados</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="st-nz">–</span>
+            <div class="stat-label">Não Zerados</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="st-avg">–</span>
+            <div class="stat-label">Nota Média</div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── MAIN ─── -->
+<div class="container">
+
+    <section id="jornada">
+        <div class="section-header">
+            <h2 class="section-title">A Jornada</h2>
+            <span class="section-pill" id="total-label">0 jogos</span>
+        </div>
+
+        <div class="notice-banner">
+            <strong>Protótipo —</strong> dados reais da planilha. Notas e reviews só aparecem após a publicação do episódio no canal. Na versão final, alimentado direto do Google Sheets via API.
+        </div>
+
+        <div class="legend">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>ZERADO — publicado no canal</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>NÃO ZERADO — publicado, jogo não zerado</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--gold);opacity:0.75"></span>EM BREVE — jogado, episódio chegando</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--text3)"></span>PENDENTE — na lista</span>
+        </div>
+
+        <div class="filters" id="filters">
+            <button class="filter-btn active" data-f="all">Todos</button>
+            <button class="filter-btn" data-f="zerado">Zerados</button>
+            <button class="filter-btn" data-f="naozerado">Não Zerados</button>
+            <button class="filter-btn" data-f="pendente">Pendentes</button>
+            <button class="filter-btn" data-p="NES">NES</button>
+            <button class="filter-btn" data-p="MASTER SYSTEM">Master System</button>
+            <button class="filter-btn" data-p="PC ENGINE">PC Engine</button>
+            <button class="filter-btn" data-p="MEGA DRIVE">Mega Drive</button>
+            <button class="filter-btn" data-p="GAME BOY">Game Boy</button>
+            <button class="filter-btn" data-p="ARCADE">Arcade</button>
+        </div>
+
+        <div id="timeline"></div>
+    </section>
+
+    <section id="plat-stats">
+        <div class="section-header">
+            <h2 class="section-title">Por Plataforma</h2>
+            <span class="section-pill">episódios publicados</span>
+        </div>
+        <div class="plat-grid" id="plat-grid"></div>
+    </section>
+
+    <section id="generos">
+        <div class="section-header">
+            <h2 class="section-title">Por Gênero</h2>
+            <span class="section-pill">episódios publicados</span>
+        </div>
+        <div class="genre-grid" id="genre-grid"></div>
+    </section>
+
+    <!-- ─── MEMBROS ─── -->
+    <section id="membros" class="membros-section">
+        <div class="membros-intro">
+            <p class="section-eyebrow">Canal do Rogrão</p>
+            <h2>Seja Membro do Canal</h2>
+            <p>Apoie a jornada e tenha acesso a benefícios exclusivos. Escolha o nível que faz mais sentido pra você.</p>
+        </div>
+        <div class="membros-grid">
+
+            <!-- APOIADOR -->
+            <div class="membro-card" style="--mc:#c89b3c">
+                <span class="membro-badge">APOIADOR</span>
+                <div class="membro-nome">Membro Apoiador</div>
+                <div class="membro-preco">R$ 3,99 <small>/mês</small></div>
+                <hr class="membro-divider">
+                <ul class="membro-beneficios">
+                    <li><span class="chk">✓</span>Selos de fidelidade ao lado do seu nome em comentários e no chat ao vivo</li>
+                    <li><span class="chk">✓</span>Emoji personalizado para usar em comentários e chat ao vivo</li>
+                    <li><span class="chk">✓</span>Nome na descrição do canal</li>
+                </ul>
+                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener">Seja Membro ↗</a>
+            </div>
+
+            <!-- ESCUDEIRO -->
+            <div class="membro-card destaque" style="--mc:#5aa87a">
+                <span class="membro-badge">ESCUDEIRO</span>
+                <div class="membro-nome">Membro Escudeiro</div>
+                <div class="membro-preco">R$ 7,99 <small>/mês</small></div>
+                <hr class="membro-divider">
+                <ul class="membro-beneficios">
+                    <li class="herdado"><span class="chk">✓</span>Todos os benefícios do nível anterior</li>
+                    <li><span class="chk">✓</span>Acesso ao grupo de WhatsApp exclusivo</li>
+                </ul>
+                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener">Seja Membro ↗</a>
+            </div>
+
+            <!-- VETERANO -->
+            <div class="membro-card" style="--mc:#9040c0">
+                <span class="membro-badge">VETERANO</span>
+                <div class="membro-nome">Membro Veterano</div>
+                <div class="membro-preco">R$ 11,99 <small>/mês</small></div>
+                <hr class="membro-divider">
+                <ul class="membro-beneficios">
+                    <li class="herdado"><span class="chk">✓</span>Todos os benefícios dos níveis anteriores</li>
+                    <li><span class="chk">✓</span>Seu nome citado nos vídeos do canal</li>
+                    <li><span class="chk">✓</span>Melhores amigos no Instagram</li>
+                    <li><span class="chk">✓</span>Vídeos exclusivos para membros</li>
+                    <li><span class="chk">✓</span>Sorteio mensal de jogo na Steam — ativado ao atingir 10 membros Veteranos. O valor do jogo corresponde a 10% da arrecadação total da categoria</li>
+                </ul>
+                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener">Seja Membro ↗</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── DISCORD CTA ─── -->
+    <div class="discord-section" id="discord">
+        <div class="discord-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </div>
+        <h2 class="discord-title">Entre na Comunidade</h2>
+        <p class="discord-sub">Converse sobre os jogos da jornada, compartilhe memórias e acompanhe as novidades do canal no nosso servidor do Discord.</p>
+        <a class="discord-btn" href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            Entrar no Discord ↗
+        </a>
+    </div>
+
+    <section id="ranking">
+        <div class="section-header">
+            <h2 class="section-title">Hall of Fame</h2>
+            <span class="section-pill" id="rank-pill">ranking completo · episódios publicados</span>
+        </div>
+        <div class="rank-list" id="rank-list"></div>
+    </section>
+
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <p>© 2026 Canal do Rogrão · <a href="https://www.youtube.com/@canaldorograo" target="_blank">YouTube</a> · <a href="https://discord.gg/rDRmZN34fr" target="_blank">Discord</a></p>
+    <p style="margin-top:8px">Jornada Cronológica Através da História dos Games · 1985 → 4K</p>
+</footer>
+
+<!-- ─── MODAL ─── -->
+<div class="modal-overlay" id="overlay">
+    <div class="modal">
+        <button class="modal-close" id="modal-close">✕</button>
+        <div class="modal-head" id="modal-head"></div>
+        <div class="modal-body" id="modal-body"></div>
+    </div>
+</div>
+
+<script>
+/* ─── PLATFORM CONFIG ─── */
+const WK = 'https://commons.wikimedia.org/wiki/Special:FilePath';
+const P = {
+    'NES':           { color:'#c44040', label:'NES',           short:'NES',  full:'Nintendo Entertainment System',        img:`${WK}/NES-Console-Set.jpg?width=300`,                          folder:'nes',                prefix:'nes'     },
+    'MASTER SYSTEM': { color:'#3070c0', label:'Master System', short:'SMS',  full:'Sega Master System',                  img:`${WK}/Sega-Master-System-Set.jpg?width=300`,                   folder:'sega_master_system', prefix:'sms'     },
+    'PC ENGINE':     { color:'#d07020', label:'PC Engine',     short:'PCE',  full:'NEC PC Engine',                       img:`${WK}/PC-Engine-Console-Set.jpg?width=300`,                    folder:'turbografx_16',      prefix:'tg16'    },
+    'MEGA DRIVE':    { color:'#3aa898', label:'Mega Drive',    short:'MD',   full:'Sega Mega Drive',                     img:`${WK}/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg?width=300`,       folder:'genesis',            prefix:'genesis' },
+    'GAME BOY':      { color:'#6aaa3a', label:'Game Boy',      short:'GB',   full:'Nintendo Game Boy',                   img:`${WK}/Nintendo-Gameboy-Pak.jpg?width=300`,                     folder:'gameboy',            prefix:'gb'      },
+    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`${WK}/Video_game_arcade_cabinet.jpg?width=300`,                    folder:null,                 prefix:null      },
+    'AMIGA':         { color:'#b06040', label:'Amiga',         short:'AMI',  full:'Commodore Amiga',                     img:`${WK}/Amiga500_system.jpg?width=300`,                          folder:null,                 prefix:null      },
+    'PC':            { color:'#507080', label:'PC',            short:'PC',   full:'Personal Computer',                   img:`${WK}/Personal_computer,_exploded_5.svg?width=300`,            folder:null,                 prefix:null      },
+    'SNES':          { color:'#6040c0', label:'Super Nintendo',short:'SNES', full:'Super Nintendo Entertainment System',  img:`${WK}/SNES-Mod1-Console-Set.jpg?width=300`,                   folder:'super_nintendo',     prefix:'snes'    },
+    'GAME GEAR':     { color:'#207070', label:'Game Gear',     short:'GG',   full:'Sega Game Gear',                      img:`${WK}/Game_Gear_Foto.jpg?width=300`,                           folder:'sega_gamegear',      prefix:'gg'      },
+};
+const pc = plat => P[plat] || { color:'#556677', label:'?', folder:null, prefix:null };
+
+/* ─── LIBRETRO COVER ART ─── */
+const LR_BASE = 'https://cdn.jsdelivr.net/gh/libretro-thumbnails';
+const LR_REPO = {
+    'NES':           'Nintendo_-_Nintendo_Entertainment_System',
+    'MASTER SYSTEM': 'Sega_-_Master_System_-_Mark_III',
+    'PC ENGINE':     'NEC_-_PC_Engine_-_TurboGrafx_16',
+    'MEGA DRIVE':    'Sega_-_Mega_Drive_-_Genesis',
+    'GAME BOY':      'Nintendo_-_Game_Boy',
+    'SNES':          'Nintendo_-_Super_Nintendo_Entertainment_System',
+    'GAME GEAR':     'Sega_-_Game_Gear',
+    'ARCADE':        'MAME',
+    'AMIGA':         'Commodore_-_Amiga',
+    'PC':            'DOS',
+};
+
+/* Exact filenames verified from the Libretro thumbnails repository */
+const COVERS = {
+    // NES
+    1:  'Super Mario Bros. (World)',
+    2:  'Legend of Zelda, The (USA)',
+    4:  'Kid Icarus (USA, Europe)',
+    7:  'Metroid (USA)',
+    8:  'Adventure Island (USA)',
+    10: 'Castlevania (USA)',
+    14: 'Zelda II - The Adventure of Link (USA)',
+    16: "Castlevania II - Simon's Quest (USA)",
+    17: 'Metal Gear (USA)',
+    19: 'Final Fantasy (USA)',
+    20: 'Punch-Out!! (USA)',
+    22: 'Mega Man (USA)',
+    23: 'Contra (USA)',
+    27: 'Ninja Gaiden (USA)',
+    29: 'Final Fantasy II (Japan)',
+    30: 'Bionic Commando (USA)',
+    35: 'Super Mario Bros. 2 (USA)',
+    37: 'Mega Man 2 (USA)',
+    39: 'Super Mario Bros. 3 (USA)',
+    47: "Castlevania III - Dracula's Curse (USA)",
+    49: 'DuckTales (USA)',
+    55: 'River City Ransom (USA)',
+    57: 'Teenage Mutant Ninja Turtles (USA)',
+    59: 'Batman - The Video Game (USA)',
+    // MASTER SYSTEM
+    3:  'Black Belt (USA, Europe, Brazil) (En)',
+    5:  'Alex Kidd in Miracle World (USA, Europe)',
+    6:  'Fantasy Zone (World) (Rev 1)',
+    9:  'Phantasy Star (USA, Europe)',
+    11: 'California Games (USA, Europe, Brazil) (En)',
+    12: 'Great Volleyball (USA, Europe, Brazil) (En)',
+    13: 'Akai Koudan Zillion _ Zillion (Japan, Europe) (En,Ja)',
+    15: 'After Burner (World)',
+    18: 'Rocky (World)',
+    24: 'Shinobi (USA, Europe, Brazil) (En) (Rev 1)',
+    25: 'Kenseiden (USA, Europe, Brazil) (En)',
+    26: 'Alex Kidd - The Lost Stars (World)',
+    28: 'Rampage (USA, Europe, Brazil) (En)',
+    32: 'Golvellius - Valley of Doom (USA, Europe, Brazil) (En)',
+    33: 'Double Dragon (World)',
+    38: 'Lord of the Sword (USA, Europe, Brazil) (En)',
+    56: 'Psycho Fox (USA, Europe, Brazil) (En)',
+    // ARCADE
+    21: 'Rastan Saga (Japan)',
+    58: 'Final Fight (World, set 1)',
+    // AMIGA
+    42: 'Weird Dreams (Europe)',
+    // PC / DOS
+    53: 'SimCity',
+    // MEGA DRIVE
+    40: 'Altered Beast (USA, Europe)',
+    43: 'Alex Kidd in the Enchanted Castle (USA)',
+    61: 'World Cup Soccer ~ World Championship Soccer (Japan, USA) (En)',
+    44: 'Phantasy Star II (USA, Europe)',
+    51: 'Revenge of Shinobi, The (USA)',
+    52: 'Sword of Vermilion (USA, Europe)',
+    54: "Ghouls'n Ghosts (Japan, USA) (En)",
+    60: 'Golden Axe (World)',
+    // PC ENGINE
+    31: 'Legendary Axe, The (USA)',
+    50: 'Busou Keiji - Cyber Cross (Japan)',
+    34: 'Alien Crush (USA)',
+    36: 'Ninja Spirit (USA)',
+    45: "Bonk's Adventure (USA)",
+    62: 'Dungeon Explorer (USA)',
+    // MASTER SYSTEM (extra)
+    41: 'Galaxy Force (Europe, Brazil) (En)',
+    // GAME BOY
+    46: 'Super Mario Land (World)',
+    48: 'Tetris (World) (Rev 1)',
+};
+
+function coverUrl(g) {
+    const lr = COVERS[g.id];
+    if (!lr) return null;
+    const repo = LR_REPO[g.plat];
+    if (!repo) return null;
+    return `${LR_BASE}/${repo}@master/Named_Boxarts/${encodeURIComponent(lr)}.png`;
+}
+
+function coverImgTag(g, cls) {
+    const url = coverUrl(g);
+    if (!url) return '';
+    return `<img class="${cls||'cover-img'}" src="${url}" onerror="this.style.display='none'" alt="${g.title}">`;
+}
+
+/* ─── GAME DATA ───────────────────────────────────────────────────────────────
+   st: "z"  = ZERADO      (jogo zerado)
+   st: "nz" = NÃO ZERADO  (jogado mas não zerado)
+   st: "p"  = PENDENTE    (ainda não jogado)
+   pub: true  = jogo no RANK P/ CANAL (episódio publicado)
+   pub: false = não publicado ainda
+   sc: nota do RANK P/ CANAL (só exibida quando pub:true)
+──────────────────────────────────────────────────────────────────────────── */
+const G = [
+  // ── 1985 ──────────────────────────────────────────────────────────────────
+  { id:1,  yr:1985, title:"Super Mario Bros.",              plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:6.8  },
+
+  // ── 1986 ──────────────────────────────────────────────────────────────────
+  { id:2,  yr:1986, title:"The Legend of Zelda",            plat:"NES",           genre:"RPG",            st:"z",  pub:true,  sc:8.3,  slug:'legendofzelda' },
+  { id:3,  yr:1986, title:"Black Belt",                     plat:"MASTER SYSTEM", genre:"Beat 'em Up",    st:"z",  pub:true,  sc:7.0  },
+  { id:4,  yr:1986, title:"Kid Icarus",                     plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:7.2  },
+  { id:5,  yr:1986, title:"Alex Kidd in Miracle World",     plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:true,  sc:6.5  },
+  { id:6,  yr:1986, title:"Fantasy Zone 1",                 plat:"MASTER SYSTEM", genre:"Shoot 'em Up",   st:"nz", pub:true,  sc:2.0  },
+  { id:7,  yr:1986, title:"Metroid",                        plat:"NES",           genre:"Ação",           st:"nz", pub:true,  sc:7.5  },
+  { id:8,  yr:1986, title:"Adventure Island",               plat:"NES",           genre:"Plataforma",     st:"nz", pub:true,  sc:6.0  },
+
+  // ── 1987 ──────────────────────────────────────────────────────────────────
+  { id:9,  yr:1987, title:"Phantasy Star",                  plat:"MASTER SYSTEM", genre:"RPG",            st:"z",  pub:true,  sc:9.8  },
+  { id:10, yr:1987, title:"Castlevania",                    plat:"NES",           genre:"Ação",           st:"z",  pub:true,  sc:7.6  },
+  { id:11, yr:1987, title:"California Games",               plat:"MASTER SYSTEM", genre:"Esporte",        st:"z",  pub:true,  sc:9.5  },
+  { id:12, yr:1987, title:"Great Volleyball",               plat:"MASTER SYSTEM", genre:"Esporte",        st:"nz", pub:true,  sc:4.9  },
+  { id:13, yr:1987, title:"Zillion",                        plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:true,  sc:6.8  },
+  { id:14, yr:1987, title:"Zelda II: The Adventure of Link",plat:"NES",           genre:"RPG",            st:"nz", pub:true,  sc:3.3  },
+  { id:15, yr:1987, title:"After Burner",                   plat:"MASTER SYSTEM", genre:"Shoot 'em Up",   st:"nz", pub:true,  sc:4.9  },
+  { id:16, yr:1987, title:"Castlevania II: Simon's Quest",  plat:"NES",           genre:"Action RPG",     st:"nz", pub:true,  sc:4.0  },
+  { id:17, yr:1987, title:"Metal Gear",                     plat:"NES",           genre:"Ação",           st:"nz", pub:true,  sc:7.4  },
+  { id:18, yr:1987, title:"Rocky",                          plat:"MASTER SYSTEM", genre:"Luta",           st:"z",  pub:true,  sc:5.5  },
+  { id:19, yr:1987, title:"Final Fantasy",                  plat:"NES",           genre:"RPG",            st:"z",  pub:true,  sc:7.4  },
+  { id:20, yr:1987, title:"Mike Tyson's Punch-Out!!",       plat:"NES",           genre:"Luta",           st:"nz", pub:true,  sc:9.0  },
+  { id:21, yr:1987, title:"Rastan Saga",                    plat:"ARCADE",        genre:"Plataforma",     st:"z",  pub:true,  sc:7.5  },
+  { id:22, yr:1987, title:"Mega Man",                       plat:"NES",           genre:"Plataforma",     st:"nz", pub:true,  sc:3.0  },
+  { id:23, yr:1987, title:"Contra",                         plat:"NES",           genre:"Run and Gun",    st:"z",  pub:true,  sc:7.5  },
+  { id:24, yr:1987, title:"Shinobi",                        plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:true,  sc:7.0  },
+
+  // ── 1988 ──────────────────────────────────────────────────────────────────
+  { id:25, yr:1988, title:"Kenseiden",                      plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:true,  sc:5.0  },
+  { id:26, yr:1988, title:"Alex Kidd: The Lost Stars",      plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:true,  sc:3.9  },
+  { id:27, yr:1988, title:"Ninja Gaiden",                   plat:"NES",           genre:"Hack and Slash", st:"z",  pub:true,  sc:7.65 },
+  { id:28, yr:1988, title:"Rampage",                        plat:"MASTER SYSTEM", genre:"Ação",           st:"z",  pub:true,  sc:7.3  },
+  { id:29, yr:1988, title:"Final Fantasy II",               plat:"NES",           genre:"RPG",            st:"nz", pub:true,  sc:4.0  },
+  { id:30, yr:1988, title:"Bionic Commando",                plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:6.5  },
+  { id:31, yr:1988, title:"The Legendary Axe",              plat:"PC ENGINE",     genre:"Plataforma",     st:"z",  pub:true,  sc:8.2  },
+  { id:32, yr:1988, title:"Golvellius: Valley of Doom",     plat:"MASTER SYSTEM", genre:"Action RPG",     st:"z",  pub:true,  sc:7.4  },
+  { id:33, yr:1988, title:"Double Dragon",                  plat:"MASTER SYSTEM", genre:"Beat 'em Up",    st:"z",  pub:true,  sc:7.3  },
+  { id:34, yr:1988, title:"Alien Crush",                    plat:"PC ENGINE",     genre:"Pinball",        st:"z",  pub:true,  sc:7.5  },
+  { id:35, yr:1988, title:"Super Mario Bros. 2",            plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:6.0  },
+  { id:36, yr:1988, title:"Ninja Spirit",                   plat:"PC ENGINE",     genre:"Plataforma",     st:"z",  pub:true,  sc:7.3  },
+  { id:37, yr:1988, title:"Mega Man 2",                     plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:8.1  },
+  { id:38, yr:1988, title:"Lord of the Sword",              plat:"MASTER SYSTEM", genre:"Action RPG",     st:"nz", pub:true,  sc:3.5  },
+  { id:39, yr:1988, title:"Super Mario Bros. 3",            plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:9.6  },
+  { id:40, yr:1988, title:"Altered Beast",                  plat:"MEGA DRIVE",    genre:"Beat 'em Up",    st:"z",  pub:true,  sc:7.9  },
+
+  // ── 1989 ──────────────────────────────────────────────────────────────────
+  { id:41, yr:1989, title:"Galaxy Force",                   plat:"MASTER SYSTEM", genre:"Shoot 'em Up",   st:"z",  pub:false, sc:null },
+  { id:42, yr:1989, title:"Weird Dreams",                   plat:"AMIGA",         genre:"Survival Horror",st:"nz", pub:false, sc:null },
+  { id:43, yr:1989, title:"Alex Kidd in the Enchanted Castle", plat:"MEGA DRIVE", genre:"Plataforma",     st:"z",  pub:false, sc:null },
+  { id:44, yr:1989, title:"Phantasy Star II",               plat:"MEGA DRIVE",    genre:"RPG",            st:"nz", pub:false, sc:null, slug:'phantasystar2' },
+  { id:45, yr:1989, title:"Bonk's Adventure",               plat:"PC ENGINE",     genre:"Plataforma",     st:"z",  pub:false, sc:null },
+  { id:46, yr:1989, title:"Super Mario Land",               plat:"GAME BOY",      genre:"Plataforma",     st:"z",  pub:false, sc:null },
+  { id:47, yr:1989, title:"Castlevania III: Dracula's Curse",plat:"NES",          genre:"Action RPG",     st:"nz", pub:true,  sc:5.0,  slug:'castlevania3' },
+  { id:48, yr:1989, title:"Tetris",                         plat:"GAME BOY",      genre:"Puzzle",         st:"nz", pub:false, sc:null },
+  { id:49, yr:1989, title:"DuckTales",                      plat:"NES",           genre:"Plataforma",     st:"z",  pub:false, sc:null },
+  { id:50, yr:1989, title:"Cyber Cross",                    plat:"PC ENGINE",     genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
+  { id:51, yr:1989, title:"The Revenge of Shinobi",         plat:"MEGA DRIVE",    genre:"Beat 'em Up",    st:"nz", pub:false, sc:null },
+  { id:52, yr:1989, title:"Sword of Vermilion",             plat:"MEGA DRIVE",    genre:"RPG",            st:"nz", pub:false, sc:null },
+  { id:53, yr:1989, title:"SimCity",                        plat:"PC",            genre:"City Building",  st:"nz", pub:false, sc:null },
+  { id:54, yr:1989, title:"Ghouls 'n Ghosts",               plat:"MEGA DRIVE",    genre:"Plataforma",     st:"z",  pub:false, sc:null },
+  { id:55, yr:1989, title:"River City Ransom",              plat:"NES",           genre:"Beat 'em Up",    st:"nz", pub:false, sc:null },
+  { id:56, yr:1989, title:"Psycho Fox",                     plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:false, sc:null },
+  { id:57, yr:1989, title:"Teenage Mutant Ninja Turtles",   plat:"NES",           genre:"Ação",           st:"nz", pub:false, sc:null },
+  { id:58, yr:1989, title:"Final Fight",                    plat:"ARCADE",        genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
+  { id:59, yr:1989, title:"Batman",                         plat:"NES",           genre:"Plataforma",     st:"nz", pub:false, sc:null },
+  { id:60, yr:1989, title:"Golden Axe",                     plat:"MEGA DRIVE",    genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
+  { id:61, yr:1989, title:"World Championship Soccer",      plat:"MEGA DRIVE",    genre:"Esporte",        st:"z",  pub:false, sc:null },
+  { id:62, yr:1989, title:"Dungeon Explorer",               plat:"PC ENGINE",     genre:"RPG",            st:"z",  pub:false, sc:null },
+];
+
+/* ─── HELPERS ─── */
+const plBadge = plat => {
+    const { color, label } = pc(plat);
+    return `<span class="plat-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${label}</span>`;
+};
+
+/* ─── STATS ─── */
+function calcStats() {
+    const canal      = G.filter(x => x.pub === true);
+    const zerados    = canal.filter(x => x.st === 'z');
+    const naoZerados = canal.filter(x => x.st === 'nz');
+    const pubSc      = canal.filter(x => x.sc != null);
+    const avg        = pubSc.length ? (pubSc.reduce((a,b) => a + b.sc, 0) / pubSc.length) : 0;
+    document.getElementById('st-total').textContent = canal.length;
+    document.getElementById('st-done').textContent  = zerados.length;
+    document.getElementById('st-nz').textContent    = naoZerados.length;
+    document.getElementById('st-avg').textContent   = avg.toFixed(1);
+    document.getElementById('total-label').textContent = canal.length + ' analisados';
+}
+
+/* ─── RENDER CARD ─── */
+function card(g) {
+    const { color } = pc(g.plat);
+    const isPublished = g.pub === true;
+    const isPlayed    = g.st === 'z' || g.st === 'nz';
+    const isEmBreve   = isPlayed && !isPublished;
+    const isPending   = g.st === 'p';
+
+    // Status tag
+    let statusHtml;
+    if (isPublished) {
+        if (g.st === 'nz') {
+            statusHtml = `<span class="status-tag nao-zerado"><span class="s-dot"></span>NÃO ZERADO</span>`;
+        } else {
+            statusHtml = `<span class="status-tag zerado"><span class="s-dot"></span>ZERADO</span>`;
+        }
+    } else if (isEmBreve) {
+        statusHtml = `<span class="status-tag em-breve-tag"><span class="s-dot"></span>EM BREVE</span>`;
+    } else {
+        statusHtml = `<span class="status-tag pendente"><span class="s-dot"></span>PENDENTE</span>`;
+    }
+
+    // Score: only for published games
+    const scoreHtml = (isPublished && g.sc != null)
+        ? `<span class="game-score-sm">${g.sc.toFixed(1)}<small>/10</small></span>`
+        : '';
+
+    // YouTube episode link
+    const ytBtn = (g.yt && isPublished)
+        ? `<a class="yt-btn" href="https://www.youtube.com/watch?v=${g.yt}" target="_blank" onclick="event.stopPropagation()">▶ EP</a>`
+        : '';
+
+    // Card class
+    let cardClass = 'game-card';
+    if (isPending) cardClass += ' pending';
+    else if (isEmBreve) cardClass += ' em-breve';
+
+    const imgTag = coverImgTag(g, 'cover-img');
+
+    return `<div class="${cardClass}" onclick="openM(${g.id})">
+        <div class="game-cover" style="background:linear-gradient(145deg,${color}dd,${color}66)">
+            ${imgTag}
+        </div>
+        <div class="game-info">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                ${plBadge(g.plat)}
+                <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--text3)">${g.yr}</span>
+            </div>
+            <div class="game-title-card">${g.title}</div>
+            <div class="game-genre">${g.genre}</div>
+            <div class="game-footer">${statusHtml}${scoreHtml}${ytBtn}</div>
+        </div>
+    </div>`;
+}
+
+/* ─── RENDER TIMELINE ─── */
+function renderTimeline(list) {
+    const years  = [...new Set(list.map(g => g.yr))].sort((a,b) => a - b);
+    const nextYr = Math.max(...G.map(g => g.yr)) + 1;
+
+    let html = years.map(yr => {
+        const yg = list.filter(g => g.yr === yr);
+        return `<div class="year-section">
+            <div class="year-header">
+                <span class="year-number">${yr}</span>
+                <div class="year-line"></div>
+                <span class="year-badge">${yg.length} jogo${yg.length > 1 ? 's' : ''}</span>
+            </div>
+            <div class="games-grid">${yg.map(card).join('')}</div>
+        </div>`;
+    }).join('');
+
+    html += `<div class="year-section coming-soon-year">
+        <div class="year-header">
+            <span class="year-number">${nextYr}</span>
+            <div class="year-line" style="border-top:1px dashed rgba(200,155,60,0.15)"></div>
+            <span class="year-badge" style="color:var(--gold);letter-spacing:0.14em">EM BREVE</span>
+        </div>
+        <div class="coming-soon-block">
+            <div class="coming-soon-yr">${nextYr}</div>
+            <p class="coming-soon-msg">Os jogos de ${nextYr} chegam em breve à Jornada.<br>Acompanhe o canal para não perder nenhum episódio.</p>
+            <a class="coming-soon-link" href="https://www.youtube.com/@canaldorograo" target="_blank">ACOMPANHAR NO YOUTUBE ↗</a>
+        </div>
+    </div>`;
+
+    document.getElementById('timeline').innerHTML = html;
+}
+
+/* ─── RENDER RANKING ─── */
+function renderRanking() {
+    const ranked = G.filter(g => g.pub === true && g.sc != null)
+                    .sort((a, b) => b.sc - a.sc);
+
+    const pill = document.getElementById('rank-pill');
+    if (pill) pill.textContent = `${ranked.length} jogos · ranking completo`;
+
+    document.getElementById('rank-list').innerHTML = ranked.map((g, i) => {
+        const { color } = pc(g.plat);
+        const url = coverUrl(g);
+        let thumbHtml;
+        if (url) {
+            thumbHtml = `<div class="rank-thumb" style="background:linear-gradient(135deg,${color}cc,${color}66)">
+                <img src="${url}" onerror="this.style.display='none'" alt="${g.title}">
+            </div>`;
+        } else {
+            thumbHtml = `<div class="rank-thumb-placeholder" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
+        }
+
+        const statusBadge = g.st === 'nz'
+            ? `<span style="font-family:'Space Mono',monospace;font-size:8px;color:var(--amber);margin-left:6px">NZ</span>`
+            : '';
+
+        return `<div class="rank-row" onclick="openM(${g.id})">
+            <div class="rank-num">${String(i + 1).padStart(2, '0')}</div>
+            ${thumbHtml}
+            <div class="rank-info">
+                <div class="rank-title-text">${g.title}${statusBadge}</div>
+                <div class="rank-meta-text">${plBadge(g.plat)} · ${g.yr} · ${g.genre}</div>
+            </div>
+            <div class="rank-score-col">
+                <div class="rank-score-big">${g.sc.toFixed(1)}<small>/10</small></div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:${g.sc * 10}%"></div></div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+/* ─── PLATFORM STATS ─── */
+function renderPlatStats() {
+    const canal = G.filter(x => x.pub === true);
+
+    // Group by platform
+    const byPlat = {};
+    canal.forEach(g => {
+        if (!byPlat[g.plat]) byPlat[g.plat] = [];
+        byPlat[g.plat].push(g);
+    });
+
+    // Sort platforms by number of analyzed games (desc)
+    const plats = Object.keys(byPlat).sort((a, b) => byPlat[b].length - byPlat[a].length);
+
+    const html = plats.map(plat => {
+        const games  = byPlat[plat];
+        const cfg    = pc(plat);
+        const z      = games.filter(g => g.st === 'z').length;
+        const nz     = games.filter(g => g.st === 'nz').length;
+        const scored = games.filter(g => g.sc != null);
+        const avg    = scored.length ? scored.reduce((a, b) => a + b.sc, 0) / scored.length : null;
+        const pct    = games.length  ? Math.round(z / games.length * 100) : 0;
+        const s      = cfg.short || cfg.label;
+        const best   = scored.length ? scored.reduce((a, b) => b.sc > a.sc ? b : a) : null;
+
+        return `<div class="plat-card" style="--pc:${cfg.color}">
+            <div class="plat-panel" data-abbr="${s}">
+                ${cfg.img ? `<img class="plat-panel-img" src="${cfg.img}" onerror="this.style.display='none'" alt="${cfg.label}">` : ''}
+                <div class="plat-abbr">${s}</div>
+            </div>
+            <div class="plat-body">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                    <div>
+                        <div class="plat-full">${cfg.full || ''}</div>
+                    </div>
+                    <div class="plat-count">${games.length} jogos</div>
+                </div>
+                <div class="plat-stats-row">
+                    <div class="plat-stat-item">
+                        <span class="plat-stat-val" style="color:var(--green)">${z}</span>
+                        <span class="plat-stat-lbl">Zerados</span>
+                    </div>
+                    <div class="plat-stat-item">
+                        <span class="plat-stat-val" style="color:var(--amber)">${nz}</span>
+                        <span class="plat-stat-lbl">Não Zer.</span>
+                    </div>
+                    <div class="plat-stat-item">
+                        <span class="plat-stat-val">${avg !== null ? avg.toFixed(1) : '—'}</span>
+                        <span class="plat-stat-lbl">Média</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="plat-prog"><div class="plat-prog-fill" style="width:${pct}%"></div></div>
+                    <div class="plat-pct">${pct}% zerado</div>
+                </div>
+                ${best ? `<div class="plat-destaque">
+                    <span class="plat-destaque-badge">★ Top</span>
+                    <span class="plat-destaque-title" title="${best.title}">${best.title}</span>
+                    <span class="plat-destaque-score">${best.sc.toFixed(1)}</span>
+                </div>` : ''}
+            </div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('plat-grid').innerHTML = html;
+}
+
+/* ─── GENRE STATS ─── */
+const GENRE_COLORS = {
+    'Plataforma':    '#4a7fd4',
+    'RPG':           '#9a4fd4',
+    'Ação':          '#d44a4a',
+    'Luta':          '#d4744a',
+    'Esporte':       '#4ab870',
+    'Shoot \'em Up': '#4ab8c8',
+    'Beat \'em Up':  '#c8a030',
+    'Run and Gun':   '#c84040',
+    'Action RPG':    '#7a4ac8',
+    'Hack and Slash':'#4a7090',
+    'Puzzle':        '#30a0a0',
+    'Corrida':       '#a0c030',
+    'Aventura':      '#a06030',
+    'Simulação':     '#507090',
+    'Estratégia':    '#308060',
+};
+function genreColor(g) {
+    if (GENRE_COLORS[g]) return GENRE_COLORS[g];
+    // deterministic hue from string hash
+    let h = 0;
+    for (let i = 0; i < g.length; i++) h = (h * 31 + g.charCodeAt(i)) & 0xffff;
+    return `hsl(${h % 360},55%,52%)`;
+}
+
+function renderGenres() {
+    const canal = G.filter(x => x.pub === true);
+
+    const byGenre = {};
+    canal.forEach(g => {
+        const genre = g.genre || 'Outros';
+        if (!byGenre[genre]) byGenre[genre] = [];
+        byGenre[genre].push(g);
+    });
+
+    const genres = Object.keys(byGenre).sort((a, b) => byGenre[b].length - byGenre[a].length);
+
+    const html = genres.map(genre => {
+        const games  = byGenre[genre];
+        const z      = games.filter(g => g.st === 'z').length;
+        const nz     = games.filter(g => g.st === 'nz').length;
+        const scored = games.filter(g => g.sc != null);
+        const avg    = scored.length ? scored.reduce((a, b) => a + b.sc, 0) / scored.length : null;
+        const pct    = games.length  ? Math.round(z / games.length * 100) : 0;
+        const best   = scored.length ? scored.reduce((a, b) => b.sc > a.sc ? b : a) : null;
+        const color  = genreColor(genre);
+
+        return `<div class="genre-card" style="--gc:${color}">
+            <div class="genre-header">
+                <div class="genre-name">${genre}</div>
+                <div class="genre-count">${games.length} jogos</div>
+            </div>
+            <div class="genre-stats-row">
+                <div class="genre-stat-item">
+                    <span class="genre-stat-val" style="color:var(--green)">${z}</span>
+                    <span class="genre-stat-lbl">Zerados</span>
+                </div>
+                <div class="genre-stat-item">
+                    <span class="genre-stat-val" style="color:var(--amber)">${nz}</span>
+                    <span class="genre-stat-lbl">Não Zer.</span>
+                </div>
+                <div class="genre-stat-item">
+                    <span class="genre-stat-val">${avg !== null ? avg.toFixed(1) : '—'}</span>
+                    <span class="genre-stat-lbl">Média</span>
+                </div>
+            </div>
+            <div>
+                <div class="genre-prog"><div class="genre-prog-fill" style="width:${pct}%"></div></div>
+                <div class="genre-pct">${pct}% zerado</div>
+            </div>
+            ${best ? `<div class="genre-best">
+                <span class="genre-best-label">★ Top</span>
+                <span class="genre-best-title" title="${best.title}">${best.title}</span>
+                <span class="genre-best-score">${best.sc.toFixed(1)}</span>
+            </div>` : ''}
+        </div>`;
+    }).join('');
+
+    document.getElementById('genre-grid').innerHTML = html;
+}
+
+/* ─── FILTERS ─── */
+let _f = 'all', _p = null;
+document.getElementById('filters').addEventListener('click', e => {
+    const b = e.target.closest('.filter-btn');
+    if (!b) return;
+    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    if (b.dataset.f)      { _f = b.dataset.f; _p = null; }
+    else if (b.dataset.p) { _p = b.dataset.p; _f = 'all'; }
+    let list = [...G];
+    if (_f === 'zerado')    list = list.filter(g => g.st === 'z');
+    if (_f === 'naozerado') list = list.filter(g => g.st === 'nz');
+    if (_f === 'pendente')  list = list.filter(g => g.st === 'p');
+    if (_p)                 list = list.filter(g => g.plat === _p);
+    renderTimeline(list);
+});
+
+/* ─── MODAL ─── */
+function openM(id) {
+    const g = G.find(x => x.id === id);
+    if (!g) return;
+    const { color } = pc(g.plat);
+    const isPublished = g.pub === true;
+    const isPlayed    = g.st === 'z' || g.st === 'nz';
+    const isEmBreve   = isPlayed && !isPublished;
+
+    // Cover art
+    const url = coverUrl(g);
+    let artHtml;
+    if (url) {
+        artHtml = `<div class="modal-art" style="background:linear-gradient(135deg,${color}cc,${color}66);padding:0">
+            <img src="${url}" onerror="this.style.display='none'" alt="${g.title}">
+        </div>`;
+    } else {
+        artHtml = `<div class="modal-art" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
+    }
+
+    // Status tag in modal
+    let modalStatusTag;
+    if (isPublished) {
+        if (g.st === 'nz') {
+            modalStatusTag = `<span class="modal-tag" style="color:var(--amber);background:rgba(208,120,40,0.12)">NÃO ZERADO</span>`;
+        } else {
+            modalStatusTag = `<span class="modal-tag" style="color:var(--green);background:rgba(90,168,122,0.1)">ZERADO</span>`;
+        }
+    } else if (isEmBreve) {
+        modalStatusTag = `<span class="modal-tag" style="color:var(--gold);background:rgba(200,155,60,0.1)">EM BREVE NO CANAL</span>`;
+    } else {
+        modalStatusTag = `<span class="modal-tag">PENDENTE</span>`;
+    }
+
+    // Score area
+    let scoreAreaHtml;
+    if (isPublished && g.sc != null) {
+        scoreAreaHtml = `<div class="modal-score-display">${g.sc.toFixed(1)}<small>/10</small></div>`;
+    } else if (isEmBreve) {
+        scoreAreaHtml = `<div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);opacity:0.7;border:1px solid rgba(200,155,60,0.25);border-radius:4px;padding:5px 12px;display:inline-block;letter-spacing:0.08em">EM BREVE</div>`;
+    } else if (isPublished) {
+        scoreAreaHtml = `<div style="font-family:'Space Mono',monospace;font-size:12px;color:var(--text3)">Publicado · nota não disponível</div>`;
+    } else {
+        scoreAreaHtml = `<div style="font-family:'Space Mono',monospace;font-size:12px;color:var(--text3)">Aguardando avaliação</div>`;
+    }
+
+    const ytModalBtn = (g.yt && isPublished)
+        ? `<a class="yt-btn-modal" href="https://www.youtube.com/watch?v=${g.yt}" target="_blank">▶ &nbsp;ASSISTIR AO EPISÓDIO</a>`
+        : '';
+
+    document.getElementById('modal-head').innerHTML = `
+        ${artHtml}
+        <div style="flex:1">
+            <div class="modal-title">${g.title}</div>
+            <div class="modal-tags">
+                ${plBadge(g.plat)}
+                <span class="modal-tag">${g.yr}</span>
+                <span class="modal-tag">${g.genre}</span>
+                ${modalStatusTag}
+            </div>
+            ${scoreAreaHtml}
+            ${ytModalBtn}
+        </div>`;
+
+    // Body content
+    let body = '';
+    if (isPublished) {
+        if (g.rev) {
+            body += `<div class="modal-review">"${g.rev}"</div>`;
+        }
+        if (g.sc7) {
+            const criteriaLabels = { g:'Gráfico', s:'Som', j:'Jogabilidade', h:'História', d:'Desafio', f:'Diversão', o:'Outros' };
+            body += `<p class="criteria-label">Critérios de avaliação</p><div class="criteria-grid">`;
+            body += Object.entries(g.sc7)
+                .filter(([, v]) => v !== null)
+                .map(([k, v]) => `<div class="crit-item">
+                    <div class="crit-name">${criteriaLabels[k] || k}</div>
+                    <div class="crit-val">${v.toFixed(1)}</div>
+                    <div class="crit-bar"><div class="crit-bar-fill" style="width:${v * 10}%"></div></div>
+                </div>`).join('');
+            body += '</div>';
+        }
+        if (!g.rev && !g.sc7) {
+            body = `<div style="text-align:center;padding:20px 0">
+                <p style="color:var(--text3);font-style:italic;font-size:13px;margin-bottom:16px">Review completo disponível no episódio do canal.</p>
+                <a class="modal-canal-link" href="https://www.youtube.com/@canaldorograo" target="_blank">ASSISTIR NO YOUTUBE ↗</a>
+            </div>`;
+        }
+    } else if (isEmBreve) {
+        const nzNote = g.st === 'nz'
+            ? `<p class="modal-embreve-msg" style="color:var(--amber);opacity:0.9">Este jogo não foi zerado — mas o episódio está a caminho!</p>`
+            : '';
+        body = `<div class="modal-embreve">
+            <div class="modal-embreve-icon">🎮</div>
+            <div class="modal-embreve-title">Episódio em produção</div>
+            ${nzNote}
+            <p class="modal-embreve-msg">A nota e o review completo só são revelados quando o episódio vai ao ar no canal.</p>
+            <a class="modal-embreve-link" href="https://www.youtube.com/@canaldorograo" target="_blank">INSCREVA-SE NO CANAL ↗</a>
+        </div>`;
+    } else {
+        body = `<p style="color:var(--text3);font-style:italic;text-align:center;padding:20px 0">Este jogo ainda não foi jogado na Jornada.</p>`;
+    }
+
+    document.getElementById('modal-body').innerHTML = body;
+    document.getElementById('overlay').classList.add('open');
+}
+
+document.getElementById('modal-close').onclick = () => document.getElementById('overlay').classList.remove('open');
+document.getElementById('overlay').onclick = e => { if (e.target === e.currentTarget) document.getElementById('overlay').classList.remove('open'); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('overlay').classList.remove('open'); });
+
+/* ─── INIT ─── */
+// Probe: show banner if external images are blocked (e.g. Electron webview)
+(function() {
+    const probe = new Image();
+    probe.onerror = () => {
+        const n = document.getElementById('cover-notice');
+        if (n) { n.style.display = 'flex'; }
+    };
+    probe.src = 'https://cdn.jsdelivr.net/gh/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System@master/Named_Boxarts/Super%20Mario%20Bros.%20(World).png';
+})();
+
+calcStats();
+renderTimeline(G);
+renderPlatStats();
+renderGenres();
+renderRanking();
+</script>
+</body>
+</html>
