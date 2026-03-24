@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jornada Cronológica – Canal do Rogrão</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -68,12 +69,12 @@
         .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .nav-logo-icon {
             width: 34px; height: 34px;
-            background: var(--gold);
-            color: var(--bg);
             border-radius: 6px;
+            overflow: hidden;
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-weight: 900; font-size: 17px;
+        }
+        .nav-logo-icon img {
+            width: 100%; height: 100%; object-fit: cover;
         }
         .nav-logo-text {
             font-family: 'Space Mono', monospace;
@@ -213,7 +214,7 @@
             font-family: 'Space Mono', monospace;
             font-size: 2.6rem; font-weight: 700; line-height: 1;
             color: transparent;
-            -webkit-text-stroke: 1px var(--bg3);
+            -webkit-text-stroke: 1.5px var(--text3);
             letter-spacing: -0.02em; user-select: none;
         }
         .year-line { flex: 1; height: 1px; background: var(--border2); }
@@ -865,7 +866,7 @@
 <!-- ─── NAV ─── -->
 <nav>
     <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">R</div>
+        <div class="nav-logo-icon"><img src="favicon.png" alt="Rogrão"></div>
         <div class="nav-logo-text">Canal do <strong>Rogrão</strong></div>
     </a>
     <ul class="nav-links">
@@ -1579,7 +1580,6 @@ document.getElementById('filters').addEventListener('click', e => {
     renderTimeline(list);
 });
 
-    
 /* ─── MODAL ─── */
 function openM(id) {
     const g = G.find(x => x.id === id);
