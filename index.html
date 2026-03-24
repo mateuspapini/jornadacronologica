@@ -1073,7 +1073,7 @@ const P = {
     'PC ENGINE':     { color:'#d07020', label:'PC Engine',     short:'PCE',  full:'NEC PC Engine',                       img:`${WK}/PC-Engine-Console-Set.jpg?width=300`,                    folder:'turbografx_16',      prefix:'tg16'    },
     'MEGA DRIVE':    { color:'#3aa898', label:'Mega Drive',    short:'MD',   full:'Sega Mega Drive',                     img:`${WK}/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg?width=300`,       folder:'genesis',            prefix:'genesis' },
     'GAME BOY':      { color:'#6aaa3a', label:'Game Boy',      short:'GB',   full:'Nintendo Game Boy',                   img:`${WK}/Nintendo-Gameboy-Pak.jpg?width=300`,                     folder:'gameboy',            prefix:'gb'      },
-    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`${WK}/Video_game_arcade_cabinet.jpg?width=300`,                    folder:null,                 prefix:null      },
+    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`${WK}/Video_game_arcade_cabinet.jpg?width=300`, imgFallbacks:[`${WK}/Amusement_arcade.jpg?width=300`,`${WK}/Pac-Man_arcade_game.jpg?width=300`,`${WK}/Tron-arcade-game.jpg?width=300`],                    folder:null,                 prefix:null      },
     'AMIGA':         { color:'#b06040', label:'Amiga',         short:'AMI',  full:'Commodore Amiga',                     img:`${WK}/Amiga500_system.jpg?width=300`,                          folder:null,                 prefix:null      },
     'PC':            { color:'#507080', label:'PC',            short:'PC',   full:'Personal Computer',                   img:`${WK}/Personal_computer,_exploded_5.svg?width=300`,            folder:null,                 prefix:null      },
     'SNES':          { color:'#6040c0', label:'Super Nintendo',short:'SNES', full:'Super Nintendo Entertainment System',  img:`${WK}/SNES-Mod1-Console-Set.jpg?width=300`,                   folder:'super_nintendo',     prefix:'snes'    },
@@ -1169,7 +1169,15 @@ const COVERS = {
     // GAME BOY
     46: 'Super Mario Land (World)',
     48: 'Tetris (World) (Rev 1)',
+    // PC
+    53: 'SimCity',
 };
+
+function imgFallback(img, urls) {
+    if (!urls || !urls.length) { img.style.display = 'none'; return; }
+    img.onerror = () => imgFallback(img, urls.slice(1));
+    img.src = urls[0];
+}
 
 function coverUrl(g) {
     const lr = COVERS[g.id];
@@ -1179,10 +1187,24 @@ function coverUrl(g) {
     return `${LR_BASE}/${repo}@master/Named_Boxarts/${encodeURIComponent(lr)}.png`;
 }
 
+function coverFallbacks(g) {
+    const lr = COVERS[g.id];
+    if (!lr) return [];
+    const repo = LR_REPO[g.plat];
+    if (!repo) return [];
+    const name = encodeURIComponent(lr);
+    return [
+        `https://raw.githubusercontent.com/libretro-thumbnails/${repo}/master/Named_Boxarts/${name}.png`,
+        `${LR_BASE}/${repo}@master/Named_Boxarts/${encodeURIComponent(g.title)}.png`,
+        `https://raw.githubusercontent.com/libretro-thumbnails/${repo}/master/Named_Boxarts/${encodeURIComponent(g.title)}.png`,
+    ];
+}
+
 function coverImgTag(g, cls) {
     const url = coverUrl(g);
     if (!url) return '';
-    return `<img class="${cls||'cover-img'}" src="${url}" onerror="this.style.display='none'" alt="${g.title}">`;
+    const fb = coverFallbacks(g).map(u => `'${u}'`).join(',');
+    return `<img class="${cls||'cover-img'}" src="${url}" onerror="imgFallback(this,[${fb}])" alt="${g.title}">`;
 }
 
 /* ─── GAME DATA ───────────────────────────────────────────────────────────────
@@ -1388,8 +1410,9 @@ function renderRanking() {
         const url = coverUrl(g);
         let thumbHtml;
         if (url) {
+            const _rfb1 = coverFallbacks(g).map(u=>`'${u}'`).join(',');
             thumbHtml = `<div class="rank-thumb" style="background:linear-gradient(135deg,${color}cc,${color}66)">
-                <img src="${url}" onerror="this.style.display='none'" alt="${g.title}">
+                <img src="${url}" onerror="imgFallback(this,[${_rfb1}])" alt="${g.title}">
             </div>`;
         } else {
             thumbHtml = `<div class="rank-thumb-placeholder" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
@@ -1441,7 +1464,7 @@ function renderPlatStats() {
 
         return `<div class="plat-card" style="--pc:${cfg.color}">
             <div class="plat-panel" data-abbr="${s}">
-                ${cfg.img ? `<img class="plat-panel-img" src="${cfg.img}" onerror="this.style.display='none'" alt="${cfg.label}">` : ''}
+                ${cfg.img ? `<img class="plat-panel-img" src="${cfg.img}" onerror="imgFallback(this,${JSON.stringify(cfg.imgFallbacks||[])})" alt="${cfg.label}">` : ''}
                 <div class="plat-abbr">${s}</div>
             </div>
             <div class="plat-body">
@@ -1593,8 +1616,9 @@ function openM(id) {
     const url = coverUrl(g);
     let artHtml;
     if (url) {
+        const _mfb = coverFallbacks(g).map(u=>`'${u}'`).join(',');
         artHtml = `<div class="modal-art" style="background:linear-gradient(135deg,${color}cc,${color}66);padding:0">
-            <img src="${url}" onerror="this.style.display='none'" alt="${g.title}">
+            <img src="${url}" onerror="imgFallback(this,[${_mfb}])" alt="${g.title}">
         </div>`;
     } else {
         artHtml = `<div class="modal-art" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
