@@ -857,6 +857,72 @@
             .membros-grid { grid-template-columns: 1fr; }
         }
 
+        /* ─── LOJA ─── */
+        .loja-section { margin: 80px 0 0; }
+        .loja-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
+        .produto-card {
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .produto-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .produto-img-wrap {
+            position: relative; overflow: hidden;
+            background: #111; aspect-ratio: 16/10;
+        }
+        .produto-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: opacity 0.35s;
+        }
+        .produto-img-back {
+            position: absolute; inset: 0;
+            opacity: 0; transition: opacity 0.35s;
+        }
+        .produto-img-wrap:hover .produto-img-front { opacity: 0; }
+        .produto-img-wrap:hover .produto-img-back  { opacity: 1; }
+        .produto-img-label {
+            position: absolute; bottom: 10px; right: 10px;
+            font-family: 'Space Mono', monospace; font-size: 10px;
+            letter-spacing: 0.08em; color: var(--text3);
+            background: rgba(0,0,0,0.55); padding: 3px 8px; border-radius: 4px;
+        }
+        .produto-body { padding: 20px 22px 24px; }
+        .produto-versao {
+            font-family: 'Space Mono', monospace; font-size: 10px;
+            letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .produto-nome {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem; font-weight: 900; color: var(--text); margin-bottom: 16px;
+        }
+        .produto-preco-wrap { display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; }
+        .produto-preco {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.4rem; font-weight: 700; color: var(--gold);
+        }
+        .produto-frete { font-size: 12px; color: var(--text3); }
+        .produto-descontos {
+            display: flex; flex-direction: column; gap: 5px;
+            padding: 10px 12px; margin-bottom: 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border2); border-radius: 8px;
+        }
+        .produto-desconto-item { font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; }
+        .produto-desconto-item span:last-child { color: var(--green); font-weight: 600; }
+        .produto-btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 13px;
+            background: #25D366; border: none; border-radius: 10px;
+            color: #fff; font-family: 'Space Mono', monospace;
+            font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+            text-decoration: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+        }
+        .produto-btn:hover { background: #1ebe5d; transform: scale(1.02); }
+        .produto-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
         /* ─── DISCORD CTA ─── */
         .discord-section {
             margin: 60px 0 0;
@@ -942,6 +1008,7 @@
         <li><a href="#generos">Gêneros</a></li>
         <li><a href="#ranking">Hall of Fame</a></li>
         <li><a href="#membros">Membros</a></li>
+        <li><a href="#loja">Loja</a></li>
         <li><a href="https://www.youtube.com/@canaldorograo" target="_blank">YouTube ↗</a></li>
         <li><a href="https://discord.gg/rDRmZN34fr" target="_blank">Discord ↗</a></li>
     </ul>
@@ -1095,6 +1162,69 @@
         </div>
     </section>
 
+    <!-- ─── LOJA ─── -->
+    <section id="loja" class="loja-section">
+        <div class="section-header">
+            <h2 class="section-title">Loja Oficial</h2>
+            <span class="section-pill">Canal do Rogrão</span>
+        </div>
+        <p style="color:var(--text2);font-size:14px;margin-top:8px">Passe o mouse sobre a camiseta para ver o verso. Membros têm desconto exclusivo — informe seu nome de membro no WhatsApp ao comprar.</p>
+
+        <div class="loja-grid">
+
+            <!-- VERSÃO 01 -->
+            <div class="produto-card">
+                <div class="produto-img-wrap">
+                    <img class="produto-img-front" src="camisa-versao-01.png" alt="Camiseta Versão Banner — frente">
+                    <img class="produto-img-back"  src="camisa-versao-01.png" alt="Camiseta Versão Banner — verso" style="object-position:right center">
+                    <span class="produto-img-label">passe o mouse para ver o verso</span>
+                </div>
+                <div class="produto-body">
+                    <div class="produto-versao">Versão 01</div>
+                    <div class="produto-nome">Camiseta — Edição Banner</div>
+                    <div class="produto-preco-wrap">
+                        <span class="produto-preco">R$ 85,00</span>
+                        <span class="produto-frete">+ frete</span>
+                    </div>
+                    <div class="produto-descontos">
+                        <div class="produto-desconto-item"><span>Membro Escudeiro</span><span>5% OFF → R$ 80,75</span></div>
+                        <div class="produto-desconto-item"><span>Membro Veterano</span><span>10% OFF → R$ 76,50</span></div>
+                    </div>
+                    <a class="produto-btn" href="https://wa.me/5531889664477?text=Ol%C3%A1!%20Tenho%20interesse%20em%20comprar%20a%20Camiseta%20Vers%C3%A3o%2001%20(Edi%C3%A7%C3%A3o%20Banner)%20do%20Canal%20do%20Rogr%C3%A3o." target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.882a.75.75 0 0 0 .916.99l6.291-1.649A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.69 9.69 0 0 1-4.964-1.366l-.355-.213-3.681.965.982-3.585-.233-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+                        COMPRAR VIA WHATSAPP
+                    </a>
+                </div>
+            </div>
+
+            <!-- VERSÃO 02 -->
+            <div class="produto-card">
+                <div class="produto-img-wrap">
+                    <img class="produto-img-front" src="camisa-versao-02.png" alt="Camiseta Versão Clássica — frente">
+                    <img class="produto-img-back"  src="camisa-versao-02.png" alt="Camiseta Versão Clássica — verso" style="object-position:right center">
+                    <span class="produto-img-label">passe o mouse para ver o verso</span>
+                </div>
+                <div class="produto-body">
+                    <div class="produto-versao">Versão 02</div>
+                    <div class="produto-nome">Camiseta — Edição Clássica</div>
+                    <div class="produto-preco-wrap">
+                        <span class="produto-preco">R$ 85,00</span>
+                        <span class="produto-frete">+ frete</span>
+                    </div>
+                    <div class="produto-descontos">
+                        <div class="produto-desconto-item"><span>Membro Escudeiro</span><span>5% OFF → R$ 80,75</span></div>
+                        <div class="produto-desconto-item"><span>Membro Veterano</span><span>10% OFF → R$ 76,50</span></div>
+                    </div>
+                    <a class="produto-btn" href="https://wa.me/5531889664477?text=Ol%C3%A1!%20Tenho%20interesse%20em%20comprar%20a%20Camiseta%20Vers%C3%A3o%2002%20(Edi%C3%A7%C3%A3o%20Cl%C3%A1ssica)%20do%20Canal%20do%20Rogr%C3%A3o." target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.882a.75.75 0 0 0 .916.99l6.291-1.649A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.69 9.69 0 0 1-4.964-1.366l-.355-.213-3.681.965.982-3.585-.233-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+                        COMPRAR VIA WHATSAPP
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- ─── DISCORD CTA ─── -->
     <div class="discord-section" id="discord">
         <div class="discord-icon">
@@ -1142,7 +1272,7 @@ const P = {
     'PC ENGINE':     { color:'#d07020', label:'PC Engine',     short:'PCE',  full:'NEC PC Engine',                       img:`${WK}/PC-Engine-Console-Set.jpg?width=300`,                    folder:'turbografx_16',      prefix:'tg16'    },
     'MEGA DRIVE':    { color:'#3aa898', label:'Mega Drive',    short:'MD',   full:'Sega Mega Drive',                     img:`${WK}/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg?width=300`,       folder:'genesis',            prefix:'genesis' },
     'GAME BOY':      { color:'#6aaa3a', label:'Game Boy',      short:'GB',   full:'Nintendo Game Boy',                   img:`${WK}/Nintendo-Gameboy-Pak.jpg?width=300`,                     folder:'gameboy',            prefix:'gb'      },
-    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`arcade.jpg`, imgFallbacks:[`${WK}/Pac-Man_arcade_game.jpg?width=300`,`${WK}/Asteroids_arcade_game.jpg?width=300`,`${WK}/Tron-arcade-game.jpg?width=300`],                    folder:null,                 prefix:null      },
+    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`fliperama.webp`, imgFallbacks:[],                    folder:null,                 prefix:null      },
     'AMIGA':         { color:'#b06040', label:'Amiga',         short:'AMI',  full:'Commodore Amiga',                     img:`${WK}/Amiga500_system.jpg?width=300`,                          folder:null,                 prefix:null      },
     'PC':            { color:'#507080', label:'PC',            short:'PC',   full:'Personal Computer',                   img:`${WK}/Personal_computer,_exploded_5.svg?width=300`,            folder:null,                 prefix:null      },
     'SNES':          { color:'#6040c0', label:'Super Nintendo',short:'SNES', full:'Super Nintendo Entertainment System',  img:`${WK}/SNES-Mod1-Console-Set.jpg?width=300`,                   folder:'super_nintendo',     prefix:'snes'    },
