@@ -774,6 +774,21 @@
             font-size: 9px; color: var(--mc);
         }
         .membro-beneficios li.herdado { opacity: 0.5; }
+        .membro-beneficios li .benefit-desc {
+            display: block;
+            font-size: 11px;
+            color: var(--text3);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+        .membro-beneficios li.herdado-bottom {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            opacity: 0.5;
+            font-size: 12px;
+        }
+        .membro-beneficios li.herdado-bottom .chk { color: var(--text3); }
         .membro-btn {
             display: block; text-align: center; margin-top: 20px;
             background: var(--mc);
@@ -987,9 +1002,9 @@
                 <div class="membro-preco">R$ 3,99 <small>/mês</small></div>
                 <hr class="membro-divider">
                 <ul class="membro-beneficios">
-                    <li><span class="chk">✓</span>Selos de fidelidade ao lado do seu nome em comentários e no chat ao vivo</li>
-                    <li><span class="chk">✓</span>Emoji personalizado para usar em comentários e chat ao vivo</li>
-                    <li><span class="chk">✓</span>Nome na descrição do canal</li>
+                    <li><span class="chk">✓</span>Selos</li>
+                    <li><span class="chk">✓</span>Emojis</li>
+                    <li><span class="chk">✓</span>Nome na descrição<span class="benefit-desc">Reconhecimento especial com seu nome na descrição de todos os vídeos do canal.</span></li>
                 </ul>
                 <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener">Seja Membro ↗</a>
             </div>
@@ -1001,8 +1016,10 @@
                 <div class="membro-preco">R$ 7,99 <small>/mês</small></div>
                 <hr class="membro-divider">
                 <ul class="membro-beneficios">
-                    <li class="herdado"><span class="chk">✓</span>Todos os benefícios do nível anterior</li>
-                    <li><span class="chk">✓</span>Acesso ao grupo de WhatsApp exclusivo</li>
+                    <li><span class="chk">✓</span>Grupo de WhatsApp<span class="benefit-desc">Imagina um grupo de WhatsApp apenas para os membros! Bora?<br><a href="https://chat.whatsapp.com/HrvqDVvzPSB0pEzRFyzkCo" target="_blank" rel="noopener" style="color:var(--green);word-break:break-all">chat.whatsapp.com/HrvqDVvzPSB0pEzRFyzkCo</a></span></li>
+                    <li><span class="chk">✓</span>5% de desconto em produtos na loja</li>
+                    <li><span class="chk">✓</span>Melhores amigos no Instagram<span class="benefit-desc">Tanto na conta do @canaldorograo quanto na conta pessoal @mateuspapini</span></li>
+                    <li class="herdado-bottom"><span class="chk">+</span>Benefícios dos níveis anteriores</li>
                 </ul>
                 <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener">Seja Membro ↗</a>
             </div>
@@ -1014,11 +1031,11 @@
                 <div class="membro-preco">R$ 11,99 <small>/mês</small></div>
                 <hr class="membro-divider">
                 <ul class="membro-beneficios">
-                    <li class="herdado"><span class="chk">✓</span>Todos os benefícios dos níveis anteriores</li>
-                    <li><span class="chk">✓</span>Seu nome citado nos vídeos do canal</li>
-                    <li><span class="chk">✓</span>Melhores amigos no Instagram</li>
+                    <li><span class="chk">✓</span>Nome dos membros no fim do vídeo<span class="benefit-desc">Feito por IA com uma imagem personalizada em todo final de vídeo.</span></li>
                     <li><span class="chk">✓</span>Vídeos exclusivos para membros</li>
+                    <li><span class="chk">✓</span>10% de desconto em produtos na loja</li>
                     <li><span class="chk">✓</span>Sorteio mensal de jogo na Steam — ativado ao atingir 10 membros Veteranos. O valor do jogo corresponde a 10% da arrecadação total da categoria</li>
+                    <li class="herdado-bottom"><span class="chk">+</span>Benefícios dos níveis anteriores</li>
                 </ul>
                 <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener">Seja Membro ↗</a>
             </div>
@@ -1073,13 +1090,22 @@ const P = {
     'PC ENGINE':     { color:'#d07020', label:'PC Engine',     short:'PCE',  full:'NEC PC Engine',                       img:`${WK}/PC-Engine-Console-Set.jpg?width=300`,                    folder:'turbografx_16',      prefix:'tg16'    },
     'MEGA DRIVE':    { color:'#3aa898', label:'Mega Drive',    short:'MD',   full:'Sega Mega Drive',                     img:`${WK}/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg?width=300`,       folder:'genesis',            prefix:'genesis' },
     'GAME BOY':      { color:'#6aaa3a', label:'Game Boy',      short:'GB',   full:'Nintendo Game Boy',                   img:`${WK}/Nintendo-Gameboy-Pak.jpg?width=300`,                     folder:'gameboy',            prefix:'gb'      },
-    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`${WK}/Video_game_arcade_cabinet.jpg?width=300`, imgFallbacks:[`${WK}/Amusement_arcade.jpg?width=300`,`${WK}/Pac-Man_arcade_game.jpg?width=300`,`${WK}/Tron-arcade-game.jpg?width=300`],                    folder:null,                 prefix:null      },
+    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160'%3E%3Crect x='10' y='28' width='80' height='122' rx='8' fill='%231a1830'/%3E%3Crect x='18' y='40' width='64' height='46' rx='3' fill='%230c0b1a'/%3E%3Crect x='21' y='43' width='58' height='40' fill='%23040d04'/%3E%3Crect x='25' y='47' width='50' height='8' fill='%2300aa00' opacity='.4'/%3E%3Crect x='25' y='58' width='30' height='6' fill='%2300aa00' opacity='.25'/%3E%3Crect x='12' y='92' width='76' height='30' rx='3' fill='%23232140'/%3E%3Ccircle cx='37' cy='107' r='8' fill='%232a2848'/%3E%3Ccircle cx='37' cy='107' r='4' fill='%23666688'/%3E%3Ccircle cx='58' cy='101' r='5' fill='%23aa2020'/%3E%3Ccircle cx='70' cy='101' r='5' fill='%232020aa'/%3E%3Ccircle cx='64' cy='113' r='5' fill='%23aaaa20'/%3E%3Crect x='43' y='124' width='14' height='4' rx='2' fill='%23444466'/%3E%3Crect x='10' y='14' width='80' height='16' rx='5' fill='%239040c0'/%3E%3Crect x='14' y='17' width='72' height='10' rx='3' fill='%23b060e0' opacity='.5'/%3E%3C/svg%3E`, imgFallbacks:[],                    folder:null,                 prefix:null      },
     'AMIGA':         { color:'#b06040', label:'Amiga',         short:'AMI',  full:'Commodore Amiga',                     img:`${WK}/Amiga500_system.jpg?width=300`,                          folder:null,                 prefix:null      },
     'PC':            { color:'#507080', label:'PC',            short:'PC',   full:'Personal Computer',                   img:`${WK}/Personal_computer,_exploded_5.svg?width=300`,            folder:null,                 prefix:null      },
     'SNES':          { color:'#6040c0', label:'Super Nintendo',short:'SNES', full:'Super Nintendo Entertainment System',  img:`${WK}/SNES-Mod1-Console-Set.jpg?width=300`,                   folder:'super_nintendo',     prefix:'snes'    },
     'GAME GEAR':     { color:'#207070', label:'Game Gear',     short:'GG',   full:'Sega Game Gear',                      img:`${WK}/Game_Gear_Foto.jpg?width=300`,                           folder:'sega_gamegear',      prefix:'gg'      },
 };
 const pc = plat => P[plat] || { color:'#556677', label:'?', folder:null, prefix:null };
+
+/* ─── COVER OVERRIDES (jogos não cobertos pelo Libretro thumbnails) ─── */
+const COVER_OVERRIDES = {
+    53: [
+        'https://en.wikipedia.org/wiki/Special:FilePath/SimCity_Maxis_Cover_Art.jpg',
+        'https://upload.wikimedia.org/wikipedia/en/8/8a/SimCity_Maxis_Cover_Art.jpg',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/8/8a/SimCity_Maxis_Cover_Art.jpg/220px-SimCity_Maxis_Cover_Art.jpg',
+    ],
+};
 
 /* ─── LIBRETRO COVER ART ─── */
 const LR_BASE = 'https://cdn.jsdelivr.net/gh/libretro-thumbnails';
@@ -1180,6 +1206,7 @@ function imgFallback(img, urls) {
 }
 
 function coverUrl(g) {
+    if (COVER_OVERRIDES[g.id]) return COVER_OVERRIDES[g.id][0];
     const lr = COVERS[g.id];
     if (!lr) return null;
     const repo = LR_REPO[g.plat];
@@ -1188,6 +1215,7 @@ function coverUrl(g) {
 }
 
 function coverFallbacks(g) {
+    if (COVER_OVERRIDES[g.id]) return COVER_OVERRIDES[g.id].slice(1);
     const lr = COVERS[g.id];
     if (!lr) return [];
     const repo = LR_REPO[g.plat];
