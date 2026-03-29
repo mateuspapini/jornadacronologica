@@ -1491,7 +1491,7 @@ const G = [
   { id:54, yr:1989, title:"Ghouls 'n Ghosts",               plat:"MEGA DRIVE",    genre:"Plataforma",     st:"z",  pub:false, sc:null },
   { id:55, yr:1989, title:"River City Ransom",              plat:"NES",           genre:"Beat 'em Up",    st:"nz", pub:false, sc:null },
   { id:56, yr:1989, title:"Psycho Fox",                     plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:false, sc:null },
-  { id:57, yr:1989, title:"Teenage Mutant Ninja Turtles",   plat:"NES",           genre:"Ação",           st:"nz", pub:false, sc:null },
+  { id:57, yr:1989, title:"Teenage Mutant Ninja Turtles",   plat:"NES",           genre:"Ação",           st:"nz", pub:true,  sc:6.0  },
   { id:58, yr:1989, title:"Final Fight",                    plat:"ARCADE",        genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
   { id:59, yr:1989, title:"Batman",                         plat:"NES",           genre:"Plataforma",     st:"nz", pub:false, sc:null },
   { id:60, yr:1989, title:"Golden Axe",                     plat:"MEGA DRIVE",    genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
@@ -1610,7 +1610,7 @@ function renderTimeline(list) {
 /* ─── RENDER RANKING ─── */
 function renderRanking() {
     const ranked = G.filter(g => g.pub === true && g.sc != null)
-                    .sort((a, b) => b.sc - a.sc);
+                    .sort((a, b) => b.sc - a.sc || a.yr - b.yr);
 
     const pill = document.getElementById('rank-pill');
     if (pill) pill.textContent = `${ranked.length} jogos · ranking completo`;
@@ -1928,7 +1928,7 @@ function openM(id) {
 
         // Jogos relacionados (mesma plataforma, excluindo o atual, publicados, com nota)
         const related = G.filter(x => x.plat === g.plat && x.id !== g.id && x.pub && x.sc != null)
-            .sort((a, b) => b.sc - a.sc).slice(0, 4);
+            .sort((a, b) => b.sc - a.sc || a.yr - b.yr).slice(0, 4);
         if (related.length) {
             body += `<div class="modal-related">
                 <div class="modal-related-label">Outros jogos de ${pc(g.plat).label}</div>
