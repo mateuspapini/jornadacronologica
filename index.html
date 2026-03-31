@@ -870,7 +870,7 @@
         .produto-card:hover { border-color: var(--gold); transform: translateY(-3px); }
         .produto-img-wrap {
             position: relative; overflow: hidden;
-            background: #111; aspect-ratio: 16/10;
+            background: #111; aspect-ratio: 3/4;
         }
         .produto-img-wrap img {
             width: 100%; height: 100%; object-fit: cover;
@@ -885,8 +885,8 @@
         .produto-img-label {
             position: absolute; bottom: 10px; right: 10px;
             font-family: 'Space Mono', monospace; font-size: 10px;
-            letter-spacing: 0.08em; color: var(--text3);
-            background: rgba(0,0,0,0.55); padding: 3px 8px; border-radius: 4px;
+            letter-spacing: 0.08em; color: #fff;
+            background: rgba(0,0,0,0.75); padding: 4px 10px; border-radius: 4px;
         }
         .produto-body { padding: 20px 22px 24px; }
         .produto-versao {
@@ -1062,9 +1062,6 @@
             <span class="section-pill" id="total-label">0 jogos</span>
         </div>
 
-        <div class="notice-banner">
-            <strong>Protótipo —</strong> dados reais da planilha. Notas e reviews só aparecem após a publicação do episódio no canal. Na versão final, alimentado direto do Google Sheets via API.
-        </div>
 
         <div class="legend">
             <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>ZERADO — publicado no canal</span>
@@ -1628,15 +1625,11 @@ function renderRanking() {
             thumbHtml = `<div class="rank-thumb-placeholder" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
         }
 
-        const statusBadge = g.st === 'nz'
-            ? `<span style="font-family:'Space Mono',monospace;font-size:8px;color:var(--amber);margin-left:6px">NZ</span>`
-            : '';
-
         return `<div class="rank-row" onclick="openM(${g.id})">
             <div class="rank-num">${String(i + 1).padStart(2, '0')}</div>
             ${thumbHtml}
             <div class="rank-info">
-                <div class="rank-title-text">${g.title}${statusBadge}</div>
+                <div class="rank-title-text">${g.title}</div>
                 <div class="rank-meta-text">${plBadge(g.plat)} · ${g.yr} · ${g.genre}</div>
             </div>
             <div class="rank-score-col">
