@@ -914,6 +914,32 @@
         }
         .produto-desconto-item { font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; }
         .produto-desconto-item span:last-child { color: var(--green); font-weight: 600; }
+        .produto-cupom {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px; margin-bottom: 18px;
+            background: rgba(90,168,122,0.08);
+            border: 1px dashed rgba(90,168,122,0.35); border-radius: 8px;
+        }
+        .produto-cupom-label {
+            font-family: 'Space Mono', monospace; font-size: 9px;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--text3);
+        }
+        .produto-cupom-code {
+            font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700;
+            letter-spacing: 0.08em; color: var(--green);
+            padding: 4px 10px; border-radius: 5px;
+            background: rgba(90,168,122,0.12);
+            border: 1px solid rgba(90,168,122,0.3);
+        }
+        .produto-cupom-desc {
+            font-size: 11px; color: var(--text2); flex: 1; line-height: 1.35;
+        }
+        .produto-btn.store {
+            background: var(--gold); color: var(--bg);
+        }
+        .produto-btn.store:hover { background: var(--gold2); }
+        .produto-btn.store svg { fill: var(--bg); }
         .produto-btn {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             width: 100%; padding: 13px;
@@ -1182,7 +1208,7 @@
             <h2 class="section-title">Loja Oficial</h2>
             <span class="section-pill">Canal do Rogrão</span>
         </div>
-        <p style="color:var(--text2);font-size:14px;margin-top:8px">Passe o mouse sobre a camiseta para ver o verso. Membros têm desconto exclusivo — informe seu nome de membro no WhatsApp ao comprar.</p>
+        <p style="color:var(--text2);font-size:14px;margin-top:8px">Passe o mouse sobre a camiseta para ver o verso. As compras são feitas direto no site da <strong style="color:var(--text)">Arium Estampas</strong>. Use o cupom <strong style="color:var(--green);font-family:'Space Mono',monospace">ROGRAO10</strong> para desconto nesta camisa e em qualquer outro produto do site.</p>
 
         <div class="loja-grid">
 
@@ -1200,13 +1226,13 @@
                         <span class="produto-preco">R$ 85,00</span>
                         <span class="produto-frete">+ frete</span>
                     </div>
-                    <div class="produto-descontos">
-                        <div class="produto-desconto-item"><span>Membro Escudeiro</span><span>5% OFF → R$ 80,75</span></div>
-                        <div class="produto-desconto-item"><span>Membro Veterano</span><span>10% OFF → R$ 76,50</span></div>
+                    <div class="produto-cupom">
+                        <span class="produto-cupom-code">ROGRAO10</span>
+                        <span class="produto-cupom-desc">Use este cupom no site da Arium Estampas para ganhar desconto nesta camisa e em qualquer outro produto.</span>
                     </div>
-                    <a class="produto-btn" href="https://wa.me/5531889664477?text=Ol%C3%A1!%20Tenho%20interesse%20em%20comprar%20a%20Camiseta%20Vers%C3%A3o%2001%20(Edi%C3%A7%C3%A3o%20Banner)%20do%20Canal%20do%20Rogr%C3%A3o." target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.882a.75.75 0 0 0 .916.99l6.291-1.649A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.69 9.69 0 0 1-4.964-1.366l-.355-.213-3.681.965.982-3.585-.233-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-                        COMPRAR VIA WHATSAPP
+                    <a class="produto-btn store" href="https://ariumestampas.com.br/categoria/canal-do-rograo/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h-2l-3 9v2h20v-2l-3-9h-2l-1 6-2-6h-4l-2 6-1-6zm-3 13h16v2h-16z"/></svg>
+                        COMPRE NO SITE DA ARIUM ESTAMPAS
                     </a>
                 </div>
             </div>
@@ -1225,13 +1251,13 @@
                         <span class="produto-preco">R$ 85,00</span>
                         <span class="produto-frete">+ frete</span>
                     </div>
-                    <div class="produto-descontos">
-                        <div class="produto-desconto-item"><span>Membro Escudeiro</span><span>5% OFF → R$ 80,75</span></div>
-                        <div class="produto-desconto-item"><span>Membro Veterano</span><span>10% OFF → R$ 76,50</span></div>
+                    <div class="produto-cupom">
+                        <span class="produto-cupom-code">ROGRAO10</span>
+                        <span class="produto-cupom-desc">Use este cupom no site da Arium Estampas para ganhar desconto nesta camisa e em qualquer outro produto.</span>
                     </div>
-                    <a class="produto-btn" href="https://wa.me/5531889664477?text=Ol%C3%A1!%20Tenho%20interesse%20em%20comprar%20a%20Camiseta%20Vers%C3%A3o%2002%20(Edi%C3%A7%C3%A3o%20Cl%C3%A1ssica)%20do%20Canal%20do%20Rogr%C3%A3o." target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.882a.75.75 0 0 0 .916.99l6.291-1.649A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.69 9.69 0 0 1-4.964-1.366l-.355-.213-3.681.965.982-3.585-.233-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-                        COMPRAR VIA WHATSAPP
+                    <a class="produto-btn store" href="https://ariumestampas.com.br/categoria/canal-do-rograo/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h-2l-3 9v2h20v-2l-3-9h-2l-1 6-2-6h-4l-2 6-1-6zm-3 13h16v2h-16z"/></svg>
+                        COMPRE NO SITE DA ARIUM ESTAMPAS
                     </a>
                 </div>
             </div>
