@@ -1,0 +1,13 @@
+SITE OTIMIZADO — JORNADA CRONOLÓGICA
+
+Para publicar, envie todos os arquivos desta pasta para a raiz do site, substituindo os arquivos de mesmo nome.
+
+O arquivo principal é index.html. robots.txt e sitemap.xml também devem ficar na raiz do domínio.
+
+Depois da publicação:
+1. Limpe o cache da hospedagem/CDN, se houver.
+2. Confirme o funcionamento em https://jornadacronologicadosgames.com.br/.
+3. Rode novamente o PageSpeed Insights em mobile e desktop. As notas reais dependem também da hospedagem, cache, rede e scripts externos.
+
+Há uma cópia de segurança do HTML anterior na pasta original com o nome:
+index.pre-optimization-2026-08-22.html

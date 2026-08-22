@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NGBP7DFS');</script>
-    <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQCGFBNYZM"></script>
     <script>
@@ -18,11 +11,53 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acompanhe a Jornada Cronológica do Canal do Rogrão pela história dos games, com jogos, episódios, notas e plataformas organizados ano a ano.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" id="theme-color" content="#0b0a14">
+    <meta name="color-scheme" content="dark light">
+    <link rel="canonical" href="https://jornadacronologicadosgames.com.br/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Jornada Cronológica">
+    <meta property="og:title" content="Jornada Cronológica — Canal do Rogrão">
+    <meta property="og:description" content="A história dos games, ano a ano: jogos, episódios, notas e plataformas em uma jornada do 8-bit ao 4K.">
+    <meta property="og:url" content="https://jornadacronologicadosgames.com.br/">
+    <meta property="og:image" content="https://jornadacronologicadosgames.com.br/og-jornada-cronologica.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Jornada Cronológica — A História dos Games, Ano a Ano">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jornada Cronológica — Canal do Rogrão">
+    <meta name="twitter:description" content="A história dos games, ano a ano: jogos, episódios, notas e plataformas em uma jornada do 8-bit ao 4K.">
+    <meta name="twitter:image" content="https://jornadacronologicadosgames.com.br/og-jornada-cronologica.jpg">
     <title>Jornada Cronológica – Canal do Rogrão</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    <script>
+        (function () {
+            try {
+                const theme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.dataset.theme = theme;
+                document.getElementById('theme-color').content = theme === 'light' ? '#f7f5ef' : '#0b0a14';
+            } catch (_) {
+                document.documentElement.dataset.theme = 'dark';
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=optional"></noscript>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jornada Cronológica",
+      "alternateName": "Jornada Cronológica dos Games",
+      "url": "https://jornadacronologicadosgames.com.br/",
+      "inLanguage": ["pt-BR", "en"]
+    }
+    </script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -31,15 +66,39 @@
             --bg2:      #131221;
             --bg3:      #1c1b30;
             --card:     #16152a;
-            --border:   rgba(200, 155, 60, 0.18);
-            --border2:  rgba(200, 180, 255, 0.07);
-            --text:     #e8e2d8;
-            --text2:    #9490a8;
-            --text3:    #52506a;
-            --gold:     #c89b3c;
-            --gold2:    #e8c060;
-            --green:    #5aa87a;
-            --amber:    #d07828;
+            --surface2: #1a1930;
+            --border:   rgba(231, 189, 100, 0.46);
+            --border2:  rgba(221, 214, 241, 0.22);
+            --text:     #f7f3ea;
+            --text2:    #d2ccdc;
+            --text3:    #aaa4bb;
+            --gold:     #e7bd64;
+            --gold2:    #ffda83;
+            --green:    #72d39b;
+            --amber:    #f2a357;
+            --focus:    #8fdcff;
+            --shadow:   rgba(0, 0, 0, 0.4);
+            color-scheme: dark;
+        }
+
+        html[data-theme="light"] {
+            --bg:       #f7f5ef;
+            --bg2:      #ffffff;
+            --bg3:      #eee9df;
+            --card:     #ffffff;
+            --surface2: #f3efe6;
+            --border:   rgba(107, 75, 17, 0.42);
+            --border2:  rgba(45, 37, 25, 0.2);
+            --text:     #1b1821;
+            --text2:    #4d4857;
+            --text3:    #625c6d;
+            --gold:     #76520c;
+            --gold2:    #956b14;
+            --green:    #24633f;
+            --amber:    #93470a;
+            --focus:    #005fcc;
+            --shadow:   rgba(42, 34, 20, 0.16);
+            color-scheme: light;
         }
 
         html { scroll-behavior: smooth; }
@@ -47,8 +106,8 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-weight: 400;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -348,25 +407,6 @@
             z-index: 0;
             transition: opacity 0.3s;
         }
-        .cover-platform-label {
-            position: absolute; top: 10px; left: 10px;
-            font-family: 'Space Mono', monospace;
-            font-size: 8px; font-weight: 700;
-            letter-spacing: 0.08em;
-            padding: 3px 7px; border-radius: 3px;
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(4px);
-            z-index: 3;
-        }
-        .cover-title {
-            position: relative; z-index: 2;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.82rem; font-weight: 700;
-            text-align: center; padding: 0 12px;
-            color: rgba(255,255,255,0.92);
-            text-shadow: 0 2px 12px rgba(0,0,0,0.9);
-            line-height: 1.3;
-        }
         .game-cover::after {
             content: '';
             position: absolute; inset: 0;
@@ -520,12 +560,6 @@
             flex: 1; padding: 14px 16px;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .plat-name {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            color: var(--pc, #556677);
-        }
         .plat-full { font-size: 11px; color: var(--text3); margin-top: 1px; margin-bottom: 10px; }
         .plat-count { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text2); }
         .plat-stats-row { display: flex; }
@@ -652,15 +686,6 @@
         }
         .modal-score-display small { font-size: 1rem; color: var(--text3); }
         .modal-body { padding: 22px 26px; }
-        .modal-review {
-            font-style: italic; color: var(--text2);
-            font-size: 0.93rem; line-height: 1.75;
-            padding: 14px 16px;
-            border-left: 2px solid var(--gold);
-            background: rgba(200,155,60,0.04);
-            border-radius: 0 6px 6px 0;
-            margin-bottom: 20px;
-        }
         .criteria-label {
             font-family: 'Space Mono', monospace;
             font-size: 10px; color: var(--text3);
@@ -767,16 +792,6 @@
         }
         .modal-canal-link:hover { background: rgba(200,155,60,0.08); border-color: var(--gold); }
 
-        /* ─── NOTICE BANNER ─── */
-        .notice-banner {
-            background: rgba(200,155,60,0.07);
-            border: 1px solid rgba(200,155,60,0.2);
-            border-radius: 8px; padding: 12px 18px;
-            font-size: 12px; color: var(--text2);
-            margin-bottom: 36px; text-align: center;
-        }
-        .notice-banner strong { color: var(--gold); }
-
         /* Legend */
         .legend {
             display: flex; gap: 16px; flex-wrap: wrap;
@@ -882,14 +897,6 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 9px; color: var(--mc);
         }
-        .membro-beneficios li.herdado { opacity: 0.5; }
-        .membro-beneficios li .benefit-desc {
-            display: block;
-            font-size: 11px;
-            color: var(--text3);
-            margin-top: 2px;
-            line-height: 1.4;
-        }
         .membro-beneficios li.herdado-bottom {
             margin-top: auto;
             padding-top: 12px;
@@ -939,12 +946,6 @@
         }
         .produto-img-wrap:hover .produto-img-front { opacity: 0; }
         .produto-img-wrap:hover .produto-img-back  { opacity: 1; }
-        .produto-img-label {
-            position: absolute; bottom: 10px; right: 10px;
-            font-family: 'Space Mono', monospace; font-size: 10px;
-            letter-spacing: 0.08em; color: #fff;
-            background: rgba(0,0,0,0.75); padding: 4px 10px; border-radius: 4px;
-        }
         .produto-body { padding: 20px 22px 24px; }
         .produto-versao {
             font-family: 'Space Mono', monospace; font-size: 10px;
@@ -961,24 +962,11 @@
             font-size: 1.4rem; font-weight: 700; color: var(--gold);
         }
         .produto-frete { font-size: 12px; color: var(--text3); }
-        .produto-descontos {
-            display: flex; flex-direction: column; gap: 5px;
-            padding: 10px 12px; margin-bottom: 18px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border2); border-radius: 8px;
-        }
-        .produto-desconto-item { font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; }
-        .produto-desconto-item span:last-child { color: var(--green); font-weight: 600; }
         .produto-cupom {
             display: flex; align-items: center; gap: 10px;
             padding: 12px 14px; margin-bottom: 18px;
             background: rgba(90,168,122,0.08);
             border: 1px dashed rgba(90,168,122,0.35); border-radius: 8px;
-        }
-        .produto-cupom-label {
-            font-family: 'Space Mono', monospace; font-size: 9px;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--text3);
         }
         .produto-cupom-code {
             font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700;
@@ -1095,7 +1083,6 @@
             border: 1px solid rgba(200,155,60,0.3);
         }
         .lang-btn:hover:not(.active) { color: var(--text2); }
-        .lang-flag { font-size: 14px; line-height: 1; }
         .lang-flag-img { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; vertical-align: middle; }
 
         @media (max-width: 640px) {
@@ -1125,7 +1112,7 @@
             .loja-grid { grid-template-columns: 1fr; }
 
             /* Membros mobile */
-            .membro-grid { grid-template-columns: 1fr !important; }
+            .membros-grid { grid-template-columns: 1fr !important; }
 
             /* Plataformas mobile */
             .plat-grid { grid-template-columns: 1fr !important; }
@@ -1135,50 +1122,292 @@
             .modal-head { flex-direction: column; }
             .modal-art { width: 100%; height: 180px; }
         }
+
+        /* ─── ACCESSIBILITY, THEMES & MOBILE EXPERIENCE ─── */
+        .skip-link {
+            position: fixed; top: 10px; left: 10px; z-index: 12000;
+            transform: translateY(-150%);
+            background: var(--text); color: var(--bg);
+            padding: 12px 18px; border-radius: 8px;
+            font-family: 'Space Mono', monospace; font-weight: 700;
+            text-decoration: none;
+        }
+        .hero h1, .section-title, .discord-title, .produto-nome,
+        .modal-title, .rank-title-text, .game-title-card {
+            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        }
+        .skip-link:focus { transform: translateY(0); }
+
+        :where(a, button, [tabindex]):focus-visible {
+            outline: 3px solid var(--focus);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 5px color-mix(in srgb, var(--bg) 75%, transparent);
+        }
+        button { font: inherit; }
+        .visually-hidden {
+            position: absolute !important; width: 1px !important; height: 1px !important;
+            padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+        }
+
+        html[data-theme="light"] body::before { opacity: 0.22; }
+        html[data-theme="light"] body::after { display: none; }
+        html[data-theme="light"] nav { background: rgba(247, 245, 239, 0.96); }
+        html[data-theme="light"] .hero h1 {
+            background: linear-gradient(145deg, #211b29 0%, #76520c 52%, #3f354a 100%);
+            -webkit-background-clip: text; background-clip: text;
+        }
+        html[data-theme="light"] .game-cover::after {
+            background: linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.82) 100%);
+        }
+        html[data-theme="light"] .membro-btn { color: #15120b; }
+        html[data-theme="light"] .membro-badge { color: #68470a; }
+        html[data-theme="light"] .rank-row:nth-child(1) .rank-num { color: #755500; }
+        html[data-theme="light"] .rank-row:nth-child(2) .rank-num { color: #515a64; }
+        html[data-theme="light"] .rank-row:nth-child(3) .rank-num { color: #72451f; }
+
+        nav { gap: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+        .nav-links { margin-left: 10px; }
+        .nav-links a { color: var(--text2); padding: 12px 0; }
+        .nav-links a:hover { color: var(--gold2); }
+        .theme-btn, .nav-toggle {
+            min-width: 44px; min-height: 44px; padding: 8px 12px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            border: 1px solid var(--border2); border-radius: 999px;
+            background: var(--bg2); color: var(--text);
+            cursor: pointer; transition: border-color .2s, background .2s, color .2s;
+            font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+        }
+        .theme-btn:hover, .nav-toggle:hover { border-color: var(--gold); color: var(--gold2); }
+        .theme-icon { font-size: 17px; line-height: 1; }
+        .nav-toggle { display: none; }
+        .lang-toggle { margin-left: 0; border-color: var(--border2); }
+        .lang-btn { min-height: 40px; color: var(--text2); font-weight: 700; }
+        .lang-btn.active { color: var(--gold2); border-color: var(--gold); }
+
+        .hero { isolation: isolate; }
+        .hero-eyebrow, .hero-sub { color: var(--text2); }
+        .hero-badge { color: var(--gold2); border-color: var(--border); }
+        .stat-label { color: var(--text2); font-weight: 600; }
+        #plat-stats, #generos, #membros, #loja, #ranking, .discord-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 760px;
+        }
+
+        #jornada {
+            position: relative; margin-top: 22px; padding: 42px 32px;
+            background: linear-gradient(150deg, color-mix(in srgb, var(--card) 94%, var(--gold) 6%), var(--bg2));
+            border: 1px solid var(--border); border-radius: 20px;
+            box-shadow: 0 22px 60px var(--shadow);
+        }
+        #jornada .section-header { border-bottom-color: var(--border); }
+        #jornada .section-title { font-size: clamp(1.85rem, 4vw, 2.45rem); }
+        #jornada .section-pill { color: var(--text); border: 1px solid var(--border2); }
+        .journey-intro {
+            max-width: 720px; margin: -10px 0 24px;
+            color: var(--text2); font-size: 15px; line-height: 1.7;
+        }
+        .filters { gap: 10px; }
+        .filter-btn {
+            min-height: 44px; padding: 9px 16px;
+            color: var(--text2); border-color: var(--border2); font-size: 11px; font-weight: 700;
+        }
+        .filter-btn:hover, .filter-btn.active, .filter-btn[aria-pressed="true"] {
+            border-color: var(--gold); color: var(--gold2);
+            background: color-mix(in srgb, var(--gold) 16%, var(--bg2));
+        }
+
+        .year-section { margin-bottom: 18px; }
+        .year-header {
+            width: 100%; min-height: 72px; margin: 0; padding: 13px 16px;
+            border: 1px solid var(--border2); border-radius: 12px;
+            background: var(--bg2); color: var(--text); text-align: left;
+            box-shadow: 0 5px 18px rgba(0,0,0,.14);
+        }
+        .year-header:hover { opacity: 1; border-color: var(--gold); background: var(--bg3); }
+        .year-number {
+            min-width: 104px; color: var(--gold2); -webkit-text-stroke: 0;
+            font-size: clamp(2rem, 6vw, 2.7rem); text-shadow: 0 2px 18px color-mix(in srgb, var(--gold) 25%, transparent);
+        }
+        .year-section.open .year-header { border-color: var(--gold); border-radius: 12px 12px 6px 6px; }
+        .year-section.open .year-number { color: var(--gold2); -webkit-text-stroke: 0; }
+        .year-teaser, .year-badge { color: var(--text2); font-weight: 600; }
+        .year-toggle { color: var(--gold2); font-weight: 700; }
+        .year-chevron { color: var(--gold2); }
+        .year-body { margin-top: 14px; }
+        .coming-soon-year .year-header { cursor: default; }
+
+        .game-card, .rank-row, .modal-related-card {
+            font: inherit; color: inherit; text-align: left;
+        }
+        .game-card { width: 100%; padding: 0; position: relative; }
+        .game-card-open {
+            display: block; width: 100%; padding: 0; border: 0;
+            background: transparent; color: inherit; text-align: left;
+            cursor: pointer; font: inherit;
+        }
+        .game-info, .game-title-card, .game-genre,
+        .rank-title-text, .rank-meta-text, .rank-score-big, .score-bar,
+        .score-bar-fill, .modal-related-name, .modal-related-sc { display: block; }
+        .game-card.has-episode .game-info { padding-bottom: 44px; }
+        .game-card > .yt-btn { position: absolute; right: 12px; bottom: 11px; z-index: 4; }
+        .game-card:hover { border-color: var(--gold); }
+        .game-card:has(.game-card-open:focus-visible) { transform: translateY(-3px); border-color: var(--gold); }
+        .game-card.pending { opacity: .62; }
+        .game-card.em-breve { opacity: .86; }
+        .game-title-card { color: var(--text); }
+        .game-genre { color: var(--text2); font-weight: 600; }
+        .rank-row { width: 100%; }
+        .rank-meta-text, .rank-num { color: var(--text2); }
+        .rank-toggle-wrap { display: flex; justify-content: center; margin-top: 20px; }
+        .rank-toggle {
+            min-height: 44px; padding: 10px 20px; border: 1px solid var(--border);
+            border-radius: 999px; background: var(--bg2); color: var(--gold2);
+            cursor: pointer; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700;
+        }
+
+        .section-pill, .plat-full, .plat-stat-lbl, .plat-pct,
+        .genre-stat-lbl, .genre-pct, .produto-versao, .produto-frete,
+        footer p, .modal-tag, .criteria-label,
+        .crit-name, .modal-related-label { color: var(--text2); }
+        .genre-name, .genre-best-label, .genre-best-score { color: var(--text); }
+        .plat-badge {
+            color: var(--text) !important;
+            background: color-mix(in srgb, var(--platform-color, var(--gold)) 22%, var(--bg2)) !important;
+            border-color: color-mix(in srgb, var(--platform-color, var(--gold)) 72%, var(--text)) !important;
+        }
+
+        .modal-overlay[aria-hidden="true"] { display: none; }
+        .modal-overlay.open { display: flex; }
+        .modal { box-shadow: 0 26px 90px rgba(0,0,0,.58); }
+        .modal-close { width: 44px; height: 44px; color: var(--text); z-index: 2; }
+        .modal-title { padding-right: 42px; }
+        .modal-related-card { width: 100%; }
+        body.modal-open { overflow: hidden; }
+
+        .produto-img-toggle {
+            position: absolute; left: 12px; bottom: 12px; z-index: 3;
+            min-height: 44px; padding: 8px 13px; border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.5); background: rgba(0,0,0,.78);
+            color: #fff; cursor: pointer; font-size: 11px; font-weight: 700;
+        }
+        .produto-img-wrap.show-back .produto-img-front { opacity: 0; }
+        .produto-img-wrap.show-back .produto-img-back { opacity: 1; }
+
+        @media (max-width: 980px) {
+            nav { padding: 0 1.25rem; }
+            .nav-links { gap: 1.15rem; }
+            .nav-links a { font-size: 10px; }
+            .theme-label { display: none; }
+        }
+
+        @media (max-width: 760px) {
+            nav { height: 64px; padding: 0 12px; gap: 8px; }
+            .nav-logo-text { display: none; }
+            .nav-logo { flex-shrink: 0; }
+            .nav-actions { margin-left: auto; gap: 6px; }
+            .nav-toggle { display: inline-flex; }
+            .nav-links {
+                position: absolute; top: 64px; left: 10px; right: 10px; z-index: 600;
+                display: none; flex-direction: column; gap: 2px; margin: 0; padding: 10px;
+                background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+                box-shadow: 0 18px 45px var(--shadow);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { display: block; min-height: 44px; padding: 12px 14px; border-radius: 8px; }
+            .nav-links a:hover { background: var(--bg3); }
+            .hero { padding: 54px 20px 38px; }
+            .container { padding: 0 14px; }
+            section { padding: 38px 0; }
+            #jornada { margin-top: 14px; padding: 28px 16px; border-radius: 16px; }
+            .journey-intro { font-size: 14px; margin-bottom: 20px; }
+            .section-header { align-items: flex-start; flex-wrap: wrap; }
+            .filters { margin-bottom: 26px; }
+            .filter-btn { flex: 1 1 auto; }
+            .year-header { min-height: 68px; gap: 9px; padding: 12px; }
+            .year-number { min-width: 78px; }
+            .year-line, .year-badge { display: none; }
+            .year-teaser { display: block; flex: 1; font-size: 11px; line-height: 1.4; }
+            .year-toggle { font-size: 0; }
+            .year-toggle::after { content: 'ABRIR'; font-size: 9px; }
+            .year-section.open .year-toggle::after { content: 'FECHAR'; }
+            .games-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+            .game-info { padding: 12px 10px; }
+            .game-title-card { font-size: .95rem; }
+            .game-genre { font-size: 9px; }
+            .yt-btn { min-width: 44px; min-height: 36px; justify-content: center; }
+            .rank-row { min-height: 88px; }
+            .modal-overlay { padding: 10px; align-items: flex-end; }
+            .modal { max-width: 100%; width: 100%; max-height: 92dvh; border-radius: 16px 16px 0 0; }
+            .modal-head { padding: 20px 18px 16px; gap: 14px; }
+            .modal-body { padding: 18px; }
+            .modal-art { height: 170px; }
+            .criteria-grid { grid-template-columns: 1fr; }
+            .loja-grid { grid-template-columns: minmax(0, 1fr); }
+            .produto-img-wrap:hover .produto-img-front { opacity: 1; }
+            .produto-img-wrap:hover .produto-img-back { opacity: 0; }
+            .produto-img-wrap.show-back .produto-img-front { opacity: 0; }
+            .produto-img-wrap.show-back .produto-img-back { opacity: 1; }
+        }
+
+        @media (max-width: 420px) {
+            .lang-btn { min-width: 42px; padding: 6px; }
+            .lang-flag-img { width: 20px; height: 20px; }
+            .games-grid { grid-template-columns: 1fr; }
+            .game-cover { aspect-ratio: 16/10; }
+            .stats-bar { border-radius: 10px; }
+            .stat-item { padding: 15px 8px; }
+            .stat-value { font-size: 1.45rem; }
+            .hero h1 { font-size: clamp(2rem, 11vw, 2.8rem); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+            body::before, body::after { display: none; }
+        }
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NGBP7DFS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
+<a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
 <!-- ─── NAV ─── -->
-<nav>
-    <a href="#" class="nav-logo">
-        <div class="nav-logo-icon"><img src="favicon.png" alt="Rogrão"></div>
+<nav aria-label="Navegação principal">
+    <a href="#inicio" class="nav-logo" aria-label="Canal do Rogrão — início">
+        <div class="nav-logo-icon"><img src="favicon.png" alt="" width="34" height="34" decoding="async"></div>
         <div class="nav-logo-text">Canal do <strong>Rogrão</strong></div>
     </a>
-    <div class="lang-toggle" id="lang-toggle">
-        <button class="lang-btn active" data-lang="pt" onclick="setLang('pt')"><img class="lang-flag-img" src="brasil.png" alt="PT"> PT</button>
-        <button class="lang-btn" data-lang="en" onclick="setLang('en')"><img class="lang-flag-img" src="estados-unidos.png" alt="EN"> EN</button>
+    <div class="nav-actions">
+        <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Idioma do site">
+            <button type="button" class="lang-btn active" data-lang="pt" aria-pressed="true" onclick="setLang('pt')"><img class="lang-flag-img" src="brasil-64.webp" alt="" width="20" height="20"> <span>PT</span></button>
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" onclick="setLang('en')"><img class="lang-flag-img" src="estados-unidos-64.webp" alt="" width="20" height="20"> <span>EN</span></button>
+        </div>
+        <button type="button" class="theme-btn" id="theme-toggle" aria-pressed="false" aria-label="Ativar tema claro">
+            <span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Tema claro</span>
+        </button>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+            <span aria-hidden="true">☰</span>
+        </button>
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
         <li><a href="#jornada" data-i18n="nav_jornada">Jornada</a></li>
         <li><a href="#plat-stats" data-i18n="nav_plataformas">Plataformas</a></li>
         <li><a href="#generos" data-i18n="nav_generos">Gêneros</a></li>
         <li><a href="#ranking" data-i18n="nav_ranking">Hall of Fame</a></li>
         <li><a href="#membros" data-i18n="nav_membros">Membros</a></li>
         <li><a href="#loja" data-i18n="nav_loja">Loja</a></li>
-        <li><a href="https://www.youtube.com/@canaldorograo" target="_blank">YouTube ↗</a></li>
-        <li><a href="https://discord.gg/rDRmZN34fr" target="_blank">Discord ↗</a></li>
+        <li><a href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer">YouTube ↗</a></li>
+        <li><a href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener noreferrer">Discord ↗</a></li>
     </ul>
 </nav>
 
-<!-- ─── COVER NOTICE (hidden until probe fails) ─── -->
-<div id="cover-notice" style="display:none;max-width:760px;margin:16px auto 0;padding:13px 18px;background:#1e1208;border:1px solid #d07828;border-radius:10px;display:none;align-items:center;gap:12px;font-size:13px;line-height:1.5;color:#e8c060">
-    <span style="font-size:1.3rem">⚠️</span>
-    <div>
-        <strong style="display:block;margin-bottom:2px">Capas não aparecem aqui dentro.</strong>
-        Para ver as capas dos jogos abra o arquivo diretamente no seu navegador:<br>
-        <span style="font-family:'Space Mono',monospace;font-size:11px;color:#c89b3c">Chrome / Firefox / Edge → Arquivo → Abrir</span>
-        &nbsp;·&nbsp;ou arraste o <code style="background:#2a1a08;padding:2px 5px;border-radius:4px">.html</code> para a janela do navegador.
-    </div>
-    <button onclick="document.getElementById('cover-notice').style.display='none'" style="margin-left:auto;background:none;border:none;color:#9490a8;font-size:1.2rem;cursor:pointer;flex-shrink:0">✕</button>
-</div>
-
 <!-- ─── HERO ─── -->
-<div class="hero">
+<header class="hero" id="inicio">
     <div class="hero-glow"></div>
     <p class="hero-eyebrow" data-i18n="hero_eyebrow">Canal do Rogrão · Projeto</p>
     <h1 data-i18n="hero_title">Jornada Cronológica<br>Através da História dos Games</h1>
@@ -1202,16 +1431,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="stat-label" data-i18n="stat_avg">Nota Média</div>
         </div>
     </div>
-</div>
+</header>
 
 <!-- ─── MAIN ─── -->
-<div class="container">
+<main class="container" id="conteudo">
 
-    <section id="jornada">
+    <section id="jornada" aria-labelledby="jornada-titulo">
         <div class="section-header">
-            <h2 class="section-title" data-i18n="sec_jornada">A Jornada</h2>
+            <h2 class="section-title" id="jornada-titulo" data-i18n="sec_jornada">A Jornada</h2>
             <span class="section-pill" id="total-label">0 jogos</span>
         </div>
+
+        <p class="journey-intro" data-i18n="journey_intro">Explore a história dos games ano a ano. Abra um período para conhecer os jogos, episódios e avaliações da Jornada.</p>
 
 
         <div class="legend">
@@ -1221,20 +1452,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="legend-item"><span class="legend-dot" style="background:var(--text3)"></span><span data-i18n="legend_p">PENDENTE — na lista</span></span>
         </div>
 
-        <div class="filters" id="filters">
-            <button class="filter-btn active" data-f="all" data-i18n="filter_all">Todos</button>
-            <button class="filter-btn" data-f="zerado" data-i18n="filter_z">Zerados</button>
-            <button class="filter-btn" data-f="naozerado" data-i18n="filter_nz">Não Zerados</button>
-            <button class="filter-btn" data-f="pendente" data-i18n="filter_p">Pendentes</button>
-            <button class="filter-btn" data-p="NES">NES</button>
-            <button class="filter-btn" data-p="MASTER SYSTEM">Master System</button>
-            <button class="filter-btn" data-p="PC ENGINE">PC Engine</button>
-            <button class="filter-btn" data-p="MEGA DRIVE">Mega Drive</button>
-            <button class="filter-btn" data-p="GAME BOY">Game Boy</button>
-            <button class="filter-btn" data-p="ARCADE">Arcade</button>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar jogos">
+            <button type="button" class="filter-btn active" aria-pressed="true" data-f="all" data-i18n="filter_all">Todos</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-f="zerado" data-i18n="filter_z">Zerados</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-f="naozerado" data-i18n="filter_nz">Não Zerados</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-f="pendente" data-i18n="filter_p">Pendentes</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-p="NES">NES</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-p="MASTER SYSTEM">Master System</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-p="PC ENGINE">PC Engine</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-p="MEGA DRIVE">Mega Drive</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-p="GAME BOY">Game Boy</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-p="ARCADE">Arcade</button>
         </div>
+        <p class="visually-hidden" id="filter-status" aria-live="polite"></p>
 
-        <div id="timeline"></div>
+        <div id="timeline" aria-busy="false"></div>
     </section>
 
     <section id="plat-stats">
@@ -1274,7 +1506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li><span class="chk">✓</span><span data-i18n="membro_b3">Nome na descrição</span></li>
                     <li><span class="chk">✓</span><span data-i18n="membro_b4">Grupo de WhatsApp</span></li>
                 </ul>
-                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener" data-i18n="membro_cta">Seja Membro ↗</a>
+                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener noreferrer" data-i18n="membro_cta">Seja Membro ↗</a>
             </div>
 
             <!-- ESCUDEIRO -->
@@ -1289,7 +1521,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li><span class="chk">✓</span><span data-i18n="membro_b7">Citar o nome dos membros</span></li>
                     <li class="herdado-bottom"><span class="chk">+</span><span data-i18n="membro_b8">Benefícios dos níveis anteriores</span></li>
                 </ul>
-                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener" data-i18n="membro_cta2">Seja Membro ↗</a>
+                <a class="membro-btn" href="https://www.youtube.com/@canaldorograo/join" target="_blank" rel="noopener noreferrer" data-i18n="membro_cta2">Seja Membro ↗</a>
             </div>
 
         </div>
@@ -1308,9 +1540,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- VERSÃO 01 -->
             <div class="produto-card">
                 <div class="produto-img-wrap">
-                    <img class="produto-img-front" src="camisa-versao-01-frente.jpg" alt="Camiseta Versão Banner — frente">
-                    <img class="produto-img-back"  src="camisa-versao-01-verso.jpg" alt="Camiseta Versão Banner — verso">
-                    <span class="produto-img-label">passe o mouse para ver o verso</span>
+                    <img class="produto-img-front" src="camisa-versao-01-frente.jpg" alt="Camiseta Versão Banner — frente" width="528" height="616" loading="lazy" decoding="async">
+                    <img class="produto-img-back"  src="camisa-versao-01-verso.jpg" alt="Camiseta Versão Banner — verso" width="535" height="608" loading="lazy" decoding="async">
+                    <button type="button" class="produto-img-toggle" data-i18n="d_toggle_back" aria-pressed="false">Ver verso</button>
                 </div>
                 <div class="produto-body">
                     <div class="produto-versao">Versão 01</div>
@@ -1323,8 +1555,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="produto-cupom-code">ROGRAO10</span>
                         <span class="produto-cupom-desc">Use este cupom no site da Arium Estampas para ganhar desconto nesta camisa e em qualquer outro produto.</span>
                     </div>
-                    <a class="produto-btn store" href="https://ariumestampas.com.br/categoria/canal-do-rograo/" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h-2l-3 9v2h20v-2l-3-9h-2l-1 6-2-6h-4l-2 6-1-6zm-3 13h16v2h-16z"/></svg>
+                    <a class="produto-btn store" href="https://ariumestampas.com.br/categoria/canal-do-rograo/" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M7 4h-2l-3 9v2h20v-2l-3-9h-2l-1 6-2-6h-4l-2 6-1-6zm-3 13h16v2h-16z"/></svg>
                         COMPRE NO SITE DA ARIUM ESTAMPAS
                     </a>
                 </div>
@@ -1333,9 +1565,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- VERSÃO 02 -->
             <div class="produto-card">
                 <div class="produto-img-wrap">
-                    <img class="produto-img-front" src="camisa-versao-02-frente.jpg" alt="Camiseta Versão Clássica — frente">
-                    <img class="produto-img-back"  src="camisa-versao-02-verso.jpg" alt="Camiseta Versão Clássica — verso">
-                    <span class="produto-img-label">passe o mouse para ver o verso</span>
+                    <img class="produto-img-front" src="camisa-versao-02-frente.jpg" alt="Camiseta Versão Clássica — frente" width="549" height="606" loading="lazy" decoding="async">
+                    <img class="produto-img-back"  src="camisa-versao-02-verso.jpg" alt="Camiseta Versão Clássica — verso" width="559" height="606" loading="lazy" decoding="async">
+                    <button type="button" class="produto-img-toggle" data-i18n="d_toggle_back" aria-pressed="false">Ver verso</button>
                 </div>
                 <div class="produto-body">
                     <div class="produto-versao">Versão 02</div>
@@ -1348,8 +1580,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="produto-cupom-code">ROGRAO10</span>
                         <span class="produto-cupom-desc">Use este cupom no site da Arium Estampas para ganhar desconto nesta camisa e em qualquer outro produto.</span>
                     </div>
-                    <a class="produto-btn store" href="https://ariumestampas.com.br/categoria/canal-do-rograo/" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h-2l-3 9v2h20v-2l-3-9h-2l-1 6-2-6h-4l-2 6-1-6zm-3 13h16v2h-16z"/></svg>
+                    <a class="produto-btn store" href="https://ariumestampas.com.br/categoria/canal-do-rograo/" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M7 4h-2l-3 9v2h20v-2l-3-9h-2l-1 6-2-6h-4l-2 6-1-6zm-3 13h16v2h-16z"/></svg>
                         COMPRE NO SITE DA ARIUM ESTAMPAS
                     </a>
                 </div>
@@ -1365,7 +1597,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <h2 class="discord-title" data-i18n="discord_title">Entre na Comunidade</h2>
         <p class="discord-sub" data-i18n="discord_sub">Converse sobre os jogos da jornada, compartilhe memórias e acompanhe as novidades do canal no nosso servidor do Discord.</p>
-        <a class="discord-btn" href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener">
+        <a class="discord-btn" href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
             <span data-i18n="discord_btn">Entrar no Discord ↗</span>
         </a>
@@ -1377,20 +1609,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="section-pill" id="rank-pill">ranking completo · episódios publicados</span>
         </div>
         <div class="rank-list" id="rank-list"></div>
+        <div class="rank-toggle-wrap"><button type="button" class="rank-toggle" id="rank-toggle" aria-expanded="false">Ver ranking completo</button></div>
     </section>
 
-</div>
+</main>
 
 <!-- ─── FOOTER ─── -->
 <footer>
-    <p>© 2026 Canal do Rogrão · <a href="https://www.youtube.com/@canaldorograo" target="_blank">YouTube</a> · <a href="https://discord.gg/rDRmZN34fr" target="_blank">Discord</a></p>
+    <p>© 2026 Canal do Rogrão · <a href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer">YouTube</a> · <a href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener noreferrer">Discord</a></p>
     <p style="margin-top:8px" data-i18n="footer_sub">Jornada Cronológica Através da História dos Games · 1985 → 4K</p>
 </footer>
 
 <!-- ─── MODAL ─── -->
-<div class="modal-overlay" id="overlay">
-    <div class="modal">
-        <button class="modal-close" id="modal-close">✕</button>
+<div class="modal-overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text" tabindex="-1">
+        <button type="button" class="modal-close" id="modal-close" aria-label="Fechar detalhes do jogo">✕</button>
         <div class="modal-head" id="modal-head"></div>
         <div class="modal-body" id="modal-body"></div>
     </div>
@@ -1398,7 +1631,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 /* ─── I18N SYSTEM ─── */
-let LANG = 'pt';
+let LANG = (() => {
+    try { return localStorage.getItem('lang') === 'en' ? 'en' : 'pt'; }
+    catch (_) { return 'pt'; }
+})();
 const I18N = {
     pt: {
         nav_jornada: 'Jornada', nav_plataformas: 'Plataformas', nav_generos: 'Gêneros',
@@ -1407,6 +1643,7 @@ const I18N = {
         hero_title: 'Jornada Cronológica<br>Através da História dos Games',
         hero_sub: 'Do 8-bit ao 4K uma exploração honesta e apaixonada<br>de cada era da história dos videogames.',
         hero_badge: 'Atualmente em: 1989',
+        journey_intro: 'Explore a história dos games ano a ano. Abra um período para conhecer os jogos, episódios e avaliações da Jornada.',
         stat_analyzed: 'Jogos Analisados', stat_completed: 'Zerados',
         stat_not_completed: 'Não Zerados', stat_avg: 'Nota Média',
         sec_jornada: 'A Jornada', sec_plat: 'Por Plataforma', sec_genre: 'Por Gênero',
@@ -1450,6 +1687,8 @@ const I18N = {
         d_ep_nz_note: 'Este jogo não foi zerado — mas o episódio está a caminho!',
         d_nota_revelada: 'A nota e o review completo só são revelados quando o episódio vai ao ar no canal.',
         d_inscreva: 'INSCREVA-SE NO CANAL ↗',
+        d_toggle_back: 'Ver verso', d_toggle_front: 'Ver frente',
+        d_rank_more: 'Ver ranking completo', d_rank_less: 'Mostrar apenas o Top 10',
         d_nao_jogado: 'Este jogo ainda não foi jogado na Jornada.',
         d_pub_sem_nota: 'Publicado · nota não disponível',
         d_aguardando: 'Aguardando avaliação',
@@ -1465,6 +1704,7 @@ const I18N = {
         hero_title: 'A Chronological Journey<br>Through the History of Gaming',
         hero_sub: 'From 8-bit to 4K — an honest and passionate exploration<br>of every era of video game history.',
         hero_badge: 'Currently at: 1989',
+        journey_intro: 'Explore gaming history year by year. Open a period to discover the games, episodes and scores in the Journey.',
         stat_analyzed: 'Games Analyzed', stat_completed: 'Completed',
         stat_not_completed: 'Not Completed', stat_avg: 'Avg. Score',
         sec_jornada: 'The Journey', sec_plat: 'By Platform', sec_genre: 'By Genre',
@@ -1508,6 +1748,8 @@ const I18N = {
         d_ep_nz_note: 'This game was not beaten — but the episode is on its way!',
         d_nota_revelada: 'The score and full review are only revealed when the episode goes live on the channel.',
         d_inscreva: 'SUBSCRIBE TO THE CHANNEL ↗',
+        d_toggle_back: 'View back', d_toggle_front: 'View front',
+        d_rank_more: 'View full ranking', d_rank_less: 'Show Top 10 only',
         d_nao_jogado: 'This game has not been played in the Journey yet.',
         d_pub_sem_nota: 'Published · score not available',
         d_aguardando: 'Awaiting review',
@@ -1527,15 +1769,28 @@ function applyI18n() {
 }
 function setLang(lang) {
     LANG = lang;
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    try { localStorage.setItem('lang', lang); } catch (_) {}
+    document.querySelectorAll('.lang-btn').forEach(b => {
+        const active = b.dataset.lang === lang;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', String(active));
+    });
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.title = lang === 'pt'
+        ? 'Jornada Cronológica – Canal do Rogrão'
+        : "A Chronological Gaming Journey – Rogrão's Channel";
     applyI18n();
+    updateThemeButton();
     // Re-render dynamic sections
     calcStats();
     renderTimeline(getFilteredList());
     renderPlatStats();
     renderGenres();
     renderRanking();
+    document.querySelectorAll('.produto-img-toggle').forEach(button => {
+        const showingBack = button.closest('.produto-img-wrap').classList.contains('show-back');
+        button.textContent = showingBack ? t('d_toggle_front') : t('d_toggle_back');
+    });
 }
 
 /* ─── PLATFORM CONFIG ─── */
@@ -1546,7 +1801,7 @@ const P = {
     'PC ENGINE':     { color:'#d07020', label:'PC Engine',     short:'PCE',  full:'NEC PC Engine',                       img:`${WK}/PC-Engine-Console-Set.jpg?width=300`,                    folder:'turbografx_16',      prefix:'tg16'    },
     'MEGA DRIVE':    { color:'#3aa898', label:'Mega Drive',    short:'MD',   full:'Sega Mega Drive',                     img:`${WK}/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg?width=300`,       folder:'genesis',            prefix:'genesis' },
     'GAME BOY':      { color:'#6aaa3a', label:'Game Boy',      short:'GB',   full:'Nintendo Game Boy',                   img:`${WK}/Nintendo-Gameboy-Pak.jpg?width=300`,                     folder:'gameboy',            prefix:'gb'      },
-    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`fliperama.webp`, imgFallbacks:[],                    folder:null,                 prefix:null      },
+    'ARCADE':        { color:'#9040c0', label:'Arcade',        short:'ARC',  full:'Arcade',                              img:`fliperama-480.webp`, imgFallbacks:['fliperama.webp'], folder:null,                 prefix:null      },
     'AMIGA':         { color:'#b06040', label:'Amiga',         short:'AMI',  full:'Commodore Amiga',                     img:`${WK}/Amiga500_system.jpg?width=300`,                          folder:null,                 prefix:null      },
     'PC':            { color:'#507080', label:'PC',            short:'PC',   full:'Personal Computer',                   img:`${WK}/Personal_computer,_exploded_5.svg?width=300`,            folder:null,                 prefix:null      },
     'SNES':          { color:'#6040c0', label:'Super Nintendo',short:'SNES', full:'Super Nintendo Entertainment System',  img:`${WK}/SNES-Mod1-Console-Set.jpg?width=300`,                   folder:'super_nintendo',     prefix:'snes'    },
@@ -1557,6 +1812,7 @@ const pc = plat => P[plat] || { color:'#556677', label:'?', folder:null, prefix:
 /* ─── COVER OVERRIDES (jogos não cobertos pelo Libretro thumbnails) ─── */
 const COVER_OVERRIDES = {
     53: [
+        'simcity-480.webp',
         'simcity.jpg',
         'https://en.wikipedia.org/wiki/Special:FilePath/SimCity_Maxis_Cover_Art.jpg',
         'https://upload.wikimedia.org/wikipedia/en/8/8a/SimCity_Maxis_Cover_Art.jpg',
@@ -1688,7 +1944,7 @@ function coverImgTag(g, cls) {
     const url = coverUrl(g);
     if (!url) return '';
     const fb = coverFallbacks(g).map(u => `'${u}'`).join(',');
-    return `<img class="${cls||'cover-img'}" src="${url}" onerror="imgFallback(this,[${fb}])" alt="${g.title}">`;
+    return `<img class="${cls||'cover-img'}" src="${url}" onerror="imgFallback(this,[${fb}])" alt="Capa de ${g.title}" width="360" height="480" loading="lazy" decoding="async" fetchpriority="low">`;
 }
 
 /* ─── GAME DATA ───────────────────────────────────────────────────────────────
@@ -1776,7 +2032,7 @@ const G = [
 /* ─── HELPERS ─── */
 const plBadge = plat => {
     const { color, label } = pc(plat);
-    return `<span class="plat-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${label}</span>`;
+    return `<span class="plat-badge" style="--platform-color:${color}">${label}</span>`;
 };
 
 /* Format score preserving exact precision (no rounding).
@@ -1830,30 +2086,34 @@ function card(g) {
 
     // YouTube episode link
     const ytBtn = (g.yt && isPublished)
-        ? `<a class="yt-btn" href="https://www.youtube.com/watch?v=${g.yt}" target="_blank" onclick="event.stopPropagation()">▶ EP</a>`
+        ? `<a class="yt-btn" href="https://www.youtube.com/watch?v=${g.yt}" target="_blank" rel="noopener noreferrer" aria-label="${LANG === 'en' ? 'Watch the episode about' : 'Assistir ao episódio sobre'} ${g.title}">▶ EP</a>`
         : '';
 
     // Card class
     let cardClass = 'game-card';
     if (isPending) cardClass += ' pending';
     else if (isEmBreve) cardClass += ' em-breve';
+    if (ytBtn) cardClass += ' has-episode';
 
     const imgTag = coverImgTag(g, 'cover-img');
 
-    return `<div class="${cardClass}" onclick="openM(${g.id})">
-        <div class="game-cover" style="background:linear-gradient(145deg,${color}dd,${color}66)">
-            ${imgTag}
-        </div>
-        <div class="game-info">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                ${plBadge(g.plat)}
-                <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--text3)">${g.yr}</span>
-            </div>
-            <div class="game-title-card">${g.title}</div>
-            <div class="game-genre">${g.genre}</div>
-            <div class="game-footer">${statusHtml}${scoreHtml}${ytBtn}</div>
-        </div>
-    </div>`;
+    return `<article class="${cardClass}">
+        <button type="button" class="game-card-open" onclick="openM(${g.id})" aria-haspopup="dialog" aria-label="${LANG === 'en' ? 'Open details for' : 'Abrir detalhes de'} ${g.title}">
+            <span class="game-cover" style="background:linear-gradient(145deg,${color}dd,${color}66)">
+                ${imgTag}
+            </span>
+            <span class="game-info">
+                <span style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                    ${plBadge(g.plat)}
+                    <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--text2)">${g.yr}</span>
+                </span>
+                <span class="game-title-card">${g.title}</span>
+                <span class="game-genre">${g.genre}</span>
+                <span class="game-footer">${statusHtml}${scoreHtml}</span>
+            </span>
+        </button>
+        ${ytBtn}
+    </article>`;
 }
 
 /* ─── RENDER TIMELINE ─── */
@@ -1883,22 +2143,22 @@ function renderTimeline(list) {
         const teaserText = `${countText} · ${summary}`;
 
         return `<div class="year-section${isOpen ? ' open' : ''}" data-yr="${yr}">
-            <div class="year-header" onclick="toggleYear(${yr})">
+            <button type="button" class="year-header" onclick="toggleYear(${yr})" aria-expanded="${isOpen}" aria-controls="yb-${yr}">
                 <span class="year-chevron">▶</span>
                 <span class="year-number">${yr}</span>
                 <span class="year-teaser">${teaserText}</span>
-                <div class="year-line"></div>
+                <span class="year-line"></span>
                 <span class="year-badge">${countText}</span>
                 <span class="year-toggle">${t('d_year_expand')}</span>
-            </div>
+            </button>
             <div class="year-body" id="yb-${yr}" style="${isOpen ? 'max-height:9999px;opacity:1' : ''}">
-                <div class="games-grid">${yg.map(card).join('')}</div>
+                <div class="games-grid" data-loaded="${isOpen}">${isOpen ? yg.map(card).join('') : ''}</div>
             </div>
         </div>`;
     }).join('');
 
     html += `<div class="year-section coming-soon-year">
-        <div class="year-header" style="cursor:default" onclick="">
+        <div class="year-header" style="cursor:default">
             <span class="year-number">${nextYr}</span>
             <div class="year-line" style="border-top:1px dashed rgba(200,155,60,0.15)"></div>
             <span class="year-badge" style="color:var(--gold);letter-spacing:0.14em">${t('d_year_coming')}</span>
@@ -1906,7 +2166,7 @@ function renderTimeline(list) {
         <div class="coming-soon-block">
             <div class="coming-soon-yr">${nextYr}</div>
             <p class="coming-soon-msg">${t('d_coming_msg_pre')}${nextYr}${t('d_coming_msg_post')}</p>
-            <a class="coming-soon-link" href="https://www.youtube.com/@canaldorograo" target="_blank">${t('d_coming_link')}</a>
+            <a class="coming-soon-link" href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer">${t('d_coming_link')}</a>
         </div>
     </div>`;
 
@@ -1917,17 +2177,25 @@ function toggleYear(yr) {
     const sec = document.querySelector(`.year-section[data-yr="${yr}"]`);
     if (!sec) return;
     const body = document.getElementById('yb-' + yr);
+    const header = sec.querySelector('.year-header');
     if (sec.classList.contains('open')) {
         // Close
         body.style.maxHeight = body.scrollHeight + 'px';
         requestAnimationFrame(() => { body.style.maxHeight = '0'; });
         sec.classList.remove('open');
         _openYears.delete(yr);
+        header.setAttribute('aria-expanded', 'false');
     } else {
         // Open
+        const grid = body.querySelector('.games-grid');
+        if (grid.dataset.loaded !== 'true') {
+            grid.innerHTML = getFilteredList().filter(g => g.yr === yr).map(card).join('');
+            grid.dataset.loaded = 'true';
+        }
         sec.classList.add('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
         _openYears.add(yr);
+        header.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = body.scrollHeight + 'px';
         body.addEventListener('transitionend', function handler() {
             if (sec.classList.contains('open')) body.style.maxHeight = '9999px';
             body.removeEventListener('transitionend', handler);
@@ -1935,19 +2203,8 @@ function toggleYear(yr) {
     }
 }
 
-function expandAllYears() {
-    document.querySelectorAll('.year-section[data-yr]').forEach(sec => {
-        const yr = parseInt(sec.dataset.yr);
-        if (!sec.classList.contains('open')) {
-            sec.classList.add('open');
-            _openYears.add(yr);
-            const body = document.getElementById('yb-' + yr);
-            if (body) body.style.maxHeight = '9999px';
-        }
-    });
-}
-
 /* ─── RENDER RANKING ─── */
+let RANK_EXPANDED = false;
 function renderRanking() {
     const ranked = G.filter(g => g.pub === true && g.sc != null)
                     .sort((a, b) => b.sc - a.sc || a.yr - b.yr);
@@ -1955,32 +2212,40 @@ function renderRanking() {
     const pill = document.getElementById('rank-pill');
     if (pill) pill.textContent = `${ranked.length} ${t('d_ranking_pill')}`;
 
-    document.getElementById('rank-list').innerHTML = ranked.map((g, i) => {
+    const visibleRanking = RANK_EXPANDED ? ranked : ranked.slice(0, 10);
+    document.getElementById('rank-list').innerHTML = visibleRanking.map((g, i) => {
         const { color } = pc(g.plat);
         const url = coverUrl(g);
         let thumbHtml;
         if (url) {
             const _rfb1 = coverFallbacks(g).map(u=>`'${u}'`).join(',');
-            thumbHtml = `<div class="rank-thumb" style="background:linear-gradient(135deg,${color}cc,${color}66)">
-                <img src="${url}" onerror="imgFallback(this,[${_rfb1}])" alt="${g.title}">
-            </div>`;
+            thumbHtml = `<span class="rank-thumb" style="background:linear-gradient(135deg,${color}cc,${color}66)">
+                <img src="${url}" onerror="imgFallback(this,[${_rfb1}])" alt="Capa de ${g.title}" width="138" height="180" loading="lazy" decoding="async">
+            </span>`;
         } else {
-            thumbHtml = `<div class="rank-thumb-placeholder" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
+            thumbHtml = `<span class="rank-thumb-placeholder" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</span>`;
         }
 
-        return `<div class="rank-row" onclick="openM(${g.id})">
-            <div class="rank-num">${String(i + 1).padStart(2, '0')}</div>
+        return `<button type="button" class="rank-row" onclick="openM(${g.id})" aria-haspopup="dialog" aria-label="${LANG === 'en' ? 'Open ranking details for' : 'Abrir detalhes do ranking para'} ${g.title}">
+            <span class="rank-num">${String(i + 1).padStart(2, '0')}</span>
             ${thumbHtml}
-            <div class="rank-info">
-                <div class="rank-title-text">${g.title}</div>
-                <div class="rank-meta-text">${plBadge(g.plat)} · ${g.yr} · ${g.genre}</div>
-            </div>
-            <div class="rank-score-col">
-                <div class="rank-score-big">${fmtSc(g.sc)}<small>/10</small></div>
-                <div class="score-bar"><div class="score-bar-fill" style="width:${g.sc * 10}%"></div></div>
-            </div>
-        </div>`;
+            <span class="rank-info">
+                <span class="rank-title-text">${g.title}</span>
+                <span class="rank-meta-text">${plBadge(g.plat)} · ${g.yr} · ${g.genre}</span>
+            </span>
+            <span class="rank-score-col">
+                <span class="rank-score-big">${fmtSc(g.sc)}<small>/10</small></span>
+                <span class="score-bar"><span class="score-bar-fill" style="width:${g.sc * 10}%"></span></span>
+            </span>
+        </button>`;
     }).join('');
+
+    const toggle = document.getElementById('rank-toggle');
+    if (toggle) {
+        toggle.hidden = ranked.length <= 10;
+        toggle.setAttribute('aria-expanded', String(RANK_EXPANDED));
+        toggle.textContent = RANK_EXPANDED ? t('d_rank_less') : t('d_rank_more');
+    }
 }
 
 /* ─── PLATFORM STATS ─── */
@@ -2010,7 +2275,7 @@ function renderPlatStats() {
 
         return `<div class="plat-card" style="--pc:${cfg.color}">
             <div class="plat-panel" data-abbr="${s}">
-                ${cfg.img ? `<img class="plat-panel-img" src="${cfg.img}" onerror="imgFallback(this,${JSON.stringify(cfg.imgFallbacks||[])})" alt="${cfg.label}">` : ''}
+                ${cfg.img ? `<img class="plat-panel-img" src="${cfg.img}" onerror="imgFallback(this,${JSON.stringify(cfg.imgFallbacks||[])})" alt="${cfg.label}" width="180" height="240" loading="lazy" decoding="async">` : ''}
                 <div class="plat-abbr">${s}</div>
             </div>
             <div class="plat-body">
@@ -2145,17 +2410,35 @@ function getFilteredList() {
 document.getElementById('filters').addEventListener('click', e => {
     const b = e.target.closest('.filter-btn');
     if (!b) return;
-    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(x => {
+        x.classList.remove('active');
+        x.setAttribute('aria-pressed', 'false');
+    });
     b.classList.add('active');
+    b.setAttribute('aria-pressed', 'true');
     if (b.dataset.f)      { _f = b.dataset.f; _p = null; }
     else if (b.dataset.p) { _p = b.dataset.p; _f = 'all'; }
-    renderTimeline(getFilteredList());
+    const filtered = getFilteredList();
+    renderTimeline(filtered);
+    document.getElementById('filter-status').textContent = LANG === 'en'
+        ? `${filtered.length} games shown`
+        : `${filtered.length} jogos exibidos`;
 });
 
 /* ─── MODAL ─── */
+let LAST_FOCUS = null;
+
+function setPageInert(value) {
+    document.querySelectorAll('nav, .hero, main, footer').forEach(element => {
+        element.inert = value;
+    });
+}
+
 function openM(id) {
     const g = G.find(x => x.id === id);
     if (!g) return;
+    const overlay = document.getElementById('overlay');
+    if (!overlay.classList.contains('open')) LAST_FOCUS = document.activeElement;
     const { color } = pc(g.plat);
     const isPublished = g.pub === true;
     const isPlayed    = g.st === 'z' || g.st === 'nz';
@@ -2167,7 +2450,7 @@ function openM(id) {
     if (url) {
         const _mfb = coverFallbacks(g).map(u=>`'${u}'`).join(',');
         artHtml = `<div class="modal-art" style="background:linear-gradient(135deg,${color}cc,${color}66);padding:0">
-            <img src="${url}" onerror="imgFallback(this,[${_mfb}])" alt="${g.title}">
+            <img src="${url}" onerror="imgFallback(this,[${_mfb}])" alt="Capa de ${g.title}" width="360" height="480" decoding="async">
         </div>`;
     } else {
         artHtml = `<div class="modal-art" style="background:linear-gradient(135deg,${color}cc,${color}66)">${g.title}</div>`;
@@ -2200,13 +2483,13 @@ function openM(id) {
     }
 
     const ytModalBtn = (g.yt && isPublished)
-        ? `<a class="yt-btn-modal" href="https://www.youtube.com/watch?v=${g.yt}" target="_blank">${t('d_assistir_ep')}</a>`
+        ? `<a class="yt-btn-modal" href="https://www.youtube.com/watch?v=${g.yt}" target="_blank" rel="noopener noreferrer" aria-label="${LANG === 'en' ? 'Watch the episode about' : 'Assistir ao episódio sobre'} ${g.title}">${t('d_assistir_ep')}</a>`
         : '';
 
     document.getElementById('modal-head').innerHTML = `
         ${artHtml}
         <div style="flex:1">
-            <div class="modal-title">${g.title}</div>
+            <div class="modal-title" id="modal-title-text">${g.title}</div>
             <div class="modal-tags">
                 ${plBadge(g.plat)}
                 <span class="modal-tag">${g.yr}</span>
@@ -2224,6 +2507,7 @@ function openM(id) {
         if (g.yt) {
             body += `<div class="modal-yt-embed">
                 <iframe src="https://www.youtube.com/embed/${g.yt}?rel=0"
+                    title="${LANG === 'en' ? 'Episode about' : 'Episódio sobre'} ${g.title}"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
             </div>`;
@@ -2251,13 +2535,13 @@ function openM(id) {
         if (!g.rev && !g.sc7 && !g.yt) {
             body += `<div style="text-align:center;padding:20px 0">
                 <p style="color:var(--text3);font-style:italic;font-size:13px;margin-bottom:16px">${t('d_review_canal')}</p>
-                <a class="modal-canal-link" href="https://www.youtube.com/@canaldorograo" target="_blank">${t('d_assistir_yt')}</a>
+                <a class="modal-canal-link" href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer">${t('d_assistir_yt')}</a>
             </div>`;
         }
 
         // Botão compartilhar
         if (g.yt) {
-            body += `<button class="modal-share-btn" onclick="
+            body += `<button type="button" class="modal-share-btn" onclick="
                 navigator.clipboard.writeText('https://www.youtube.com/watch?v=${g.yt}');
                 this.textContent='${t('d_link_copiado')}';
                 this.classList.add('copied');
@@ -2272,10 +2556,10 @@ function openM(id) {
             body += `<div class="modal-related">
                 <div class="modal-related-label">${t('d_outros_jogos')}${pc(g.plat).label}</div>
                 <div class="modal-related-grid">
-                    ${related.map(r => `<div class="modal-related-card" onclick="document.getElementById('overlay').classList.remove('open');setTimeout(()=>openM(${r.id}),150)">
-                        <div class="modal-related-name">${r.title}</div>
-                        <div class="modal-related-sc">${fmtSc(r.sc)}</div>
-                    </div>`).join('')}
+                    ${related.map(r => `<button type="button" class="modal-related-card" onclick="openM(${r.id})" aria-label="${LANG === 'en' ? 'Open details for' : 'Abrir detalhes de'} ${r.title}">
+                        <span class="modal-related-name">${r.title}</span>
+                        <span class="modal-related-sc">${fmtSc(r.sc)}</span>
+                    </button>`).join('')}
                 </div>
             </div>`;
         }
@@ -2288,37 +2572,120 @@ function openM(id) {
             <div class="modal-embreve-title">${t('d_ep_producao')}</div>
             ${nzNote}
             <p class="modal-embreve-msg">${t('d_nota_revelada')}</p>
-            <a class="modal-embreve-link" href="https://www.youtube.com/@canaldorograo" target="_blank">${t('d_inscreva')}</a>
+            <a class="modal-embreve-link" href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer">${t('d_inscreva')}</a>
         </div>`;
     } else {
         body = `<p style="color:var(--text3);font-style:italic;text-align:center;padding:20px 0">${t('d_nao_jogado')}</p>`;
     }
 
     document.getElementById('modal-body').innerHTML = body;
-    document.getElementById('overlay').classList.add('open');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    setPageInert(true);
+    requestAnimationFrame(() => document.getElementById('modal-close').focus());
 }
 
-document.getElementById('modal-close').onclick = () => document.getElementById('overlay').classList.remove('open');
-document.getElementById('overlay').onclick = e => { if (e.target === e.currentTarget) document.getElementById('overlay').classList.remove('open'); };
-document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('overlay').classList.remove('open'); });
+function closeModal() {
+    const overlay = document.getElementById('overlay');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    setPageInert(false);
+    if (LAST_FOCUS && LAST_FOCUS.isConnected) LAST_FOCUS.focus();
+}
+
+document.getElementById('modal-close').onclick = closeModal;
+document.getElementById('overlay').onclick = e => { if (e.target === e.currentTarget) closeModal(); };
+document.addEventListener('keydown', e => {
+    const overlay = document.getElementById('overlay');
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+        return;
+    }
+    if (e.key !== 'Tab') return;
+    const focusable = [...overlay.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+        .filter(element => element.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+    }
+});
+
+/* ─── THEME, MOBILE NAV & SUPPORTING CONTROLS ─── */
+function updateThemeButton() {
+    const button = document.getElementById('theme-toggle');
+    if (!button) return;
+    const light = document.documentElement.dataset.theme === 'light';
+    const actionLabel = LANG === 'en'
+        ? (light ? 'Use dark theme' : 'Use light theme')
+        : (light ? 'Ativar tema escuro' : 'Ativar tema claro');
+    button.setAttribute('aria-pressed', String(light));
+    button.setAttribute('aria-label', actionLabel);
+    button.querySelector('.theme-icon').textContent = light ? '☾' : '☀';
+    button.querySelector('.theme-label').textContent = LANG === 'en'
+        ? (light ? 'Dark theme' : 'Light theme')
+        : (light ? 'Tema escuro' : 'Tema claro');
+}
+
+function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    document.getElementById('theme-color').content = theme === 'light' ? '#f7f5ef' : '#0b0a14';
+    try { localStorage.setItem('theme', theme); } catch (_) {}
+    updateThemeButton();
+}
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light');
+});
+
+function setNavOpen(open) {
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', LANG === 'en'
+        ? (open ? 'Close menu' : 'Open menu')
+        : (open ? 'Fechar menu' : 'Abrir menu'));
+}
+
+document.getElementById('nav-toggle').addEventListener('click', () => {
+    setNavOpen(!document.getElementById('nav-links').classList.contains('open'));
+});
+document.querySelectorAll('#nav-links a').forEach(link => link.addEventListener('click', () => setNavOpen(false)));
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && document.getElementById('nav-links').classList.contains('open')) {
+        setNavOpen(false);
+        document.getElementById('nav-toggle').focus();
+    }
+});
+
+document.getElementById('rank-toggle').addEventListener('click', () => {
+    RANK_EXPANDED = !RANK_EXPANDED;
+    renderRanking();
+    if (!RANK_EXPANDED) document.getElementById('ranking').scrollIntoView({block:'start'});
+});
+
+document.querySelectorAll('.produto-img-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const wrap = button.closest('.produto-img-wrap');
+        const showingBack = wrap.classList.toggle('show-back');
+        button.setAttribute('aria-pressed', String(showingBack));
+        button.textContent = showingBack ? t('d_toggle_front') : t('d_toggle_back');
+    });
+});
 
 /* ─── INIT ─── */
-// Probe: show banner if external images are blocked (e.g. Electron webview)
-(function() {
-    const probe = new Image();
-    probe.onerror = () => {
-        const n = document.getElementById('cover-notice');
-        if (n) { n.style.display = 'flex'; }
-    };
-    probe.src = 'https://cdn.jsdelivr.net/gh/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System@master/Named_Boxarts/Super%20Mario%20Bros.%20(World).png';
-})();
-
-calcStats();
-renderTimeline(G);
-renderPlatStats();
-renderGenres();
-renderRanking();
-applyI18n();
+setLang(LANG);
+updateThemeButton();
 </script>
 </body>
 </html>
