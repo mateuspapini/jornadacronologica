@@ -1958,7 +1958,7 @@ XP.registerApp('ranking', {
         </div>
         <div class="xp-statusbar"><span>${visible.length} / ${ranked.length} ${t('d_jogos')}</span><span><img src="${ICON('star', 16)}" alt=""> ${t('win_ranking')}</span></div>`;
         client.querySelectorAll('.xp-tp-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('closed')));
-        client.querySelectorAll('.rank-row').forEach(b => { b.querySelector('.cover').replaceWith(coverEl(G.find(x => x.id === +b.dataset.id), 'cover', 46, 60)); b.addEventListener('click', () => openGame(+b.dataset.id)); });
+        client.querySelectorAll('.rank-row').forEach(b => { b.querySelector('.cover').replaceWith(coverEl(G.find(x => x.id === +b.dataset.id), 'cover', 78, 104)); b.addEventListener('click', () => openGame(+b.dataset.id)); });
         client.querySelectorAll('[data-toggle]').forEach(b => b.addEventListener('click', () => { RANK_EXPANDED = !RANK_EXPANDED; APPS_RERENDER('ranking'); }));
         client.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => XP.openWindow(b.dataset.open)));
     },

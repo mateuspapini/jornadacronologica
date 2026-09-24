@@ -312,7 +312,7 @@ button { min-width: 0; }
 /* ═══════════════════════════════ DESKTOP ═══════════════════════════════ */
 #xp-desktop {
     position: fixed; inset: 0 0 30px 0;
-    background: var(--desktop-bg) url("wallpapers/bliss.jpg") center / cover no-repeat;
+    background: var(--desktop-bg) url("bliss.jpg") center / cover no-repeat;
     overflow: hidden;
 }
 #xp-desktop.wp-stretch { background-size: 100% 100%; }

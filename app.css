@@ -123,16 +123,17 @@ h2, h3 { margin: 0; font-weight: 700; }
 
 /* ── Hall of Fame ── */
 .rank-list { display: flex; flex-direction: column; padding: 8px 10px; gap: 4px; }
-.rank-row { display: grid; grid-template-columns: 34px 46px 1fr auto; gap: 10px; align-items: center; width: 100%; text-align: left; padding: 6px 8px; background: #fff; border: 1px solid #e3e1d7; border-radius: 3px; box-shadow: none; min-height: 0; font: 11px var(--xp-font); color: var(--text); }
+.rank-row { display: grid; grid-template-columns: 34px 78px 1fr auto; gap: 10px; align-items: center; width: 100%; text-align: left; padding: 6px 8px; background: #fff; border: 1px solid #e3e1d7; border-radius: 3px; box-shadow: none; min-height: 0; font: 11px var(--xp-font); color: var(--text); }
 .rank-row:hover { background: #eef3fc; border-color: #316ac5; box-shadow: none; }
 .rank-num { font: 700 18px var(--xp-title-font); color: #7a7a7a; text-align: center; }
 .rank-row.pos-1 .rank-num { color: #c9a400; } .rank-row.pos-2 .rank-num { color: #8e9aa6; } .rank-row.pos-3 .rank-num { color: #a86a3a; }
 .rank-row.pos-1 { border-left: 4px solid #d4a820; } .rank-row.pos-2 { border-left: 4px solid #a8b0b8; } .rank-row.pos-3 { border-left: 4px solid #b07848; }
-.rank-row .cover { width: 46px; height: 60px; }
+.rank-row .cover { width: 78px; height: 104px; }
 .rank-info { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .rank-title { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rank-meta { color: var(--gray-text); }
-.rank-info .xp-progress { width: 140px; height: 8px; }
+.rank-info .xp-progress { width: 160px; height: 10px; }
+.rank-title { font-size: 13px; }
 .rank-score b { font: 700 20px/1 var(--xp-title-font); color: #0046d5; }
 .rank-score small { color: var(--gray-text); }
 
@@ -280,8 +281,10 @@ h2, h3 { margin: 0; font-weight: 700; }
     .drive-grid { grid-template-columns: 1fr; }
     .recommend-result { grid-template-columns: 1fr; }
     .recommend-cover { width: min(100%, 200px); aspect-ratio: 3/4; min-height: 0; margin: 0 auto; }
-    .rank-row { grid-template-columns: 28px 40px 1fr auto; gap: 6px; }
+    .rank-row { grid-template-columns: 26px 60px 1fr auto; gap: 6px; }
+    .rank-row .cover { width: 60px; height: 80px; }
     .rank-info .xp-progress { width: 90px; }
+    .rank-title { white-space: normal; font-size: 12px; }
     .prop-head { flex-direction: column; align-items: center; text-align: center; }
     .prop-table th { text-align: left; }
     .game-tile { width: 96px; }
