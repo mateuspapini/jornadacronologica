@@ -1,27 +1,60 @@
-JORNADA CRONOLÓGICA: ATUALIZAÇÃO DO RECOMENDADOR
+JORNADA CRONOLÓGICA — VERSÃO "JORNADA XP" (redesign Windows XP)
 
-Para atualizar o domínio atual, envie todos os arquivos desta pasta para o mesmo diretório do site, substituindo o index.html existente.
+COMO PUBLICAR
+Envie TODOS os arquivos e pastas desta pasta para a raiz do repositório no GitHub
+(substituindo o index.html antigo). O workflow em .github/workflows/static.yml
+continua igual — o GitHub Pages publica sozinho após o push.
 
-Arquivos novos/importantes:
-- index.html: página atualizada com a seção “Sem ideia pra jogar?”
-- recomendacoes.csv: cópia de segurança do catálogo da planilha
+Arquivos que podem ser APAGADOS do repositório antigo (não são mais usados):
+- brasil.png, estados-unidos.png (as versões -64.webp continuam em uso)
+- camisa-versao-01.png, camisa-versao-02.png (só os .jpg frente/verso são usados)
 
-Posição no site:
-- A ordem final é Loja Oficial, Discord, Rogrão Recomenda e Hall of Fame.
+ESTRUTURA
+  index.html ............ casca da área de trabalho (boot, logon, taskbar, menu Iniciar)
+  app.js ................ TODA a lógica do site: dados dos jogos (G), i18n PT/EN,
+                          capas (Libretro/Wikipédia), recomendador e as janelas
+  app.css ............... estilo do conteúdo das janelas
+  xp/shell.js ........... sistema: janelas, taskbar, menu Iniciar, sons, temas, balões
+  xp/shell.css .......... visual Luna (Azul, Verde-oliva, Prata) e Clássico
+  xp/controls.css ....... botões de título pixel-perfect (extraídos do xp.css)
+  xp/extras.js .......... Ajuda, Executar, LEIA-ME, Lixeira, Campo Minado
+  xp/xp.css ............. biblioteca xp.css (MIT) — controles nativos do XP
+  xp/icons/ ............. ícones do shell32 do XP em 16/32/48 px (PNG)
+  xp/wallpapers/ ........ 20 papéis de parede originais (+ miniaturas)
+  xp/sounds/ ............ 20 sons do XP em MP3
+  xp/cursors/ ........... cursores .cur do XP
+  recomendacoes.csv ..... cópia de segurança do catálogo (igual à versão anterior)
 
-Como funciona:
-- O site tenta ler automaticamente a aba Jogos da planilha pública.
-- Se o Google não responder, usa recomendacoes.csv.
-- “Me indica” exige pelo menos um filtro e combina os filtros preenchidos.
-- “Estou com sorte” ignora os filtros e sorteia entre todo o catálogo.
-- Plataforma e ano se ajustam entre si para mostrar somente combinações existentes na lista.
-- O botão de gameplay abre uma busca no YouTube pelo nome do jogo, a plataforma e a palavra “gameplay”.
-- As capas são procuradas automaticamente no catálogo Libretro e, quando necessário, na Wikipédia.
-- “navinha”, “shmup” e “nave” são tratados como Shoot 'em Up/Nave.
-- As mensagens de quantidade de jogos ficam ocultas e os resultados normais não exibem contagens.
-- Quando não existe uma combinação exata na planilha, o “Rogrão Explora” procura um jogo real na base pública Wikidata respeitando os filtros.
-- Se a busca externa não responder, o site tenta a IA local disponível em navegadores compatíveis.
-- Se nenhuma dessas opções estiver disponível, o “Plano B do Rogrão” entrega a sugestão mais próxima da planilha. O usuário não fica sem jogo.
-- Em celulares, formulário, capa e botões passam a ocupar uma única coluna e o resultado é levado para a área visível.
+COMO ATUALIZAR O CONTEÚDO (igual ao site antigo)
+- Jogos: edite a lista "const G = [...]" em app.js (mesmos campos de antes:
+  id, yr, title, plat, genre, st, pub, sc, yt, rev, sc7).
+- Capas: "const COVERS" e "COVER_OVERRIDES" em app.js.
+- Ano atual do selo "Atualmente em: 1989": chaves hero_badge (pt e en) em app.js.
+  O balão "Novo episódio" e a pasta destacada usam automaticamente o maior ano
+  com episódio publicado.
+- Planilha do recomendador: RECOMMENDER_REMOTE_CSV em app.js (mesma URL).
+- Preços/benefícios dos membros e da loja: janelas 'members' e 'shop' em app.js.
+- Textos: objeto I18N em app.js (pt e en). Textos do sistema (boot, logon,
+  menu Iniciar, BSOD): objeto S em xp/shell.js.
 
-Observação: mantenha a planilha compartilhada como “qualquer pessoa com o link pode visualizar”, não editar.
+COMPORTAMENTO
+- Primeira visita: boot (pulável) → tela de logon → desktop com janela Bem-vindo.
+  Visitas seguintes vão direto ao desktop (localStorage "xp_seen").
+  "Fazer logoff" mostra a tela de logon; "Reiniciar" refaz o boot.
+- Sons: ligados por padrão, mas o navegador só toca após o primeiro clique
+  (o clique no usuário da tela de logon já conta). Ícone de som na bandeja liga/desliga.
+- Idioma: botão PT/EN na bandeja. Tema/papel de parede: botão direito no fundo →
+  Propriedades, ou menu Iniciar → Propriedades de Exibição. Tudo salvo no navegador.
+- Celular (≤760px): janelas abrem em tela cheia, uma por vez; barra de tarefas
+  e menu Iniciar continuam. Ícones abrem com um toque.
+- Links antigos continuam funcionando e abrem a janela certa:
+  #jornada #ranking #loja #membros #recomendador #plat-stats #generos #discord #inicio
+- Easter eggs: Desligar → "Desativar" mostra uma tela azul (clique reinicia);
+  "Em espera" responde com um balão; Todos os programas → Campo Minado;
+  Executar… aceita nomes de seções (ex.: ranking, loja, winver, minesweeper).
+
+CRÉDITOS / LICENÇAS
+- xp.css (MIT) © botoxparty — xp/LICENSE-xp.css.txt
+- Ícones, wallpapers, sons e cursores: pacote windows-xp-ui-assets fornecido
+  pelo canal. Windows é marca da Microsoft; o site é um projeto de fã.
+- Site desenvolvido por MAPA — Soluções Digitais.
