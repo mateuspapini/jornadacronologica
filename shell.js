@@ -26,7 +26,7 @@ const store = {
     set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} },
 };
 const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
-const ICON = (name, size = 16) => `xp/icons/${name}-${size}.png`;
+const ICON = (name, size = 16) => `${name}-${size}.png`;
 
 /* ─── Strings do shell (PT/EN) ─── */
 const S = {
@@ -86,7 +86,7 @@ function sound(name, volume = 0.6) {
     if (!soundEnabled || !SOUND_FILES.includes(name)) return;
     try {
         let a = audioCache[name];
-        if (!a) { a = new Audio(`xp/sounds/${name}.mp3`); a.preload = 'auto'; audioCache[name] = a; }
+        if (!a) { a = new Audio(`${name}.mp3`); a.preload = 'auto'; audioCache[name] = a; }
         a.volume = volume;
         a.currentTime = 0;
         a.play().catch(() => {});
@@ -120,7 +120,7 @@ function setWallpaper(slug, mode = 'cover') {
     d.classList.remove('wp-stretch', 'wp-center', 'wp-tile', 'wp-none');
     if (slug === 'none') { d.classList.add('wp-none'); }
     else {
-        d.style.backgroundImage = `url("xp/wallpapers/${slug}.jpg")`;
+        d.style.backgroundImage = `url("${slug}.jpg")`;
         if (mode === 'stretch') d.classList.add('wp-stretch');
         if (mode === 'center') d.classList.add('wp-center');
         if (mode === 'tile') d.classList.add('wp-tile');

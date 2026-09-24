@@ -41,10 +41,10 @@
             } catch (_) {}
         })();
     </script>
-    <link rel="preload" as="image" href="xp/wallpapers/bliss.jpg">
-    <link rel="stylesheet" href="xp/xp.css">
-    <link rel="stylesheet" href="xp/shell.css">
-    <link rel="stylesheet" href="xp/controls.css">
+    <link rel="preload" as="image" href="bliss.jpg">
+    <link rel="stylesheet" href="xp.css">
+    <link rel="stylesheet" href="shell.css">
+    <link rel="stylesheet" href="controls.css">
     <link rel="stylesheet" href="app.css">
     <script type="application/ld+json">
     {
@@ -80,7 +80,7 @@
 <!-- ═══ BOOT ═══ -->
 <div class="xp-screen" id="xp-boot" hidden aria-label="Iniciando">
     <div class="xp-boot-brand">
-        <img src="xp/icons/flag-48.png" alt="" width="84" height="84">
+        <img src="flag-48.png" alt="" width="84" height="84">
         <div class="xp-boot-text">
             <div class="l1" data-xps="boot_l1">Canal do Rogrão</div>
             <div class="l2"><span data-xps="boot_l2">Jornada</span><sup data-xps="boot_edition">XP</sup></div>
@@ -96,7 +96,7 @@
     <div class="xp-logon-top"></div>
     <div class="xp-logon-main">
         <div class="xp-logon-left">
-            <img src="xp/icons/flag-48.png" alt="">
+            <img src="flag-48.png" alt="">
             <div class="brand"><small data-xps="boot_l1">Canal do Rogrão</small><span data-xps="boot_l2">Jornada</span> <span style="color:#f5a623">XP</span></div>
             <p data-xps="logon_intro">Para começar, clique no seu nome de usuário</p>
         </div>
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="xp-logon-bottom">
-        <button type="button" class="xp-logon-off" id="xp-logon-off"><img src="xp/icons/shutdown-32.png" alt=""><span data-xps="logon_off">Desligar o computador</span></button>
+        <button type="button" class="xp-logon-off" id="xp-logon-off"><img src="shutdown-32.png" alt=""><span data-xps="logon_off">Desligar o computador</span></button>
         <span class="xp-logon-note">jornadacronologicadosgames.com.br</span>
     </div>
 </div>
@@ -124,16 +124,16 @@
 <!-- ═══ TASKBAR ═══ -->
 <div id="xp-taskbar" hidden role="toolbar" aria-label="Barra de tarefas">
     <button type="button" class="xp-start" id="xp-start" aria-haspopup="menu" aria-expanded="false" aria-controls="xp-startmenu">
-        <img src="xp/icons/flag-32.png" alt=""><span data-xps="start">Iniciar</span>
+        <img src="flag-32.png" alt=""><span data-xps="start">Iniciar</span>
     </button>
     <div class="xp-quicklaunch">
-        <button type="button" class="xp-ql" id="xp-ql-desktop" data-xps-title="ql_desktop"><img src="xp/icons/monitor-16.png" alt=""></button>
-        <a class="xp-ql" href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer" data-xps-title="ql_yt"><img src="xp/icons/video-16.png" alt=""></a>
-        <a class="xp-ql" href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener noreferrer" data-xps-title="ql_discord"><img src="xp/icons/chat-16.png" alt=""></a>
+        <button type="button" class="xp-ql" id="xp-ql-desktop" data-xps-title="ql_desktop"><img src="monitor-16.png" alt=""></button>
+        <a class="xp-ql" href="https://www.youtube.com/@canaldorograo" target="_blank" rel="noopener noreferrer" data-xps-title="ql_yt"><img src="video-16.png" alt=""></a>
+        <a class="xp-ql" href="https://discord.gg/rDRmZN34fr" target="_blank" rel="noopener noreferrer" data-xps-title="ql_discord"><img src="chat-16.png" alt=""></a>
     </div>
     <div class="xp-tasks" id="xp-tasks"></div>
     <div class="xp-tray">
-        <button type="button" class="xp-tray-icon" id="xp-tray-sound" aria-pressed="true"><img src="xp/icons/sound-16.png" alt=""></button>
+        <button type="button" class="xp-tray-icon" id="xp-tray-sound" aria-pressed="true"><img src="sound-16.png" alt=""></button>
         <button type="button" class="xp-lang" id="xp-tray-lang">PT</button>
         <span class="xp-clock" id="xp-clock" aria-live="off">--:--</span>
     </div>
@@ -144,8 +144,8 @@
     <div class="xp-sm-head"><img src="favicon.png" alt=""><span>Rogrão</span></div>
     <div class="xp-sm-body"></div>
     <div class="xp-sm-foot">
-        <button type="button" id="xp-sm-logoff"><img src="xp/icons/key-32.png" alt=""><span>Fazer logoff</span></button>
-        <button type="button" id="xp-sm-shutdown"><img src="xp/icons/shutdown-32.png" alt=""><span>Desligar o computador</span></button>
+        <button type="button" id="xp-sm-logoff"><img src="key-32.png" alt=""><span>Fazer logoff</span></button>
+        <button type="button" id="xp-sm-shutdown"><img src="shutdown-32.png" alt=""><span>Desligar o computador</span></button>
     </div>
 </div>
 <div class="xp-submenu" id="xp-submenu" role="menu"></div>
@@ -154,11 +154,11 @@
 <!-- ═══ SHUTDOWN ═══ -->
 <div id="xp-shutdown-overlay">
     <div class="xp-shutdown-box" role="dialog" aria-labelledby="xp-sd-title">
-        <div class="xp-shutdown-head"><span id="xp-sd-title" data-xps="sd_title">Desligar o computador</span><img src="xp/icons/flag-32.png" alt=""></div>
+        <div class="xp-shutdown-head"><span id="xp-sd-title" data-xps="sd_title">Desligar o computador</span><img src="flag-32.png" alt=""></div>
         <div class="xp-shutdown-body">
-            <button type="button" id="xp-sd-standby"><img src="xp/icons/power-32.png" alt="" style="filter:hue-rotate(160deg) saturate(1.4)"><span data-xps="sd_standby">Em espera</span></button>
-            <button type="button" id="xp-sd-off"><img src="xp/icons/shutdown-32.png" alt=""><span data-xps="sd_off">Desativar</span></button>
-            <button type="button" id="xp-sd-restart"><img src="xp/icons/update-32.png" alt=""><span data-xps="sd_restart">Reiniciar</span></button>
+            <button type="button" id="xp-sd-standby"><img src="power-32.png" alt="" style="filter:hue-rotate(160deg) saturate(1.4)"><span data-xps="sd_standby">Em espera</span></button>
+            <button type="button" id="xp-sd-off"><img src="shutdown-32.png" alt=""><span data-xps="sd_off">Desativar</span></button>
+            <button type="button" id="xp-sd-restart"><img src="update-32.png" alt=""><span data-xps="sd_restart">Reiniciar</span></button>
         </div>
         <div class="xp-shutdown-foot"><button type="button" id="xp-sd-cancel" data-xps="sd_cancel">Cancelar</button></div>
     </div>
@@ -172,9 +172,9 @@
     </div>
 </noscript>
 
-<script src="xp/shell.js"></script>
+<script src="shell.js"></script>
 <script src="app.js"></script>
-<script src="xp/extras.js"></script>
+<script src="extras.js"></script>
 <script>XP.init();</script>
 </body>
 </html>

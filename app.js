@@ -2094,7 +2094,7 @@ XP.registerApp('about', {
     title: () => t('win_about'), icon: 'info', width: 440, height: 340, dialog: true,
     render(client) {
         client.innerHTML = `<div class="about">
-            <div class="about-banner"><img src="xp/icons/flag-48.png" alt=""><div><small>Canal do Rogrão</small><b>Jornada<span>XP</span></b></div></div>
+            <div class="about-banner"><img src="flag-48.png" alt=""><div><small>Canal do Rogrão</small><b>Jornada<span>XP</span></b></div></div>
             <div class="about-body">
                 <p><b>Jornada Cronológica Através da História dos Games</b><br>${t('about_version')} 1985.${CURRENT_YEAR} (Build 8-bit → 4K)</p>
                 <p>${t('about_l1')}</p>
@@ -2117,7 +2117,7 @@ XP.registerApp('display', {
         st.state = st.state || { tab: 'themes', theme: XP.store.get('xp_theme', 'blue'), wp: XP.store.get('xp_wallpaper', 'bliss'), mode: XP.store.get('xp_wallpaper_mode', 'cover') };
         const s = st.state;
         const themeNames = { blue: t('theme_blue'), olive: t('theme_olive'), silver: t('theme_silver'), classic: t('theme_classic') };
-        const preview = `<div class="disp-preview" data-xp-theme="${s.theme}"><div class="disp-monitor"><div class="disp-screen" style="background-image:url('xp/wallpapers/${s.wp}-thumb.jpg')"><div class="disp-win"><div class="disp-title"></div></div><div class="disp-taskbar"><span></span></div></div></div></div>`;
+        const preview = `<div class="disp-preview" data-xp-theme="${s.theme}"><div class="disp-monitor"><div class="disp-screen" style="background-image:url('${s.wp}-thumb.jpg')"><div class="disp-win"><div class="disp-title"></div></div><div class="disp-taskbar"><span></span></div></div></div></div>`;
         const panel = s.tab === 'themes'
             ? `<p class="muted">${t('theme_intro')}</p><label for="disp-theme"><b>${t('theme_label')}:</b></label><select id="disp-theme">${XP.THEMES.map(k => `<option value="${k}" ${k === s.theme ? 'selected' : ''}>${themeNames[k]}</option>`).join('')}</select>${preview}`
             : `${preview}<div class="disp-wp-row"><label><b>${t('wp_label')}:</b></label><select id="disp-mode"><option value="cover" ${s.mode === 'cover' ? 'selected' : ''}>${t('wp_cover')}</option><option value="stretch" ${s.mode === 'stretch' ? 'selected' : ''}>${t('wp_stretch')}</option><option value="center" ${s.mode === 'center' ? 'selected' : ''}>${t('wp_center')}</option><option value="tile" ${s.mode === 'tile' ? 'selected' : ''}>${t('wp_tile')}</option></select></div>
@@ -2130,7 +2130,7 @@ XP.registerApp('display', {
         client.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => { s.tab = b.dataset.tab; st.app.render(client, st); }));
         client.querySelector('#disp-theme')?.addEventListener('change', e => { s.theme = e.target.value; client.querySelector('.disp-preview').dataset.xpTheme = s.theme; });
         client.querySelector('#disp-mode')?.addEventListener('change', e => { s.mode = e.target.value; });
-        client.querySelectorAll('[data-wp]').forEach(li => li.addEventListener('click', () => { s.wp = li.dataset.wp; client.querySelectorAll('[data-wp]').forEach(x => { x.classList.toggle('selected', x === li); x.setAttribute('aria-selected', x === li); }); const sc = client.querySelector('.disp-screen'); sc.style.backgroundImage = s.wp === 'none' ? 'none' : `url('xp/wallpapers/${s.wp}-thumb.jpg')`; }));
+        client.querySelectorAll('[data-wp]').forEach(li => li.addEventListener('click', () => { s.wp = li.dataset.wp; client.querySelectorAll('[data-wp]').forEach(x => { x.classList.toggle('selected', x === li); x.setAttribute('aria-selected', x === li); }); const sc = client.querySelector('.disp-screen'); sc.style.backgroundImage = s.wp === 'none' ? 'none' : `url('${s.wp}-thumb.jpg')`; }));
         client.querySelector('[data-apply]').addEventListener('click', apply);
         client.querySelector('[data-ok]').addEventListener('click', () => { apply(); XP.closeWindow('display'); });
         client.querySelector('[data-cancel]').addEventListener('click', () => XP.closeWindow('display'));

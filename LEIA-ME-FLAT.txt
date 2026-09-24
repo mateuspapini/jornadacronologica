@@ -1,0 +1,15 @@
+VERSÃO "TUDO NA RAIZ" — Jornada XP
+
+Estes 6 arquivos substituem os de mesmo nome na raiz do repositório:
+  index.html, app.js, app.css, shell.css, shell.js, extras.js
+
+Eles apontam para ícones, wallpapers, sons, cursores, xp.css e controls.css
+diretamente na raiz (sem a pasta xp/), que é onde você já subiu tudo.
+
+Depois de substituir, confira que estes arquivos existem na raiz do site:
+  xp.css, controls.css, flag-48.png, bliss.jpg, startup.mp3, arrow.cur,
+  ms_sans_serif.woff2
+Se algum faltar, é só subir o arquivo correspondente da pasta xp/ do zip anterior.
+
+Pode apagar a pasta xp/ do repositório se ela existir parcialmente.
+No LEIA-ME.txt principal, ignore as referências a "xp/..." — os caminhos agora são a raiz.

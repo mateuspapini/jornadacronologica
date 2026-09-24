@@ -247,13 +247,13 @@ h2, h3 { margin: 0; font-weight: 700; }
 /* ── Ajuda ── */
 .help-head { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: linear-gradient(180deg,#fff,#e6eefc); border-bottom: 1px solid #7f9db9; font-size: 13px; }
 .help-body details { margin-bottom: 10px; border: 1px solid #d0d0bf; border-radius: 3px; background: #fff; }
-.help-body summary { padding: 6px 8px; font-weight: 700; color: #0046d5; cursor: url("xp/cursors/hand.cur") 5 0, pointer; }
+.help-body summary { padding: 6px 8px; font-weight: 700; color: #0046d5; cursor: url("hand.cur") 5 0, pointer; }
 .help-body details > div { padding: 4px 10px 10px; line-height: 1.5; }
 .help-legend { list-style: none; margin: 0; padding: 0; }
 .help-legend li { padding: 2px 0; }
 
 /* ── Bloco de notas ── */
-.notepad { flex: 1; width: 100%; resize: none; border: 0; padding: 6px 8px; font: 12px/1.5 "Lucida Console", Consolas, monospace; background: #fff; color: #000; outline: none; cursor: url("xp/cursors/beam.cur") 15 15, text; }
+.notepad { flex: 1; width: 100%; resize: none; border: 0; padding: 6px 8px; font: 12px/1.5 "Lucida Console", Consolas, monospace; background: #fff; color: #000; outline: none; cursor: url("beam.cur") 15 15, text; }
 
 /* ── Lixeira ── */
 .recycle { text-align: center; padding-top: 30px !important; display: flex; flex-direction: column; align-items: center; gap: 8px; }

@@ -198,23 +198,23 @@ body {
     color: var(--text);
     background: var(--desktop-bg);
     -webkit-font-smoothing: antialiased;
-    cursor: url("cursors/arrow.cur") 0 0, default;
+    cursor: url("arrow.cur") 0 0, default;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 a, button, label, select, .xp-desktop-icon, .xp-taskbtn, .xp-start, .xp-sm-item, .xp-tray-icon, [role="button"] {
-    cursor: url("cursors/hand.cur") 5 0, pointer;
+    cursor: url("hand.cur") 5 0, pointer;
 }
-input[type="text"], input[type="search"], textarea, .xp-selectable, p, li, td { cursor: url("cursors/beam.cur") 15 15, text; }
-.xp-desktop-icon, .xp-desktop-icon * , .xp-window-title, .xp-sm-item, .xp-taskbtn, button, h1, h2, h3, h4, label, .xp-tray, .xp-start { cursor: url("cursors/hand.cur") 5 0, pointer; }
-.xp-titlebar { cursor: url("cursors/arrow.cur") 0 0, default; }
-body.xp-busy, body.xp-busy * { cursor: url("cursors/wait.cur") 15 15, wait !important; }
-.xp-resize-se { cursor: url("cursors/nwse.cur") 15 15, nwse-resize; }
-.xp-resize-sw { cursor: url("cursors/nesw.cur") 15 15, nesw-resize; }
-.xp-resize-e, .xp-resize-w { cursor: url("cursors/we.cur") 15 15, ew-resize; }
-.xp-resize-s, .xp-resize-n { cursor: url("cursors/ns.cur") 15 15, ns-resize; }
-.xp-dragging, .xp-dragging * { cursor: url("cursors/arrow.cur") 0 0, default !important; }
-button:disabled { cursor: url("cursors/arrow.cur") 0 0, default; }
+input[type="text"], input[type="search"], textarea, .xp-selectable, p, li, td { cursor: url("beam.cur") 15 15, text; }
+.xp-desktop-icon, .xp-desktop-icon * , .xp-window-title, .xp-sm-item, .xp-taskbtn, button, h1, h2, h3, h4, label, .xp-tray, .xp-start { cursor: url("hand.cur") 5 0, pointer; }
+.xp-titlebar { cursor: url("arrow.cur") 0 0, default; }
+body.xp-busy, body.xp-busy * { cursor: url("wait.cur") 15 15, wait !important; }
+.xp-resize-se { cursor: url("nwse.cur") 15 15, nwse-resize; }
+.xp-resize-sw { cursor: url("nesw.cur") 15 15, nesw-resize; }
+.xp-resize-e, .xp-resize-w { cursor: url("we.cur") 15 15, ew-resize; }
+.xp-resize-s, .xp-resize-n { cursor: url("ns.cur") 15 15, ns-resize; }
+.xp-dragging, .xp-dragging * { cursor: url("arrow.cur") 0 0, default !important; }
+button:disabled { cursor: url("arrow.cur") 0 0, default; }
 
 ::selection { background: var(--sel); color: #fff; }
 img { -webkit-user-drag: none; user-select: none; }
