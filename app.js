@@ -1556,7 +1556,7 @@ function statusOf(g) {
     const isPublished = g.pub === true;
     const isPlayed = g.st === 'z' || g.st === 'nz';
     if (isPublished) return g.st === 'nz' ? { cls: 'nao-zerado', label: t('d_nao_zerado'), icon: 'noentry' } : { cls: 'zerado', label: t('d_zerado'), icon: 'yes' };
-    if (isPlayed) return { cls: 'em-breve', label: t('d_em_breve'), icon: 'clock' };
+    if (isPlayed) return { cls: 'em-breve', label: t('d_em_breve'), icon: 'info' };
     return { cls: 'pendente', label: t('d_pendente'), icon: 'document' };
 }
 const isPub = g => g.pub === true;
@@ -1596,7 +1596,7 @@ XP.registerApp('welcome', {
                     <p class="welcome-eyebrow">${t('hero_eyebrow')}</p>
                     <h2 class="welcome-title">${t('hero_title')}</h2>
                     <p class="welcome-sub">${t('hero_sub')}</p>
-                    <span class="welcome-badge"><img src="${ICON('clock', 16)}" alt=""> ${t('hero_badge')}</span>
+                    <span class="welcome-badge"><img src="${ICON('calendar', 16)}" alt=""> ${t('hero_badge')}</span>
                 </div>
             </div>
             <div class="welcome-stats">
@@ -1832,7 +1832,7 @@ function renderGame(client, st, id, tab) {
     if (cur === 'general') {
         let scoreHtml;
         if (published && g.sc != null) scoreHtml = `<div class="prop-score"><b>${fmtSc(g.sc)}</b><small>/10</small>${progress(g.sc * 10)}</div>`;
-        else if (emBreve) scoreHtml = `<div class="prop-note em-breve"><img src="${ICON('clock', 16)}" alt=""> ${t('d_ep_producao')} — ${t('d_nota_revelada')}${g.st === 'nz' ? `<br>${t('d_ep_nz_note')}` : ''}</div>`;
+        else if (emBreve) scoreHtml = `<div class="prop-note em-breve"><img src="${ICON('info', 16)}" alt=""> ${t('d_ep_producao')} — ${t('d_nota_revelada')}${g.st === 'nz' ? `<br>${t('d_ep_nz_note')}` : ''}</div>`;
         else if (published) scoreHtml = `<div class="prop-note">${t('d_pub_sem_nota')}</div>`;
         else scoreHtml = `<div class="prop-note">${t('d_nao_jogado')}</div>`;
         const crit = g.sc7 ? `<fieldset class="xp-group-box"><legend>${t('d_criterios')}</legend>${Object.entries(g.sc7).filter(([, v]) => v !== null).map(([k, v]) => `<div class="crit-row"><span>${t('d_crit_' + k) || k}</span>${progress(v * 10)}<b>${v.toFixed(1)}</b></div>`).join('')}</fieldset>` : '';
