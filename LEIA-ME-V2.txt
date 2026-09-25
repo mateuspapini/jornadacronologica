@@ -1,0 +1,15 @@
+ATUALIZAÇÃO V2 — Jornada XP (19 arquivos, um upload só, tudo na raiz)
+
+Substitui:  index.html, app.js, app.css, shell.css, shell.js, extras.js
+Novos:      mapa-logo-20/32/48/80.png, doom-16/32/48.png, rct-16/32/48.png, folder-games-16/32/48.png
+
+O que mudou
+1) Hall of Fame: capas 100x134 no desktop (antes 78x104).
+2) Hall of Fame no celular: capas 64x86 e layout corrigido (o tamanho antigo ficava fixo no HTML
+   e ignorava a regra do celular — agora é só CSS).
+3) Pasta "Outros jogos" na área de trabalho, no menu Iniciar e no link #outros-jogos:
+   Doom (1993) e RollerCoaster Tycoon (1999) → abrem os vídeos do YouTube em nova aba.
+   Para acrescentar jogos: lista EXTRA_GAMES no app.js (título, ano, ícone, url).
+4) Marca MAPA — Soluções Digitais (sempre linkando para https://mapasolucoesdigitais.com.br/):
+   bandeja ao lado do relógio, rodapé do menu Iniciar, rodapé da janela Bem-vindo,
+   barra inferior da tela de logon e rodapé da tela de boot (além da janela Sobre).

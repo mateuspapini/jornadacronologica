@@ -397,6 +397,13 @@ button { min-width: 0; }
 .xp-tray-icon.muted img { filter: grayscale(1) opacity(.6); }
 .xp-tray-icon.muted::after { content: ''; position: absolute; }
 .xp-clock { min-width: 40px; text-align: center; padding: 0 2px; }
+.xp-tray-mapa { display: flex; align-items: center; gap: 5px; height: 22px; padding: 0 6px; border-radius: 3px; text-decoration: none; color: inherit; background: rgba(255,255,255,.78); border: 1px solid rgba(0,0,0,.25); box-shadow: inset 0 1px 0 #fff; }
+.xp-tray-mapa img { height: 14px; width: auto; display: block; }
+.xp-tray-mapa small { font: 9px/1 var(--xp-font); color: #1c1f3a; white-space: nowrap; }
+.xp-tray-mapa:hover { background: #fff; }
+.xp-mapa-foot { display: inline-flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
+.xp-mapa-foot img { height: 18px; width: auto; background: rgba(255,255,255,.9); padding: 2px 5px; border-radius: 3px; }
+.xp-mapa-foot:hover { text-decoration: underline; }
 .xp-lang { font: 700 10px var(--xp-font); padding: 1px 4px; border: 1px solid rgba(255,255,255,.4); border-radius: 2px; color: #fff; background: rgba(0,0,0,.15); min-width: 22px; text-align: center; }
 :root[data-xp-theme="classic"] .xp-lang, :root[data-xp-theme="silver"] .xp-lang { color: #000; border-color: rgba(0,0,0,.4); background: rgba(255,255,255,.4); }
 
@@ -455,6 +462,9 @@ button { min-width: 0; }
 .xp-sm-allprogs { border-top: 1px solid var(--startmenu-sep); margin-top: 4px; padding-top: 4px; }
 .xp-sm-allprogs .xp-sm-item { font-weight: 700; justify-content: center; gap: 8px; min-height: 30px; }
 .xp-sm-allprogs .xp-sm-item img { width: 20px; height: 20px; }
+.xp-sm-mapa { display: flex; align-items: center; justify-content: center; gap: 6px; height: 24px; background: var(--startmenu-right); border-top: 1px solid var(--startmenu-right-border); color: #1c1f3a; font-size: 10px; text-decoration: none; }
+.xp-sm-mapa img { height: 14px; width: auto; }
+.xp-sm-mapa:hover span { text-decoration: underline; }
 .xp-sm-foot { height: 40px; background: var(--startmenu-foot); display: flex; align-items: center; justify-content: flex-end; gap: 4px; padding: 0 10px; border-top: 1px solid rgba(0,0,0,.15); }
 .xp-sm-foot button { display: flex; align-items: center; gap: 6px; background: transparent; border: 1px solid transparent; color: #fff; font: 11px var(--xp-font); padding: 4px 6px; border-radius: 3px; }
 .xp-sm-foot button img { width: 22px; height: 22px; }
@@ -696,6 +706,8 @@ button { min-width: 0; }
     .xp-taskbtn.active span { display: inline; }
     .xp-quicklaunch { display: none; }
     .xp-tray .xp-lang { display: none; }
+    .xp-tray-mapa small { display: none; }
+    .xp-tray-mapa { padding: 0 4px; }
     .xp-tray { padding: 0 8px; }
     .xp-start { padding: 0 18px 0 6px; font-size: 16px; }
 }

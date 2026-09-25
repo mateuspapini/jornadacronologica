@@ -90,6 +90,7 @@ const I18N = {
         d_rec_near_note: 'Não achei uma combinação exata, então trouxe a opção mais próxima da lista.',
         d_rec_score: 'Nota do Rogrão: {score}/10',
         d_rec_watch: 'Ver gameplay no YouTube ↗',
+        win_extras: 'Outros jogos', extras_sub: 'Fora da Jornada', extras_group: 'Atalhos', extras_channel: 'Canal do Rogrão no YouTube', extras_intro: 'Jogos que o Rogrão jogou fora da ordem cronológica. Clique para assistir ao vídeo.', extras_open: 'Abrir vídeo no YouTube', extras_watch: 'Assistir',
         win_welcome: "Bem-vindo",
         welcome_quick: "Abrir",
         welcome_jornada_sub: "Jogos ano a ano",
@@ -295,6 +296,7 @@ const I18N = {
         d_rec_near_note: 'I could not find an exact match, so I brought you the closest option from the list.',
         d_rec_score: "Rogrão's score: {score}/10",
         d_rec_watch: 'Watch gameplay on YouTube ↗',
+        win_extras: 'Other games', extras_sub: 'Outside the Journey', extras_group: 'Shortcuts', extras_channel: "Rogrão's Channel on YouTube", extras_intro: 'Games Rogrão played outside the chronological order. Click to watch the video.', extras_open: 'Open video on YouTube', extras_watch: 'Watch',
         win_welcome: "Welcome",
         welcome_quick: "Open",
         welcome_jornada_sub: "Games year by year",
@@ -1563,9 +1565,10 @@ const canal = () => G.filter(isPub);
 function coverEl(g, cls = 'cover', w = 64, h = 84) {
     const url = coverUrl(g);
     const { color } = pc(g.plat);
-    const box = el('span', { class: cls, style: `background:linear-gradient(145deg,${color}dd,${color}66);width:${w}px;height:${h}px` });
+    const size = w && h ? `width:${w}px;height:${h}px` : '';
+    const box = el('span', { class: cls, style: `background:linear-gradient(145deg,${color}dd,${color}66);${size}` });
     if (url) {
-        const img = el('img', { src: url, alt: '', width: w, height: h, loading: 'lazy', decoding: 'async' });
+        const img = el('img', { src: url, alt: '', loading: 'lazy', decoding: 'async' });
         img.onerror = () => imgFallback(img, coverFallbacks(g));
         box.append(img);
     } else {
@@ -1609,6 +1612,7 @@ XP.registerApp('welcome', {
                 <button type="button" class="welcome-link" data-open="platforms"><img src="${ICON('my-computer', 32)}" alt=""><span><b>${t('nav_plataformas')}</b><small>${t('welcome_plat_sub')}</small></span></button>
             </fieldset>
             <p class="welcome-foot">${t('journey_intro')} <button type="button" class="xp-link" data-open="about">${t('welcome_about')}</button></p>
+            <a class="mapa-credit" href="https://mapasolucoesdigitais.com.br/" target="_blank" rel="noopener noreferrer" aria-label="MAPA — Soluções Digitais"><span>${t('about_credit')}</span><img src="mapa-logo-32.png" alt="MAPA — Soluções Digitais" height="20"></a>
         </div>`;
         client.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => XP.openWindow(b.dataset.open)));
     },
@@ -1754,6 +1758,40 @@ function gameTile(g) {
         <small class="tile-status"><span class="s-dot ${sInfo.cls}"></span>${sInfo.label}</small>
     </button>`;
 }
+
+/* ═══════════════════════════════ OUTROS JOGOS (fora da Jornada) ═══════════════════════════════ */
+const EXTRA_GAMES = [
+    { id: 'doom', title: 'Doom', year: 1993, plat: 'PC', icon: 'doom', url: 'https://youtu.be/Z822xJhs5Xk?si=l4e1CZnEQvGge_2c' },
+    { id: 'rct', title: 'RollerCoaster Tycoon', year: 1999, plat: 'PC', icon: 'rct', url: 'https://youtu.be/Lwr_1JiZyNE?si=t93cWDo4UTSK8nVr' },
+];
+XP.registerApp('extras', {
+    title: () => t('win_extras'), icon: 'folder-games', hash: 'outros-jogos', width: 700, height: 460,
+    render(client) {
+        client.innerHTML = `
+        <div class="xp-menubar"><button type="button">${t('m_file')}</button><button type="button">${t('m_edit')}</button><button type="button">${t('m_view')}</button><button type="button">${t('m_help')}</button><img class="xp-menubar-logo" src="${ICON('flag', 16)}" alt=""></div>
+        <div class="xp-addressbar"><label>${t('tb_address')}</label><div class="xp-address"><img src="${ICON('folder-games', 16)}" alt=""><span>${t('win_extras')}</span></div></div>
+        <div class="xp-explorer">
+            <aside class="xp-taskpane">
+                <div class="xp-tp-box"><button type="button" class="xp-tp-head">${t('tp_tasks')}</button><div class="xp-tp-body">
+                    <a class="xp-tp-link" href="${YT_CHANNEL}" target="_blank" rel="noopener noreferrer"><img src="${ICON('video', 16)}" alt="">${t('extras_channel')}</a>
+                    <button type="button" class="xp-tp-link" data-open="jornada"><img src="${ICON('calendar', 16)}" alt="">${t('nav_jornada')}</button>
+                </div></div>
+                <div class="xp-tp-box"><button type="button" class="xp-tp-head">${t('tp_details')}</button><div class="xp-tp-body">
+                    <div class="xp-tp-detail"><img src="${ICON('folder-games', 32)}" alt=""><div><b>${t('win_extras')}</b><span class="xp-tp-text">${EXTRA_GAMES.length} ${t('d_jogos')}</span></div></div>
+                    <div class="xp-tp-text">${t('extras_intro')}</div>
+                </div></div>
+            </aside>
+            <section class="xp-body"><div class="xp-listview extras">
+                <div class="xp-group">${t('extras_group')}</div>
+                ${EXTRA_GAMES.map(g => `<a class="xp-lv-item extra-game" href="${g.url}" target="_blank" rel="noopener noreferrer" title="${t('extras_open')}"><img src="${ICON(g.icon, 48)}" alt=""><span>${esc(g.title)}</span><small>${g.plat} · ${g.year}</small><small class="yt-link">▶ ${t('extras_watch')}</small></a>`).join('')}
+            </div></section>
+        </div>
+        <div class="xp-statusbar"><span>${EXTRA_GAMES.length} ${t('d_jogos')}</span><span><img src="${ICON('folder-games', 16)}" alt=""> ${t('win_extras')}</span></div>`;
+        client.querySelectorAll('.xp-tp-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('closed')));
+        client.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => XP.openWindow(b.dataset.open)));
+        client.querySelectorAll('.extra-game').forEach(a => a.addEventListener('click', () => XP.sound('start', .3)));
+    },
+});
 
 /* ═══════════════════════════════ EM BREVE (ano seguinte) ═══════════════════════════════ */
 XP.registerApp('coming', {
@@ -1958,7 +1996,7 @@ XP.registerApp('ranking', {
         </div>
         <div class="xp-statusbar"><span>${visible.length} / ${ranked.length} ${t('d_jogos')}</span><span><img src="${ICON('star', 16)}" alt=""> ${t('win_ranking')}</span></div>`;
         client.querySelectorAll('.xp-tp-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('closed')));
-        client.querySelectorAll('.rank-row').forEach(b => { b.querySelector('.cover').replaceWith(coverEl(G.find(x => x.id === +b.dataset.id), 'cover', 78, 104)); b.addEventListener('click', () => openGame(+b.dataset.id)); });
+        client.querySelectorAll('.rank-row').forEach(b => { b.querySelector('.cover').replaceWith(coverEl(G.find(x => x.id === +b.dataset.id), 'cover rank-cover', null, null)); b.addEventListener('click', () => openGame(+b.dataset.id)); });
         client.querySelectorAll('[data-toggle]').forEach(b => b.addEventListener('click', () => { RANK_EXPANDED = !RANK_EXPANDED; APPS_RERENDER('ranking'); }));
         client.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => XP.openWindow(b.dataset.open)));
     },
@@ -2157,6 +2195,7 @@ function configureShell() {
         { id: 'members', icon: 'users', label: () => t('win_members'), action: () => XP.openWindow('members') },
         { id: 'shop', icon: 'box', label: () => t('win_shop'), action: () => XP.openWindow('shop') },
         { id: 'discord', icon: 'chat', label: () => t('win_discord'), action: () => XP.openWindow('discord') },
+        { id: 'extras', icon: 'folder-games', label: () => t('win_extras'), action: () => XP.openWindow('extras') },
         { id: 'youtube', icon: 'video', label: () => 'YouTube', action: () => window.open(YT_CHANNEL, '_blank', 'noopener') },
         { id: 'welcome', icon: 'flag', label: () => t('win_welcome'), action: () => XP.openWindow('welcome') },
         { id: 'recycle', icon: 'recycle-full', label: () => t('recycle'), bottomRight: true, action: () => XP.openWindow('recycle') },
@@ -2171,6 +2210,7 @@ function configureShell() {
             { icon: 'chat', label: () => t('win_discord'), sub: () => t('sm_discord_sub'), action: () => XP.openWindow('discord') },
             { icon: 'users', label: () => t('win_members'), sub: () => t('sm_members_sub'), action: () => XP.openWindow('members') },
             { icon: 'box', label: () => t('win_shop'), sub: () => t('sm_shop_sub'), action: () => XP.openWindow('shop') },
+            { icon: 'folder-games', label: () => t('win_extras'), sub: () => t('extras_sub'), action: () => XP.openWindow('extras') },
         ],
         right: [
             { icon: 'my-computer', label: () => t('win_platforms'), action: () => XP.openWindow('platforms') },
@@ -2195,7 +2235,7 @@ function configureShell() {
 }
 
 /* ─── Hash routing (mantém os links antigos funcionando) ─── */
-const HASH_TO_APP = { inicio: 'welcome', jornada: 'jornada', 'plat-stats': 'platforms', generos: 'genres', ranking: 'ranking', membros: 'members', loja: 'shop', discord: 'discord', recomendador: 'recommend' };
+const HASH_TO_APP = { 'outros-jogos': 'extras', inicio: 'welcome', jornada: 'jornada', 'plat-stats': 'platforms', generos: 'genres', ranking: 'ranking', membros: 'members', loja: 'shop', discord: 'discord', recomendador: 'recommend' };
 function openFromHash() {
     const h = location.hash.replace('#', '');
     if (HASH_TO_APP[h]) { XP.openWindow(HASH_TO_APP[h], { silent: true }); return true; }

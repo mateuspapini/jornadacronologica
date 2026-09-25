@@ -51,6 +51,7 @@ const S = {
         bsod_4: 'Informações técnicas:\n\n*** STOP: 0x0000198D (0x00000001, 0x0000000F, 0xCAFE1985, 0x00004B00)\n\n*** Jornada.sys - Endereço 1989 base em 1985, Datestamp 8-bit',
         bsod_5: 'Iniciando o despejo de memória física…  Pressione qualquer tecla ou clique para reiniciar.',
         standby_hint: 'Desculpe, esse computador não hiberna. Ele está ocupado zerando jogos.',
+        dev_by: 'Site desenvolvido por',
     },
     en: {
         start: 'start', boot_l1: "Rogrão's Channel", boot_l2: 'Journey', boot_edition: 'XP',
@@ -73,6 +74,7 @@ const S = {
         bsod_4: 'Technical information:\n\n*** STOP: 0x0000198D (0x00000001, 0x0000000F, 0xCAFE1985, 0x00004B00)\n\n*** Jornada.sys - Address 1989 base at 1985, Datestamp 8-bit',
         bsod_5: 'Beginning dump of physical memory…  Press any key or click to restart.',
         standby_hint: 'Sorry, this computer does not sleep. It is busy beating games.',
+        dev_by: 'Website developed by',
     },
 };
 const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'pt');
