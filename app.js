@@ -1765,11 +1765,11 @@ const EXTRA_GAMES = [
     { id: 'rct', title: 'RollerCoaster Tycoon', year: 1999, plat: 'PC', icon: 'rct', url: 'https://youtu.be/Lwr_1JiZyNE?si=t93cWDo4UTSK8nVr' },
 ];
 XP.registerApp('extras', {
-    title: () => t('win_extras'), icon: 'folder-games', hash: 'outros-jogos', width: 700, height: 460,
+    title: () => t('win_extras'), icon: 'folder', hash: 'outros-jogos', width: 700, height: 460,
     render(client) {
         client.innerHTML = `
         <div class="xp-menubar"><button type="button">${t('m_file')}</button><button type="button">${t('m_edit')}</button><button type="button">${t('m_view')}</button><button type="button">${t('m_help')}</button><img class="xp-menubar-logo" src="${ICON('flag', 16)}" alt=""></div>
-        <div class="xp-addressbar"><label>${t('tb_address')}</label><div class="xp-address"><img src="${ICON('folder-games', 16)}" alt=""><span>${t('win_extras')}</span></div></div>
+        <div class="xp-addressbar"><label>${t('tb_address')}</label><div class="xp-address"><img src="${ICON('folder', 16)}" alt=""><span>${t('win_extras')}</span></div></div>
         <div class="xp-explorer">
             <aside class="xp-taskpane">
                 <div class="xp-tp-box"><button type="button" class="xp-tp-head">${t('tp_tasks')}</button><div class="xp-tp-body">
@@ -1777,7 +1777,7 @@ XP.registerApp('extras', {
                     <button type="button" class="xp-tp-link" data-open="jornada"><img src="${ICON('calendar', 16)}" alt="">${t('nav_jornada')}</button>
                 </div></div>
                 <div class="xp-tp-box"><button type="button" class="xp-tp-head">${t('tp_details')}</button><div class="xp-tp-body">
-                    <div class="xp-tp-detail"><img src="${ICON('folder-games', 32)}" alt=""><div><b>${t('win_extras')}</b><span class="xp-tp-text">${EXTRA_GAMES.length} ${t('d_jogos')}</span></div></div>
+                    <div class="xp-tp-detail"><img src="${ICON('folder', 32)}" alt=""><div><b>${t('win_extras')}</b><span class="xp-tp-text">${EXTRA_GAMES.length} ${t('d_jogos')}</span></div></div>
                     <div class="xp-tp-text">${t('extras_intro')}</div>
                 </div></div>
             </aside>
@@ -1786,7 +1786,7 @@ XP.registerApp('extras', {
                 ${EXTRA_GAMES.map(g => `<a class="xp-lv-item extra-game" href="${g.url}" target="_blank" rel="noopener noreferrer" title="${t('extras_open')}"><img src="${ICON(g.icon, 48)}" alt=""><span>${esc(g.title)}</span><small>${g.plat} · ${g.year}</small><small class="yt-link">▶ ${t('extras_watch')}</small></a>`).join('')}
             </div></section>
         </div>
-        <div class="xp-statusbar"><span>${EXTRA_GAMES.length} ${t('d_jogos')}</span><span><img src="${ICON('folder-games', 16)}" alt=""> ${t('win_extras')}</span></div>`;
+        <div class="xp-statusbar"><span>${EXTRA_GAMES.length} ${t('d_jogos')}</span><span><img src="${ICON('folder', 16)}" alt=""> ${t('win_extras')}</span></div>`;
         client.querySelectorAll('.xp-tp-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('closed')));
         client.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => XP.openWindow(b.dataset.open)));
         client.querySelectorAll('.extra-game').forEach(a => a.addEventListener('click', () => XP.sound('start', .3)));
@@ -2195,7 +2195,7 @@ function configureShell() {
         { id: 'members', icon: 'users', label: () => t('win_members'), action: () => XP.openWindow('members') },
         { id: 'shop', icon: 'box', label: () => t('win_shop'), action: () => XP.openWindow('shop') },
         { id: 'discord', icon: 'chat', label: () => t('win_discord'), action: () => XP.openWindow('discord') },
-        { id: 'extras', icon: 'folder-games', label: () => t('win_extras'), action: () => XP.openWindow('extras') },
+        { id: 'extras', icon: 'folder', label: () => t('win_extras'), action: () => XP.openWindow('extras') },
         { id: 'youtube', icon: 'video', label: () => 'YouTube', action: () => window.open(YT_CHANNEL, '_blank', 'noopener') },
         { id: 'welcome', icon: 'flag', label: () => t('win_welcome'), action: () => XP.openWindow('welcome') },
         { id: 'recycle', icon: 'recycle-full', label: () => t('recycle'), bottomRight: true, action: () => XP.openWindow('recycle') },
@@ -2210,7 +2210,7 @@ function configureShell() {
             { icon: 'chat', label: () => t('win_discord'), sub: () => t('sm_discord_sub'), action: () => XP.openWindow('discord') },
             { icon: 'users', label: () => t('win_members'), sub: () => t('sm_members_sub'), action: () => XP.openWindow('members') },
             { icon: 'box', label: () => t('win_shop'), sub: () => t('sm_shop_sub'), action: () => XP.openWindow('shop') },
-            { icon: 'folder-games', label: () => t('win_extras'), sub: () => t('extras_sub'), action: () => XP.openWindow('extras') },
+            { icon: 'folder', label: () => t('win_extras'), sub: () => t('extras_sub'), action: () => XP.openWindow('extras') },
         ],
         right: [
             { icon: 'my-computer', label: () => t('win_platforms'), action: () => XP.openWindow('platforms') },

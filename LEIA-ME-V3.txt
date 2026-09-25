@@ -1,0 +1,10 @@
+ATUALIZAÇÃO V3 — Jornada XP (3 arquivos, substituem os da raiz)
+
+index.html → marca da MAPA removida da bandeja (mantida no menu Iniciar, Bem-vindo, logon, boot e Sobre).
+app.js     → pasta "Outros jogos" usa o ícone de pasta original do XP (shell32), igual ao da Jornada.
+shell.css  → botão da janela ativa na barra de tarefas volta a ser azul-escuro "afundado" (como no XP);
+             corrigido também o brilho laranja/azul que o xp.css aplicava no hover/clique de ícones,
+             menu Iniciar, painel de tarefas e botão Iniciar.
+
+Opcional: os arquivos folder-games-16.png, folder-games-32.png e folder-games-48.png não são mais usados
+e podem ser apagados do repositório.

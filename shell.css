@@ -717,3 +717,43 @@ button { min-width: 0; }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* ═══════════════════════════════ ESTADOS — prioridade sobre o xp.css ═══════════════════════════════
+   O xp.css aplica a botões genéricos: hover com brilho laranja, :active/.active com gradiente claro e
+   :focus com brilho azul. Nos controles do shell isso quebra a estética; as regras abaixo têm
+   especificidade maior e restauram o comportamento do XP real. */
+:is(.xp-desktop-icon, .xp-ql, .xp-tray-icon, .xp-sm-item, .xp-tp-link, .tb-btn, .xp-menubar button, .xp-ctx button, .xp-link,
+    .xp-addressbar .go, .xp-shutdown-body button, .xp-sm-foot button, .xp-boot-skip, .xp-user-tile, .xp-logon-off, .drive-open):is(:hover, :active, .active, :focus, .focused):not(:disabled) { box-shadow: none; outline: none; }
+:is(.xp-desktop-icon, .xp-tray-icon, .xp-sm-item, .xp-tp-link, .tb-btn, .xp-menubar button, .xp-ctx button, .xp-link, .xp-addressbar .go, .xp-boot-skip):active:not(:disabled) { background-color: transparent; background-image: none; }
+.xp-desktop-icon:active:not(:disabled), .xp-desktop-icon:focus:not(:disabled) { background: transparent; }
+.xp-ql:active:not(:disabled), .xp-tray-icon:active:not(:disabled) { background: rgba(255,255,255,.3); }
+.xp-sm-item:is(:hover, :active, :focus):not(:disabled) { background: var(--menu-hover); color: #fff; }
+.xp-menubar button:is(:hover, :active):not(:disabled), .xp-ctx button:is(:hover, :active):not(:disabled) { background: var(--menu-hover); color: #fff; }
+.tb-btn:is(:hover, :active):not(:disabled), .xp-addressbar .go:is(:hover, :active):not(:disabled) { background: #fff; border-color: #316ac5; }
+.xp-tp-head:is(:hover, :active, :focus):not(:disabled) { background: var(--taskpane-box-head); box-shadow: none; outline: none; }
+.xp-lv-item:is(:hover, :active, :focus):not(:disabled) { box-shadow: none; outline: none; background: #eef3fc; border-color: #c4d5f6; }
+.xp-lv-item.selected:is(:hover, :active, :focus):not(:disabled) { background: var(--sel); border-color: var(--sel); color: #fff; }
+.rank-row:is(:hover, :active, :focus):not(:disabled), .welcome-link:is(:hover, :active, :focus):not(:disabled) { box-shadow: none; outline: none; background: #eef3fc; border-color: #316ac5; }
+.xp-shutdown-body button:is(:hover, :active):not(:disabled), .xp-sm-foot button:is(:hover, :active):not(:disabled) { background: rgba(255,255,255,.2); }
+.xp-user-tile:is(:hover, :active, :focus):not(:disabled) { background: rgba(255,255,255,.18); }
+.xp-logon-off:is(:hover, :active):not(:disabled) { background: rgba(255,255,255,.15); }
+.xp-balloon-close:is(:hover, :active, :focus):not(:disabled) { box-shadow: none; background: #fff; }
+.ms-cell:is(:hover, :focus):not(:disabled) { box-shadow: none; outline: none; }
+.ms-cell:active:not(:disabled), .ms-face:active:not(:disabled) { box-shadow: none; background: #d4d0c8; }
+.ms-face:is(:hover, :focus):not(:disabled) { box-shadow: none; outline: none; background: #d4d0c8; }
+
+/* Botão Iniciar */
+#xp-start:is(:hover, :focus):not(:disabled) { background: var(--start-hover); box-shadow: inset 0 -1px 2px rgba(0,0,0,.25), 2px 0 3px rgba(0,0,0,.35); outline: none; }
+#xp-start:active:not(:disabled), #xp-start.open, #xp-start.open:hover { background: linear-gradient(180deg,#2a7a26,#3a9636 20%,#3f9c3a 80%,#2f8a2b); box-shadow: inset 1px 1px 4px rgba(0,0,0,.5); }
+:root[data-xp-theme="classic"] #xp-start:is(:hover, :focus, :active):not(:disabled), :root[data-xp-theme="classic"] #xp-start.open { background: #d4d0c8; box-shadow: inset -1px -1px #404040, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #d4d0c8; }
+:root[data-xp-theme="classic"] #xp-start:active:not(:disabled), :root[data-xp-theme="classic"] #xp-start.open { box-shadow: inset 1px 1px #404040, inset -1px -1px #fff, inset 2px 2px #808080, inset -2px -2px #d4d0c8; }
+
+/* Botões de janela na barra de tarefas (XP: ativa = azul-escuro afundado) */
+#xp-tasks .xp-taskbtn:is(:hover, :focus):not(:disabled) { background: var(--taskbtn-hover); box-shadow: inset 0 0 0 1px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.35); outline: none; }
+#xp-tasks .xp-taskbtn.active, #xp-tasks .xp-taskbtn.active:is(:hover, :focus), #xp-tasks .xp-taskbtn:active:not(:disabled) { background: var(--taskbtn-active); box-shadow: inset 1px 1px 3px rgba(0,0,0,.45); color: var(--taskbtn-text); }
+:root[data-xp-theme="classic"] #xp-tasks .xp-taskbtn:is(:hover, :focus):not(:disabled) { background: #d4d0c8; box-shadow: inset -1px -1px #404040, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #d4d0c8; }
+:root[data-xp-theme="classic"] #xp-tasks .xp-taskbtn.active, :root[data-xp-theme="classic"] #xp-tasks .xp-taskbtn.active:is(:hover, :focus) { box-shadow: inset 1px 1px #404040, inset -1px -1px #fff, inset 2px 2px #808080, inset -2px -2px #d4d0c8; background: repeating-conic-gradient(#fff 0 25%, #d4d0c8 0 50%) 0 0 / 2px 2px; }
+
+/* Botões de título: nunca herdam estados do xp.css */
+.xp-controls button:is(:hover, :active, :focus):not(:disabled) { box-shadow: none !important; outline: none; }
