@@ -1,0 +1,12 @@
+ATUALIZAÇÃO V5 — imagem de compartilhamento (WhatsApp, Discord, Twitter, etc.)
+
+og-jornada-xp.jpg  → nova imagem 1200x630 com a área de trabalho XP (novo arquivo).
+index.html         → og:image e twitter:image apontando para o novo arquivo (substitui o da raiz).
+
+O og-jornada-cronologica.jpg antigo pode ser apagado depois.
+
+IMPORTANTE — cache do WhatsApp: o WhatsApp guarda o preview de cada link por um tempo
+(horas a alguns dias). Para ver o novo na hora, envie o link com algo a mais no final,
+ex.: https://jornadacronologicadosgames.com.br/?xp  — para o WhatsApp é um link novo.
+Links "puros" já compartilhados antes atualizam sozinhos quando o cache expirar.
+Para forçar no Facebook/Instagram: https://developers.facebook.com/tools/debug/ → "Scrape Again".
