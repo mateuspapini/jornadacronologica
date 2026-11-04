@@ -68,6 +68,7 @@ const I18N = {
         d_inscreva: 'INSCREVA-SE NO CANAL ↗',
         d_toggle_back: 'Ver verso', d_toggle_front: 'Ver frente',
         d_rank_more: 'Ver ranking completo', d_rank_less: 'Mostrar apenas o Top 10',
+        d_rank_demo: 'Ver demonstração do Ranking', demo_sub: 'Do último ao primeiro lugar', demo_channel: 'Canal do Rogrão · Jornada Cronológica', demo_pause: 'Pausar', demo_play: 'Continuar', demo_restart: 'Reiniciar', demo_close: 'Fechar', demo_speed: 'Velocidade:', demo_again: 'Assistir de novo', demo_end_t: 'E o campeão é...', demo_end: 'Obrigado por acompanhar a Jornada!', demo_now: 'Exibindo', demo_hint: 'Clique na tela para pausar · Esc para sair', demo_done: 'Fim da apresentação',
         d_nao_jogado: 'Este jogo ainda não foi jogado na Jornada.',
         d_pub_sem_nota: 'Publicado · nota não disponível',
         d_aguardando: 'Aguardando avaliação',
@@ -274,6 +275,7 @@ const I18N = {
         d_inscreva: 'SUBSCRIBE TO THE CHANNEL ↗',
         d_toggle_back: 'View back', d_toggle_front: 'View front',
         d_rank_more: 'View full ranking', d_rank_less: 'Show Top 10 only',
+        d_rank_demo: 'Watch Ranking demo', demo_sub: 'From last place to first', demo_channel: "Rogrão's Channel · Chronological Journey", demo_pause: 'Pause', demo_play: 'Resume', demo_restart: 'Restart', demo_close: 'Close', demo_speed: 'Speed:', demo_again: 'Watch again', demo_end_t: 'And the champion is...', demo_end: 'Thanks for following the Journey!', demo_now: 'Showing', demo_hint: 'Click the screen to pause · Esc to exit', demo_done: 'End of presentation',
         d_nao_jogado: 'This game has not been played in the Journey yet.',
         d_pub_sem_nota: 'Published · score not available',
         d_aguardando: 'Awaiting review',
@@ -1974,6 +1976,7 @@ XP.registerApp('ranking', {
         <div class="xp-explorer">
             <aside class="xp-taskpane">
                 <div class="xp-tp-box"><button type="button" class="xp-tp-head">${t('tp_tasks')}</button><div class="xp-tp-body">
+                    <button type="button" class="xp-tp-link rank-demo-link" data-demo><img src="${ICON('video', 16)}" alt="">${t('d_rank_demo')}</button>
                     <button type="button" class="xp-tp-link" data-toggle><img src="${ICON('star', 16)}" alt="">${RANK_EXPANDED ? t('d_rank_less') : t('d_rank_more')}</button>
                     <button type="button" class="xp-tp-link" data-open="jornada"><img src="${ICON('calendar', 16)}" alt="">${t('nav_jornada')}</button>
                 </div></div>
@@ -1998,9 +2001,118 @@ XP.registerApp('ranking', {
         client.querySelectorAll('.xp-tp-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('closed')));
         client.querySelectorAll('.rank-row').forEach(b => { b.querySelector('.cover').replaceWith(coverEl(G.find(x => x.id === +b.dataset.id), 'cover rank-cover', null, null)); b.addEventListener('click', () => openGame(+b.dataset.id)); });
         client.querySelectorAll('[data-toggle]').forEach(b => b.addEventListener('click', () => { RANK_EXPANDED = !RANK_EXPANDED; APPS_RERENDER('ranking'); }));
+        client.querySelectorAll('[data-demo]').forEach(b => b.addEventListener('click', () => startRankDemo(client, ranked)));
         client.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => XP.openWindow(b.dataset.open)));
     },
 });
+
+/* ─── Demonstração do Ranking: rolagem estilo créditos, do último ao primeiro ─── */
+const RANK_DEMO_BASE_SPEED = 55; // px por segundo na velocidade 1x
+let RANK_DEMO_SPEED = 1;
+function startRankDemo(client, ranked) {
+    client.querySelector('.rank-demo')?.remove();
+    const total = ranked.length;
+    const medal = pos => pos === 1 ? 'gold' : pos === 2 ? 'silver' : pos === 3 ? 'bronze' : '';
+    const items = ranked.map((g, i) => ({ g, pos: i + 1 })).reverse();
+    const overlay = el('div', { class: 'rank-demo', role: 'dialog', 'aria-label': t('d_rank_demo'), tabindex: '-1' });
+    overlay.innerHTML = `
+        <div class="rank-demo-screen">
+            <div class="rank-demo-roll">
+                <div class="rd-head">
+                    <img src="${ICON('star', 48)}" alt="">
+                    <h2>HALL OF FAME</h2>
+                    <p class="rd-sub">${t('demo_sub')}</p>
+                    <p class="rd-channel">${t('demo_channel')}</p>
+                </div>
+                ${items.map(({ g, pos }) => `
+                <div class="rd-item ${medal(pos)} ${pos === 1 ? 'champion' : ''}" data-pos="${pos}" data-id="${g.id}">
+                    ${pos === 1 ? `<div class="rd-champ-label">${t('demo_end_t')}</div>` : ''}
+                    <div class="rd-row">
+                        <span class="rd-pos">#${pos}</span>
+                        <span class="cover"></span>
+                        <span class="rd-info"><b>${esc(g.title)}</b><span class="rd-meta">${plBadge(g.plat)} · ${g.yr} · ${esc(g.genre)}</span></span>
+                        <span class="rd-score"><b>${fmtSc(g.sc)}</b><small>/10</small></span>
+                    </div>
+                </div>`).join('')}
+                <div class="rd-end">
+                    <img src="${ICON('flag', 48)}" alt="">
+                    <p>${t('demo_end')}</p>
+                    <small>jornadacronologicadosgames.com.br</small>
+                </div>
+            </div>
+            <div class="rd-hint">${t('demo_hint')}</div>
+        </div>
+        <div class="rank-demo-bar">
+            <button type="button" class="xp-btn" data-act="pause"><img src="${ICON('play', 16)}" alt=""><span>${t('demo_pause')}</span></button>
+            <button type="button" class="xp-btn" data-act="restart"><img src="${ICON('update', 16)}" alt=""><span>${t('demo_restart')}</span></button>
+            <label class="rd-speed">${t('demo_speed')}
+                <select data-act="speed">${[0.5, 1, 1.5, 2].map(v => `<option value="${v}" ${v === RANK_DEMO_SPEED ? 'selected' : ''}>${String(v).replace('.', ',')}x</option>`).join('')}</select>
+            </label>
+            <span class="rd-status"></span>
+            <button type="button" class="xp-btn" data-act="close"><img src="${ICON('noentry', 16)}" alt=""><span>${t('demo_close')}</span></button>
+        </div>`;
+    overlay.querySelectorAll('.rd-item').forEach(n => n.querySelector('.cover').replaceWith(coverEl(G.find(x => x.id === +n.dataset.id), 'cover rd-cover', null, null)));
+    client.append(overlay);
+
+    const screen = overlay.querySelector('.rank-demo-screen');
+    const roll = overlay.querySelector('.rank-demo-roll');
+    const end = overlay.querySelector('.rd-end');
+    const nodes = [...overlay.querySelectorAll('.rd-item')];
+    const status = overlay.querySelector('.rd-status');
+    const pauseBtn = overlay.querySelector('[data-act="pause"]');
+    let y = 0, paused = false, finished = false, last = 0, raf = 0, shown = null;
+
+    const setPaused = v => {
+        paused = v;
+        pauseBtn.querySelector('span').textContent = finished ? t('demo_again') : t(paused ? 'demo_play' : 'demo_pause');
+        overlay.classList.toggle('paused', paused && !finished);
+    };
+    const restart = () => { finished = false; shown = null; y = screen.clientHeight; nodes.forEach(n => n.classList.remove('lit')); overlay.classList.remove('finished'); setPaused(false); };
+    const close = () => { cancelAnimationFrame(raf); document.removeEventListener('keydown', onKey); overlay.remove(); };
+    const onKey = e => {
+        if (!overlay.isConnected) { document.removeEventListener('keydown', onKey); return; }
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+        else if (e.key === ' ' && document.activeElement?.tagName !== 'SELECT') { e.preventDefault(); finished ? restart() : setPaused(!paused); }
+    };
+    const frame = now => {
+        if (!overlay.isConnected) { document.removeEventListener('keydown', onKey); return; }
+        const dt = last ? Math.min((now - last) / 1000, 0.1) : 0;
+        last = now;
+        const h = screen.clientHeight;
+        // Para quando o campeão e a mensagem final estiverem inteiros e centralizados na tela
+        const champ = nodes[nodes.length - 1];
+        const blockTop = champ ? champ.offsetTop : end.offsetTop, blockBottom = end.offsetTop + end.offsetHeight;
+        const stopAt = (blockBottom - blockTop) < h - 20 ? h / 2 - (blockTop + blockBottom) / 2 : 12 - blockTop;
+        if (!paused && !finished) {
+            y -= RANK_DEMO_BASE_SPEED * RANK_DEMO_SPEED * dt;
+            if (y <= stopAt) { y = stopAt; finished = true; overlay.classList.add('finished'); setPaused(true); XP.sound('tada', 0.5); status.textContent = t('demo_done'); }
+        }
+        roll.style.transform = `translate3d(0, ${Math.round(y)}px, 0)`;
+        // Destaca o jogo que está passando pelo centro da tela
+        const mid = h / 2 - y;
+        let cur = null;
+        for (const n of nodes) { if (n.offsetTop <= mid) cur = n; else break; }
+        if (cur !== shown) {
+            shown?.classList.remove('lit');
+            cur?.classList.add('lit');
+            shown = cur;
+            if (!finished) status.textContent = cur ? `${t('demo_now')}: #${cur.dataset.pos} / ${total}` : `${total} ${t('d_jogos')}`;
+        }
+        raf = requestAnimationFrame(frame);
+    };
+
+    screen.addEventListener('click', () => finished ? restart() : setPaused(!paused));
+    pauseBtn.addEventListener('click', () => finished ? restart() : setPaused(!paused));
+    overlay.querySelector('[data-act="restart"]').addEventListener('click', restart);
+    overlay.querySelector('[data-act="close"]').addEventListener('click', close);
+    overlay.querySelector('[data-act="speed"]').addEventListener('change', e => { RANK_DEMO_SPEED = +e.target.value; });
+    document.addEventListener('keydown', onKey);
+    y = screen.clientHeight;
+    status.textContent = `${total} ${t('d_jogos')}`;
+    XP.sound('start', 0.4);
+    overlay.focus({ preventScroll: true });
+    raf = requestAnimationFrame(frame);
+}
 
 /* ═══════════════════════════════ MEMBROS ═══════════════════════════════ */
 XP.registerApp('members', {

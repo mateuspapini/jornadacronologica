@@ -303,3 +303,78 @@ h2, h3 { margin: 0; font-weight: 700; }
     .xp-taskpane.rec-pane { max-height: none; }
     .xp-explorer.rec { grid-template-rows: auto 1fr; }
 }
+
+/* ═══════════════════════════════ DEMONSTRAÇÃO DO RANKING (créditos) ═══════════════════════════════ */
+.rank-demo-link { font-weight: 700; }
+.rank-demo { position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; background: #000; outline: none; animation: rdFade .35s ease-out; }
+@keyframes rdFade { from { opacity: 0; } to { opacity: 1; } }
+.rank-demo-screen { position: relative; flex: 1; min-height: 0; overflow: hidden; cursor: pointer;
+    background: radial-gradient(ellipse at 50% 120%, #1c4fb8 0%, #0b2a6e 38%, #040d24 72%, #01040c 100%); }
+.rank-demo-screen::before, .rank-demo-screen::after { content: ''; position: absolute; left: 0; right: 0; height: 70px; z-index: 2; pointer-events: none; }
+.rank-demo-screen::before { top: 0; background: linear-gradient(#01040c, transparent); }
+.rank-demo-screen::after { bottom: 0; background: linear-gradient(transparent, #071a45); }
+.rank-demo-roll { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 16px; will-change: transform; }
+
+.rd-head { text-align: center; color: #fff; padding: 10px 0 40px; }
+.rd-head img { width: 48px; height: 48px; filter: drop-shadow(0 0 10px rgba(255,214,90,.7)); }
+.rd-head h2 { margin: 8px 0 4px; font: italic 700 34px/1 var(--xp-title-font); letter-spacing: 2px; color: #fff; text-shadow: 0 2px 0 #0a246a, 0 0 18px rgba(120,170,255,.8); }
+.rd-sub { margin: 0; font: 700 14px var(--xp-title-font); color: #ffd65a; }
+.rd-channel { margin: 6px 0 0; font: 11px var(--xp-font); color: #9db8ec; }
+
+.rd-item { width: 100%; max-width: 560px; transition: transform .4s ease, opacity .4s ease; opacity: .72; }
+.rd-item.lit { opacity: 1; transform: scale(1.04); }
+.rd-row { display: grid; grid-template-columns: 62px 66px 1fr auto; gap: 12px; align-items: center; padding: 8px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04)); border: 1px solid rgba(160,195,255,.35); border-radius: 6px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 4px 14px rgba(0,0,0,.45); color: #fff; }
+.rd-item.lit .rd-row { border-color: #7fb0ff; box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 0 18px rgba(90,150,255,.55); }
+.rd-pos { font: italic 700 24px var(--xp-title-font); color: #bcd2ff; text-align: center; }
+.rd-cover { width: 66px; height: 88px; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,.6); overflow: hidden; display: block; }
+.rd-cover img { width: 100%; height: 100%; object-fit: cover; }
+.rd-info { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.rd-info b { font: 700 16px var(--xp-title-font); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rd-meta { font: 11px var(--xp-font); color: #c5d6f7; }
+.rd-score b { font: 700 26px/1 var(--xp-title-font); color: #ffd65a; text-shadow: 0 1px 0 #6b4a00; }
+.rd-score small { color: #9db8ec; font-size: 11px; }
+
+.rd-item.bronze .rd-row { border-left: 5px solid #c07a45; } .rd-item.bronze .rd-pos { color: #e09a62; }
+.rd-item.silver .rd-row { border-left: 5px solid #c5cdd6; } .rd-item.silver .rd-pos { color: #e2e8ef; }
+.rd-item.gold .rd-row { border-left: 5px solid #f0c330; } .rd-item.gold .rd-pos { color: #ffd65a; }
+.rd-item.bronze, .rd-item.silver { margin-top: 18px; }
+.rd-item.champion { margin-top: 70px; max-width: 620px; }
+.rd-champ-label { text-align: center; margin-bottom: 14px; font: italic 700 18px var(--xp-title-font); color: #ffd65a; letter-spacing: 1px; }
+.rd-item.champion .rd-row { grid-template-columns: 74px 90px 1fr auto; padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,214,90,.28), rgba(255,180,0,.08)); border-color: #f0c330; box-shadow: 0 0 30px rgba(255,200,40,.45), inset 0 1px 0 rgba(255,255,255,.4); }
+.rd-item.champion .rd-cover { width: 90px; height: 120px; }
+.rd-item.champion .rd-pos { font-size: 34px; }
+.rd-item.champion .rd-info b { font-size: 20px; }
+.rd-item.champion .rd-score b { font-size: 34px; }
+
+.rd-end { text-align: center; color: #fff; padding: 34px 0 10px; }
+.rd-end img { width: 48px; height: 48px; }
+.rd-end p { margin: 10px 0 6px; font: italic 700 20px var(--xp-title-font); text-shadow: 0 0 12px rgba(120,170,255,.8); }
+.rd-end small { font: 11px var(--xp-font); color: #9db8ec; }
+
+.rd-hint { position: absolute; z-index: 3; right: 10px; top: 8px; font: 11px var(--xp-font); color: rgba(255,255,255,.55); pointer-events: none; transition: opacity .3s; }
+.rank-demo.paused .rd-hint, .rank-demo.finished .rd-hint { opacity: 0; }
+.rank-demo.paused .rank-demo-screen::before { content: '❚❚'; height: auto; top: 50%; left: 50%; right: auto; transform: translate(-50%, -50%); z-index: 4;
+    font: 700 22px var(--xp-font); color: #fff; background: rgba(0,0,0,.55); padding: 14px 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,.3); }
+
+.rank-demo-bar { flex-shrink: 0; display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: var(--surface); border-top: 1px solid #fff; box-shadow: inset 0 1px 0 var(--button-shadow); font: 11px var(--xp-font); color: var(--text); }
+.rank-demo-bar .xp-btn { display: inline-flex; align-items: center; gap: 5px; min-width: 0; }
+.rank-demo-bar .xp-btn img { width: 16px; height: 16px; }
+.rd-speed { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; }
+.rd-status { flex: 1; text-align: right; padding: 0 8px; color: var(--gray-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 640px) {
+    .rd-row { grid-template-columns: 40px 48px minmax(0,1fr) auto; gap: 8px; padding: 6px 8px; }
+    .rd-cover { width: 48px; height: 64px; }
+    .rd-pos { font-size: 17px; }
+    .rd-info b { font-size: 13px; white-space: normal; }
+    .rd-score b { font-size: 20px; }
+    .rd-item.champion .rd-row { grid-template-columns: 48px 64px minmax(0,1fr) auto; }
+    .rd-item.champion .rd-cover { width: 64px; height: 86px; }
+    .rd-item.champion .rd-pos { font-size: 22px; } .rd-item.champion .rd-score b { font-size: 24px; }
+    .rd-head h2 { font-size: 26px; }
+    .rank-demo-bar { flex-wrap: wrap; }
+    .rank-demo-bar .xp-btn span, .rd-hint { display: none; }
+}
