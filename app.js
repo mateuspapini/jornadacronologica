@@ -654,7 +654,7 @@ const G = [
   { id:56, yr:1989, title:"Psycho Fox",                     plat:"MASTER SYSTEM", genre:"Plataforma",     st:"z",  pub:false, sc:null },
   { id:57, yr:1989, title:"Teenage Mutant Ninja Turtles",   plat:"NES",           genre:"Ação",           st:"nz", pub:true,  sc:6.0,  yt:'XBYedo7Ew-w' },
   { id:58, yr:1989, title:"Final Fight",                    plat:"ARCADE",        genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
-  { id:59, yr:1989, title:"Batman",                         plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:7.4 },
+  { id:59, yr:1989, title:"Batman",                         plat:"NES",           genre:"Plataforma",     st:"z",  pub:true,  sc:7.4,  yt:'JOf_pvrFTng' },
   { id:60, yr:1989, title:"Golden Axe",                     plat:"MEGA DRIVE",    genre:"Beat 'em Up",    st:"z",  pub:false, sc:null },
   { id:61, yr:1989, title:"World Championship Soccer",      plat:"MEGA DRIVE",    genre:"Esporte",        st:"z",  pub:false, sc:null },
   { id:62, yr:1989, title:"Dungeon Explorer",               plat:"PC ENGINE",     genre:"RPG",            st:"z",  pub:false, sc:null },
