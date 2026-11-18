@@ -2007,24 +2007,19 @@ XP.registerApp('ranking', {
     },
 });
 
-/* ─── Demonstração do Ranking: rolagem estilo créditos, do último ao primeiro ─── */
+/* ─── Demonstração do Ranking: sobe do último ao primeiro (o conteúdo desce na tela) ─── */
 const RANK_DEMO_BASE_SPEED = 55; // px por segundo na velocidade 1x
 let RANK_DEMO_SPEED = 1;
 function startRankDemo(client, ranked) {
     client.querySelector('.rank-demo')?.remove();
     const total = ranked.length;
     const medal = pos => pos === 1 ? 'gold' : pos === 2 ? 'silver' : pos === 3 ? 'bronze' : '';
-    const items = ranked.map(g => ({ g, pos: g.rk })).reverse();
+    const items = ranked.map(g => ({ g, pos: g.rk }));
+    const endBlock = `<div class="rd-end"><img src="${ICON('flag', 48)}" alt=""><p>${t('demo_end')}</p><small>jornadacronologicadosgames.com.br</small></div>`;
     const overlay = el('div', { class: 'rank-demo', role: 'dialog', 'aria-label': t('d_rank_demo'), tabindex: '-1' });
     overlay.innerHTML = `
         <div class="rank-demo-screen">
             <div class="rank-demo-roll">
-                <div class="rd-head">
-                    <img src="${ICON('star', 48)}" alt="">
-                    <h2>HALL OF FAME</h2>
-                    <p class="rd-sub">${t('demo_sub')}</p>
-                    <p class="rd-channel">${t('demo_channel')}</p>
-                </div>
                 ${items.map(({ g, pos }) => `
                 <div class="rd-item ${medal(pos)} ${pos === 1 ? 'champion' : ''}" data-pos="${pos}" data-id="${g.id}">
                     ${pos === 1 ? `<div class="rd-champ-label">${t('demo_end_t')}</div>` : ''}
@@ -2034,11 +2029,12 @@ function startRankDemo(client, ranked) {
                         <span class="rd-info"><b>${esc(g.title)}</b><span class="rd-meta">${plBadge(g.plat)} · ${g.yr} · ${esc(g.genre)}</span></span>
                         <span class="rd-score"><b>${fmtSc(g.sc)}</b><small>/10</small></span>
                     </div>
-                </div>`).join('')}
-                <div class="rd-end">
-                    <img src="${ICON('flag', 48)}" alt="">
-                    <p>${t('demo_end')}</p>
-                    <small>jornadacronologicadosgames.com.br</small>
+                </div>${pos === 1 ? endBlock : ''}`).join('')}
+                <div class="rd-head">
+                    <img src="${ICON('star', 48)}" alt="">
+                    <h2>HALL OF FAME</h2>
+                    <p class="rd-sub">${t('demo_sub')}</p>
+                    <p class="rd-channel">${t('demo_channel')}</p>
                 </div>
             </div>
             <div class="rd-hint">${t('demo_hint')}</div>
@@ -2062,13 +2058,15 @@ function startRankDemo(client, ranked) {
     const status = overlay.querySelector('.rd-status');
     const pauseBtn = overlay.querySelector('[data-act="pause"]');
     let y = 0, paused = false, finished = false, last = 0, raf = 0, shown = null;
+    // Começa com o rolo inteiro acima da tela: o cabeçalho entra primeiro, pelo topo
+    const startY = () => -roll.offsetHeight;
 
     const setPaused = v => {
         paused = v;
         pauseBtn.querySelector('span').textContent = finished ? t('demo_again') : t(paused ? 'demo_play' : 'demo_pause');
         overlay.classList.toggle('paused', paused && !finished);
     };
-    const restart = () => { finished = false; shown = null; y = screen.clientHeight; nodes.forEach(n => n.classList.remove('lit')); overlay.classList.remove('finished'); setPaused(false); };
+    const restart = () => { finished = false; shown = null; y = startY(); nodes.forEach(n => n.classList.remove('lit')); overlay.classList.remove('finished'); setPaused(false); };
     const close = () => { cancelAnimationFrame(raf); document.removeEventListener('keydown', onKey); overlay.remove(); };
     const onKey = e => {
         if (!overlay.isConnected) { document.removeEventListener('keydown', onKey); return; }
@@ -2081,18 +2079,20 @@ function startRankDemo(client, ranked) {
         last = now;
         const h = screen.clientHeight;
         // Para quando o campeão e a mensagem final estiverem inteiros e centralizados na tela
-        const champ = nodes[nodes.length - 1];
+        const champ = nodes[0];
         const blockTop = champ ? champ.offsetTop : end.offsetTop, blockBottom = end.offsetTop + end.offsetHeight;
         const stopAt = (blockBottom - blockTop) < h - 20 ? h / 2 - (blockTop + blockBottom) / 2 : 12 - blockTop;
         if (!paused && !finished) {
-            y -= RANK_DEMO_BASE_SPEED * RANK_DEMO_SPEED * dt;
-            if (y <= stopAt) { y = stopAt; finished = true; overlay.classList.add('finished'); setPaused(true); XP.sound('tada', 0.5); status.textContent = t('demo_done'); }
+            y += RANK_DEMO_BASE_SPEED * RANK_DEMO_SPEED * dt;
+            if (y >= stopAt) { y = stopAt; finished = true; overlay.classList.add('finished'); setPaused(true); XP.sound('tada', 0.5); status.textContent = t('demo_done'); }
         }
         roll.style.transform = `translate3d(0, ${Math.round(y)}px, 0)`;
         // Destaca o jogo que está passando pelo centro da tela
         const mid = h / 2 - y;
         let cur = null;
         for (const n of nodes) { if (n.offsetTop <= mid) cur = n; else break; }
+        const lastNode = nodes[nodes.length - 1];
+        if (cur === lastNode && mid > lastNode.offsetTop + lastNode.offsetHeight) cur = null; // lista ainda não chegou ao centro
         if (cur !== shown) {
             shown?.classList.remove('lit');
             cur?.classList.add('lit');
@@ -2108,7 +2108,7 @@ function startRankDemo(client, ranked) {
     overlay.querySelector('[data-act="close"]').addEventListener('click', close);
     overlay.querySelector('[data-act="speed"]').addEventListener('change', e => { RANK_DEMO_SPEED = +e.target.value; });
     document.addEventListener('keydown', onKey);
-    y = screen.clientHeight;
+    y = startY();
     status.textContent = `${total} ${t('d_jogos')}`;
     XP.sound('start', 0.4);
     overlay.focus({ preventScroll: true });

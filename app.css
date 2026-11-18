@@ -315,7 +315,7 @@ h2, h3 { margin: 0; font-weight: 700; }
 .rank-demo-screen::after { bottom: 0; background: linear-gradient(transparent, #071a45); }
 .rank-demo-roll { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 16px; will-change: transform; }
 
-.rd-head { text-align: center; color: #fff; padding: 10px 0 40px; }
+.rd-head { text-align: center; color: #fff; padding: 40px 0 10px; }
 .rd-head img { width: 48px; height: 48px; filter: drop-shadow(0 0 10px rgba(255,214,90,.7)); }
 .rd-head h2 { margin: 8px 0 4px; font: italic 700 34px/1 var(--xp-title-font); letter-spacing: 2px; color: #fff; text-shadow: 0 2px 0 #0a246a, 0 0 18px rgba(120,170,255,.8); }
 .rd-sub { margin: 0; font: 700 14px var(--xp-title-font); color: #ffd65a; }
@@ -339,8 +339,8 @@ h2, h3 { margin: 0; font-weight: 700; }
 .rd-item.bronze .rd-row { border-left: 5px solid #c07a45; } .rd-item.bronze .rd-pos { color: #e09a62; }
 .rd-item.silver .rd-row { border-left: 5px solid #c5cdd6; } .rd-item.silver .rd-pos { color: #e2e8ef; }
 .rd-item.gold .rd-row { border-left: 5px solid #f0c330; } .rd-item.gold .rd-pos { color: #ffd65a; }
-.rd-item.bronze, .rd-item.silver { margin-top: 18px; }
-.rd-item.champion { margin-top: 70px; max-width: 620px; }
+.rd-item.bronze, .rd-item.silver { margin-bottom: 18px; }
+.rd-item.champion { max-width: 620px; }
 .rd-champ-label { text-align: center; margin-bottom: 14px; font: italic 700 18px var(--xp-title-font); color: #ffd65a; letter-spacing: 1px; }
 .rd-item.champion .rd-row { grid-template-columns: 74px 90px 1fr auto; padding: 14px 16px;
     background: linear-gradient(180deg, rgba(255,214,90,.28), rgba(255,180,0,.08)); border-color: #f0c330; box-shadow: 0 0 30px rgba(255,200,40,.45), inset 0 1px 0 rgba(255,255,255,.4); }
@@ -349,7 +349,8 @@ h2, h3 { margin: 0; font-weight: 700; }
 .rd-item.champion .rd-info b { font-size: 20px; }
 .rd-item.champion .rd-score b { font-size: 34px; }
 
-.rd-end { text-align: center; color: #fff; padding: 34px 0 10px; }
+.rd-end { text-align: center; color: #fff; padding: 20px 0 10px; margin-bottom: 56px; opacity: 0; transition: opacity .6s ease; }
+.rank-demo.finished .rd-end { opacity: 1; }
 .rd-end img { width: 48px; height: 48px; }
 .rd-end p { margin: 10px 0 6px; font: italic 700 20px var(--xp-title-font); text-shadow: 0 0 12px rgba(120,170,255,.8); }
 .rd-end small { font: 11px var(--xp-font); color: #9db8ec; }
